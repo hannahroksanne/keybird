@@ -2,9 +2,8 @@ import { Text } from '@radix-ui/themes'
 import classcat from 'classcat'
 import { VboardKeyMenu } from './VboardKeyMenu'
 import { VboardKeyButton } from './VboardKeyButton'
-import { $core } from '../../views/$core'
+import { $core } from '../../stores/core/$core'
 import React from 'react'
-import { $midi } from '../../views/$midi'
 
 type VboardKeyPropsT = {
 	keyCode: string
@@ -12,18 +11,24 @@ type VboardKeyPropsT = {
 
 export const VboardKey = (props: VboardKeyPropsT) => {
 	const qwertyKey = $core.useQwertyKey(props.keyCode)
+	const isSharpKey = qwertyKey.note.includes('#')
 	const areAltLabelsShown = $core.useAreAltLabelsShown()
+	const isSharpKeyClassName = isSharpKey && 'VboardSharpNoteKey'
+	const isFunctionalClassName = qwertyKey.isFunctional && 'VboardFunctionalKey'
+	const isPlayableClassName = qwertyKey.isPlayable && 'VboardPlayableKey'
 	const isPressedClassName = qwertyKey.isPressed && 'VboardPressedKey'
 	const isRelatedClassName = qwertyKey.isRelated && 'VboardRelatedKey'
 
 	const keyClassName = `VboardKey${qwertyKey.keyCode}`
-	const baseClassNAme = ['VboardButton', 'VbuttonPlayableKey']
-	const modifierClassNames = [isPressedClassName, keyClassName]
+	const baseClassNAme = ['VboardButton', isPlayableClassName, isSharpKeyClassName]
+	const modifierClassNames = [isPressedClassName, keyClassName, isFunctionalClassName]
 	const className = classcat([...baseClassNAme, ...modifierClassNames, isRelatedClassName])
 
 	const color = qwertyKey.isPressed ? qwertyKey.color : qwertyKey.isRelated ? '' : qwertyKey.color
 	const variant = qwertyKey.isPressed ? qwertyKey.variant : qwertyKey.isRelated ? 'soft' : qwertyKey.variant
-	const label = areAltLabelsShown ? qwertyKey.altLabel : qwertyKey.label
+	const altLabel = qwertyKey.altLabel || qwertyKey.note || qwertyKey.label
+	const label = areAltLabelsShown ? altLabel : qwertyKey.label
+	const buttonRef = React.useRef<HTMLButtonElement>(null)
 	const reportOpenMenu = console.log
 	const isPlayable = qwertyKey.isPlayable
 
@@ -31,6 +36,7 @@ export const VboardKey = (props: VboardKeyPropsT) => {
 		...props,
 		...qwertyKey,
 		reportOpenMenu,
+		buttonRef,
 		className,
 		color,
 		variant,

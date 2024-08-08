@@ -4,11 +4,11 @@ import './VboardKeyMenu.css'
 import * as React from 'react'
 import { Flex } from '../Flex'
 import { GrayTheme } from '../Themes'
-import { $core } from '../../views/$core'
+import { $core } from '../../stores/core/$core'
 import { VboardKey } from './VboardKey'
 
 import useKeyboardEvents from '@acusti/use-keyboard-events'
-import { $midi } from '../../views/$midi'
+import { $midi } from '../../stores/midi/$midi'
 
 type VboardRowPropsT = {
 	index: number
@@ -30,7 +30,30 @@ const midiOn: number[] = []
 export const Vboard = React.memo(() => {
 	const rows = $core.useQwertyStringRows() as string[][]
 
+	const handleFunction = (event: KeyboardEvent) => {
+		event.preventDefault()
+
+		const qwertyKey = $core.getQwertyKey(event.code)
+		if (!qwertyKey) return
+
+		if (qwertyKey.function === 'toggleLabels') {
+			const shouldShowAltLabels = $core.state.shouldShowAltLabels
+			$core.setShouldShowAltLabels(!shouldShowAltLabels)
+		}
+
+		if (qwertyKey.function === 'toggleMidiOutput') {
+			const isMidiEnabled = $midi.state.isMidiEnabled
+			$midi.setIsMidiEnabled(!isMidiEnabled)
+		}
+
+		if (qwertyKey.function === 'foo') {
+			console.log('foo')
+		}
+	}
+
 	const handleEngageButton = (event: KeyboardEvent) => {
+		console.log('handleEngageButton')
+		handleFunction(event)
 		const midi = $core.getMidiForKeyCode(event.code)
 		const isAlreadyPressed = $core.checkIfKeyIsPressed(event.code)
 		if (isAlreadyPressed) return
@@ -44,6 +67,7 @@ export const Vboard = React.memo(() => {
 	}
 
 	const handleDisengageButton = (event: KeyboardEvent) => {
+		console.log('keyup happened...')
 		const midi = $core.getMidiForKeyCode(event.code)
 		$core.reportKeyUp(event.code)
 		if (!midi) return

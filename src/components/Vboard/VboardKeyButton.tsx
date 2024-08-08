@@ -1,7 +1,5 @@
 import * as React from 'react'
 import { Button } from '@radix-ui/themes'
-import { $core } from '../../views/$core'
-import { $midi } from '../../views/$midi'
 
 type PropsT = QwertyKeyT & {
 	className?: string
@@ -9,88 +7,43 @@ type PropsT = QwertyKeyT & {
 	color?: string
 	isDisabled?: boolean
 	children: React.ReactNode
+	buttonRef: React.RefObject<HTMLButtonElement>
 }
-
-// const useKeyDown = (keyCode: string, handler: (event: KeyboardEvent) => void) => {
-// 	React.useEffect(() => {
-// 		const _handler = (event: KeyboardEvent) => {
-// 			if (event.code === keyCode) {
-// 				handler(event)
-// 			}
-// 		}
-
-// 		window.addEventListener('keydown', _handler)
-// 		return () => {
-// 			window.removeEventListener('keydown', _handler)
-// 		}
-// 	}, [])
-// }
-
-// const useKeyUp = (keyCode: string, handler: (event: KeyboardEvent) => void) => {
-// 	React.useEffect(() => {
-// 		const _handler = (event: KeyboardEvent) => {
-// 			if (event.code === keyCode) {
-// 				handler(event)
-// 			}
-// 		}
-
-// 		window.addEventListener('keyup', _handler)
-// 		return () => {
-// 			window.removeEventListener('keyup', _handler)
-// 		}
-// 	}, [])
-// }
 
 export const VboardKeyButton = (props: PropsT) => {
 	const color = (props.color || 'gray') as any
 	const variant = (props.variant || 'outline') as any
 	const dataProps = getButtonDataProps(props)
+	const isMouseOverRef = React.useRef(false)
 
-	// useKeyDown(props.keyCode, () => {
-	// 	if (isEngagedRef.current) return
-	// 	isEngagedRef.current = true
-	// 	engageButton()
-	// })
+	const dispatchKeyEvent = (type: string) => {
+		const event = new KeyboardEvent(type, { code: props.keyCode })
+		document.dispatchEvent(event)
+	}
 
-	// useKeyUp(props.keyCode, () => {
-	// 	if (!isEngagedRef.current) return
-	// 	isEngagedRef.current = false
-	// 	disengageButton()
-	// })
+	const handleKeyDown = () => {
+		console.log('handleKeyDown')
+		dispatchKeyEvent('keydown')
+		isMouseOverRef.current = true
+	}
 
-	// const engageButton = () => {
-	// 	handleEngageButton?.()
-	// 	$core.reportKeyDown(props.keyCode)
-	// }
+	const handleKeyUp = () => {
+		dispatchKeyEvent('keyup')
+		isMouseOverRef.current = false
+	}
 
-	// const disengageButton = () => {
-	// 	handleDisengageButton?.()
-	// 	$core.reportKeyUp(props.keyCode)
-	// }
-
-	// const onButtonMouseDown = () => {
-	// 	isMouseDownRef.current = true
-	// 	engageButton()
-	// }
-
-	// const onButtonMouseUp = () => {
-	// 	isMouseDownRef.current = false
-	// 	disengageButton()
-	// }
-
-	// const handleMouseOut = () => {
-	// 	if (isMouseDownRef.current) disengageButton()
-	// 	isMouseDownRef.current = false
-	// }
+	const handleMouseOut = () => {
+		if (isMouseOverRef.current) handleKeyUp()
+	}
 
 	return (
 		<Button
-			// onMouseDown={onButtonMouseDown}
-			// onMouseUp={onButtonMouseUp}
-			// onMouseOver={handleMouseOver}
-			// onMouseOut={handleMouseOut}
+			ref={props.buttonRef}
 			variant={variant}
 			color={color}
+			onMouseDown={handleKeyDown}
+			onMouseUp={handleKeyUp}
+			onMouseLeave={handleMouseOut}
 			disabled={props.isDisabled}
 			className={props.className}
 			style={{ gap: 0, flexGrow: props.width, position: 'relative' }}
@@ -124,6 +77,7 @@ const getButtonDataProps = (props: PropsT) => {
 		'data-voicing': props.voicing,
 		'data-humanize': props.humanize,
 		'data-note': props.note,
-		'data-rootnote': props.rootNote
+		'data-rootnote': props.rootNote,
+		'data-issharp': props.note.includes('#')
 	}
 }

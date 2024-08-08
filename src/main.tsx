@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { App } from './App.tsx'
 import './index.css'
 
-import { setupForDevelopment } from './utilities/setupForDevelopment'
+import { setupForDevelopment } from './utilities/dev.ts'
 
 setupForDevelopment()
 

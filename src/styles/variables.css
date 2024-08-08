@@ -10,3 +10,213 @@
 
 	--gradientImage0: url('https://i.imgur.com/hhIykYI.jpeg');
 }
+
+:root {
+	--gorgeousBlueGradient0: linear-gradient(135deg, var(--blue-9), var(--purple-8), var(--cyan-7), var(--indigo-6));
+	--gorgeousBlueToRedGradient0: linear-gradient(
+		135deg,
+		var(--blue-9),
+		var(--purple-8),
+		var(--red-7),
+		var(--pink-6),
+		var(--orange-5)
+	);
+	--gorgeousGradient0: linear-gradient(135deg, var(--blue-9), var(--slate-2), var(--gray-8), var(--mauve-7));
+	--gorgeousGradient1: linear-gradient(
+		135deg,
+		var(--purple-9),
+		var(--violet-8),
+		var(--iris-7),
+		var(--indigo-6),
+		var(--slate-2)
+	);
+	--gorgeousGradient2: linear-gradient(
+		135deg,
+		var(--red-9),
+		var(--crimson-8),
+		var(--ruby-7),
+		var(--pink-6),
+		var(--slate-2)
+	);
+	--gorgeousGradient3: linear-gradient(
+		135deg,
+		var(--green-9),
+		var(--teal-8),
+		var(--jade-7),
+		var(--mint-6),
+		var(--sage-5)
+	);
+	--gorgeousGradient4: linear-gradient(
+		135deg,
+		var(--teal-9),
+		var(--cyan-8),
+		var(--blue-7),
+		var(--indigo-6),
+		var(--slate-5)
+	);
+	--gorgeousGradient5: linear-gradient(
+		135deg,
+		var(--cyan-9),
+		var(--teal-8),
+		var(--jade-7),
+		var(--green-6),
+		var(--olive-5)
+	);
+	--gorgeousGradient6: linear-gradient(
+		135deg,
+		var(--indigo-9),
+		var(--iris-8),
+		var(--violet-7),
+		var(--purple-6),
+		var(--plum-5)
+	);
+	--gorgeousGradient7: linear-gradient(
+		135deg,
+		var(--violet-9),
+		var(--purple-8),
+		var(--plum-7),
+		var(--mauve-6),
+		var(--gray-5)
+	);
+	--gorgeousGradient8: linear-gradient(
+		135deg,
+		var(--pink-9),
+		var(--red-8),
+		var(--crimson-7),
+		var(--ruby-6),
+		var(--sand-5)
+	);
+	--gorgeousGradient9: linear-gradient(
+		135deg,
+		var(--orange-9),
+		var(--amber-8),
+		var(--yellow-7),
+		var(--gold-6),
+		var(--bronze-5)
+	);
+	--gorgeousGradient10: linear-gradient(
+		135deg,
+		var(--yellow-9),
+		var(--lime-8),
+		var(--green-7),
+		var(--mint-6),
+		var(--sage-5)
+	);
+	--gorgeousGradient11: linear-gradient(
+		135deg,
+		var(--lime-9),
+		var(--green-8),
+		var(--jade-7),
+		var(--teal-6),
+		var(--olive-5)
+	);
+	--gorgeousGradient12: linear-gradient(
+		135deg,
+		var(--amber-9),
+		var(--gold-8),
+		var(--orange-7),
+		var(--bronze-6),
+		var(--brown-5)
+	);
+	--gradient-gray: linear-gradient(135deg, var(--gray-3), var(--gray-5));
+	--gradient-mauve: linear-gradient(135deg, var(--mauve-2), var(--mauve-4));
+	--gradient-slate: linear-gradient(135deg, var(--slate-3), var(--slate-5));
+	--gradient-sage: linear-gradient(135deg, var(--sage-2), var(--sage-4));
+	--gradient-olive: linear-gradient(135deg, var(--olive-3), var(--olive-5));
+	--gradient-sand: linear-gradient(135deg, var(--sand-2), var(--sand-4));
+	--gradient-tomato: linear-gradient(135deg, var(--tomato-2), var(--tomato-4));
+	--gradient-red: linear-gradient(135deg, var(--red-3), var(--red-5));
+	--gradient-ruby: linear-gradient(135deg, var(--ruby-2), var(--ruby-4));
+	--gradient-crimson: linear-gradient(135deg, var(--crimson-3), var(--crimson-5));
+	--gradient-pink: linear-gradient(135deg, var(--pink-2), var(--pink-4));
+	--gradient-plum: linear-gradient(135deg, var(--plum-3), var(--plum-5));
+	--gradient-purple: linear-gradient(135deg, var(--purple-2), var(--purple-4));
+	--gradient-violet: linear-gradient(135deg, var(--violet-3), var(--violet-5));
+	--gradient-iris: linear-gradient(135deg, var(--iris-2), var(--iris-4));
+	--gradient-indigo: linear-gradient(135deg, var(--indigo-3), var(--indigo-5));
+	--gradient-blue: linear-gradient(135deg, var(--blue-2), var(--blue-4));
+	--gradient-cyan: linear-gradient(135deg, var(--cyan-3), var(--cyan-5));
+	--gradient-teal: linear-gradient(135deg, var(--teal-2), var(--teal-4));
+	--gradient-jade: linear-gradient(135deg, var(--jade-3), var(--jade-5));
+}
+
+:root {
+	--complexGradient1: linear-gradient(135deg, var(--violet-2), var(--indigo-a4), var(--gray-3));
+	--complexGradient2: linear-gradient(135deg, var(--red-1), var(--crimson-a3), var(--mauve-4));
+	--complexGradient3: linear-gradient(135deg, var(--blue-3), var(--cyan-a2), var(--slate-2));
+	--complexGradient4: linear-gradient(135deg, var(--green-2), var(--teal-a3), var(--sage-4));
+	--complexGradient5: linear-gradient(135deg, var(--yellow-1), var(--amber-a2), var(--sand-3));
+	--complexGradient6: linear-gradient(135deg, var(--orange-2), var(--brown-a4), var(--olive-3));
+	--complexGradient7: linear-gradient(135deg, var(--pink-3), var(--plum-a2), var(--gray-1));
+	--complexGradient8: linear-gradient(135deg, var(--purple-1), var(--violet-a3), var(--mauve-2));
+	--complexGradient9: linear-gradient(135deg, var(--cyan-2), var(--blue-a4), var(--slate-1));
+	--complexGradient10: linear-gradient(135deg, var(--teal-1), var(--green-a3), var(--sage-2));
+	--complexGradient11: linear-gradient(135deg, var(--amber-3), var(--yellow-a2), var(--sand-1));
+	--complexGradient12: linear-gradient(135deg, var(--brown-2), var(--orange-a3), var(--olive-4));
+	--complexGradient13: linear-gradient(135deg, var(--plum-1), var(--pink-a4), var(--gray-2));
+	--complexGradient14: linear-gradient(135deg, var(--violet-3), var(--purple-a2), var(--mauve-1));
+	--complexGradient15: linear-gradient(135deg, var(--indigo-2), var(--blue-a3), var(--slate-4));
+	--complexGradient16: linear-gradient(135deg, var(--red-3), var(--crimson-a2), var(--mauve-3));
+	--complexGradient17: linear-gradient(135deg, var(--green-1), var(--teal-a4), var(--sage-3));
+	--complexGradient18: linear-gradient(135deg, var(--yellow-2), var(--amber-a3), var(--sand-4));
+	--complexGradient19: linear-gradient(135deg, var(--orange-1), var(--brown-a2), var(--olive-2));
+	--complexGradient20: linear-gradient(135deg, var(--pink-2), var(--plum-a3), var(--gray-4));
+}
+
+:root,
+.DARK_GRADIENTS {
+	--favoriteDarkGradient0: linear-gradient(135deg, var(--red-a3), var(--purple-1), var(--mauve-12));
+	--darkGradient0: linear-gradient(135deg, var(--pink-2), var(--plum-a3), var(--gray-4));
+	--complexGradient1: linear-gradient(135deg, var(--violet-2), var(--indigo-a4), var(--gray-3));
+	--complexGradient2: linear-gradient(135deg, var(--red-1), var(--crimson-a3), var(--mauve-4));
+	--complexGradient3: linear-gradient(135deg, var(--blue-3), var(--cyan-a2), var(--slate-2));
+	--complexGradient4: linear-gradient(135deg, var(--green-2), var(--teal-a3), var(--sage-4));
+	--complexGradient5: linear-gradient(135deg, var(--yellow-1), var(--amber-a2), var(--sand-3));
+	--complexGradient6: linear-gradient(135deg, var(--orange-2), var(--brown-a4), var(--olive-3));
+	--complexGradient7: linear-gradient(135deg, var(--pink-3), var(--plum-a2), var(--gray-1));
+	--complexGradient8: linear-gradient(135deg, var(--purple-1), var(--violet-a3), var(--mauve-2));
+	--complexGradient9: linear-gradient(135deg, var(--cyan-2), var(--blue-a4), var(--slate-1));
+	--complexGradient10: linear-gradient(135deg, var(--teal-1), var(--green-a3), var(--sage-2));
+	--complexGradient11: linear-gradient(135deg, var(--amber-3), var(--yellow-a2), var(--sand-1));
+	--complexGradient12: linear-gradient(135deg, var(--brown-2), var(--orange-a3), var(--olive-4));
+	--complexGradient13: linear-gradient(135deg, var(--plum-1), var(--pink-a4), var(--gray-2));
+	--complexGradient14: linear-gradient(135deg, var(--violet-3), var(--purple-a2), var(--mauve-1));
+	--complexGradient15: linear-gradient(135deg, var(--indigo-2), var(--blue-a3), var(--slate-4));
+	--complexGradient16: linear-gradient(135deg, var(--red-3), var(--crimson-a2), var(--mauve-3));
+	--complexGradient17: linear-gradient(135deg, var(--green-1), var(--teal-a4), var(--sage-3));
+	--complexGradient18: linear-gradient(135deg, var(--yellow-2), var(--amber-a3), var(--sand-4));
+	--complexGradient19: linear-gradient(135deg, var(--orange-1), var(--brown-a2), var(--olive-2));
+}
+
+:root {
+	--shadow-1: 0px 1px 2px rgba(0, 0, 0, 0.1);
+	--shadow-2: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	--shadow-3: 0px 3px 6px rgba(0, 0, 0, 0.1);
+	--shadow-4: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	--shadow-5: 0px 5px 10px rgba(0, 0, 0, 0.1);
+	--shadow-6: 0px 6px 12px rgba(0, 0, 0, 0.1);
+	--shadow-7: 0px 7px 14px rgba(0, 0, 0, 0.1);
+	--shadow-8: 0px 8px 16px rgba(0, 0, 0, 0.1);
+	--shadow-9: 0px 9px 18px rgba(0, 0, 0, 0.1);
+	--shadow-10: 0px 10px 20px rgba(0, 0, 0, 0.1);
+	--shadow-11: 0px 12px 24px rgba(0, 0, 0, 0.1);
+	--shadow-12: 0px 14px 28px rgba(0, 0, 0, 0.1);
+	--shadow-13: 0px 16px 32px rgba(0, 0, 0, 0.1);
+	--shadow-14: 0px 18px 36px rgba(0, 0, 0, 0.1);
+	--shadow-15: 0px 20px 40px rgba(0, 0, 0, 0.1);
+	--shadow-16: 0px 22px 44px rgba(0, 0, 0, 0.1);
+	--shadow-17: 0px 24px 48px rgba(0, 0, 0, 0.1);
+	--shadow-18: 0px 26px 52px rgba(0, 0, 0, 0.1);
+	--favoriteShadow0: 0px 28px 56px rgba(0, 0, 0, 0.1);
+	--shadow-20: 0px 30px 60px rgba(0, 0, 0, 0.1);
+	--shadow-21: 0px 32px 64px rgba(0, 0, 0, 0.1);
+	--shadow-22: 0px 34px 68px rgba(0, 0, 0, 0.1);
+	--shadow-23: 0px 36px 72px rgba(0, 0, 0, 0.1);
+	--shadow-24: 0px 38px 76px rgba(0, 0, 0, 0.1);
+	--shadow-25: 0px 40px 80px rgba(0, 0, 0, 0.1);
+	--shadow-26: 0px 45px 90px rgba(0, 0, 0, 0.1);
+	--shadow-27: 0px 50px 100px rgba(0, 0, 0, 0.1);
+	--shadow-28: 0px 55px 110px rgba(0, 0, 0, 0.1);
+	--shadow-29: 0px 60px 120px rgba(0, 0, 0, 0.1);
+	--shadow-30: 0px 65px 130px rgba(0, 0, 0, 0.1);
+}

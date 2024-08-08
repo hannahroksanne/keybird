@@ -1,7 +1,6 @@
 import React from 'react'
-import { ROOT_NOTES } from '../consts/scales'
-import { getCleanQuertyKeys } from './quertyKeys'
-import { $core } from './$core'
+import { CONSTS } from '../consts'
+import { $core } from '../stores/core/$core'
 import * as Tonal from 'tonal'
 import cloneDeep from 'clone-deep'
 
@@ -71,7 +70,7 @@ const useRelatedKeysHandler = () => {
 			return { ...key, isRelated }
 		})
 
-		console.log('done checking related keys', qwertyKeys)
+		// console.log('done checking related keys', qwertyKeys)
 		$core.setState({ qwertyKeys })
 	}, [pressedKeys.length])
 }
@@ -93,7 +92,7 @@ const useKeyMapper = () => {
 			return
 		}
 
-		const cleanQwertyKeys = getCleanQuertyKeys()
+		const cleanQwertyKeys = CONSTS.getQwertyKeysClone()
 		const scaleNotes = $core.state.scaleNotes
 		const target = createReducerTarget()
 
@@ -104,7 +103,7 @@ const useKeyMapper = () => {
 			}
 
 			const rootNote = scaleNotes[final.index % scaleNotes.length]
-			const allNotesIndex = ROOT_NOTES.indexOf(rootNote)
+			const allNotesIndex = CONSTS.MUSIC.ROOT_NOTES.indexOf(rootNote)
 			const isFirstIteration = final.lastRootNoteIndex === -1
 			const isNoteInNewOctave = !isFirstIteration && allNotesIndex <= final.lastRootNoteIndex
 

@@ -7,7 +7,7 @@
 
 html,
 body {
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 main {
@@ -20,5 +20,6 @@ main {
 	height: 100vh;
 	max-height: 100vh;
 	min-height: 100vh;
+	overflow-y: scroll;
 	background: linear-gradient(to bottom, var(--accent-2), var(--color-background));
 }

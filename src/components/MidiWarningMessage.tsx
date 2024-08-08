@@ -1,5 +1,5 @@
 import { Text, Tooltip } from '@radix-ui/themes'
-import { $midi } from '../views/$midi'
+import { $midi } from '../stores/midi/$midi'
 
 export const MidiWarningMessage = () => {
 	const warningMessage = $midi.useWarningMessage()

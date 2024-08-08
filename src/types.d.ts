@@ -78,6 +78,14 @@ type KeyEventT = Partial<KeyboardEvent> & {
 }
 
 type QwertyKeyT = {
+	// So that we can keep specific keys maintained
+	// and configued in the qwertyKeys.config but
+	// not have them rendering to the DOM.
+	isIgnored: boolean
+
+	// Each quertyKey specifies the row it will
+	// be rendered in. This is to simplify complexity
+	// related to having nested objects in state.
 	row: number
 	keyCode: string
 	label: string
@@ -98,8 +106,8 @@ type QwertyKeyT = {
 	inversion: number
 	voicing: string
 	humanize: number
-	note?: string
-	rootNote?: string
+	note: string
+	rootNote: string
 }
 
 const foo: QuertyKeyT = {
