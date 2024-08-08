@@ -3,23 +3,9 @@ import './ChordCard.css'
 
 import * as React from 'react'
 import { Flex } from '../Flex'
-import { Text, Badge, Card, Heading } from '@radix-ui/themes'
-import { ChevronDownIcon, ChevronUpIcon, PlayIcon } from '@radix-ui/react-icons'
-import { motion, useAnimate, useInView } from 'framer-motion'
+import { Badge, Heading } from '@radix-ui/themes'
+import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import { ChordCard } from './ChordCard'
-
-const useAnimation = () => {
-	const [ref, animate] = useAnimate()
-	const isInView = useInView(ref)
-
-	React.useEffect(() => {
-		if (isInView) {
-			animate('.ChordCardChordName', { opacity: 1, backgroundColor: '#000' }, { ease: 'linear', duration: 5 })
-		}
-	}, [isInView])
-
-	return ref
-}
 
 export const ChordBoard = (props: AnyObjectT) => {
 	const [isExpanded, setIsExpanded] = React.useState(false)

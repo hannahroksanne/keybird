@@ -7,7 +7,7 @@ export default defineConfig({
 		react(),
 		// @ts-ignore
 		mixPlugin.default({
-			handler: './server/index.ts'
+			handler: './api/index.ts'
 		})
 	]
 })
