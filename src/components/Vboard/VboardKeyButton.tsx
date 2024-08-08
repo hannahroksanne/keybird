@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button } from '@radix-ui/themes'
-import { $core } from '../../views/core'
-import { $midi } from '../../views/midi.store'
+import { $core } from '../../views/$core'
+import { $midi } from '../../views/$midi'
 
 type PropsT = QwertyKeyT & {
 	className?: string

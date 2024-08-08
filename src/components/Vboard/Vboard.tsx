@@ -4,11 +4,11 @@ import './VboardKeyMenu.css'
 import * as React from 'react'
 import { Flex } from '../Flex'
 import { GrayTheme } from '../Themes'
-import { $core } from '../../views/core'
+import { $core } from '../../views/$core'
 import { VboardKey } from './VboardKey'
 
 import useKeyboardEvents from '@acusti/use-keyboard-events'
-import { $midi } from '../../views/midi.store'
+import { $midi } from '../../views/$midi'
 
 type VboardRowPropsT = {
 	index: number

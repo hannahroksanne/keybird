@@ -73,8 +73,12 @@ const reportKeyUp = (keyCode: string) => {
 	useStore.setState({ qwertyKeys })
 }
 
-const setScaleRootNote = (rootNote: VboardT.RootNote) => {
-	useStore.setState({ scaleRootNote: rootNote })
+const setScaleRootNote = (scaleRootNote: VboardT.RootNote) => {
+	useStore.setState({ scaleRootNote })
+}
+
+const setScaleType = (scaleType: string) => {
+	useStore.setState({ scaleType })
 }
 
 const setShouldShowAltLabels = (shouldShowAltLabels: boolean) => {
@@ -162,6 +166,7 @@ export const $core = {
 	getMidiForKeyCode,
 	usePressedKeys,
 	getPressedKeys,
+	setScaleType,
 	get state() {
 		return useStore.getState()
 	}

@@ -1,7 +1,5 @@
-import * as Tonal from 'tonal'
 import { WebMidi } from 'webmidi'
 import { create } from 'zustand'
-import { $keys } from './keys.store'
 
 type StoreT = {
 	isMidiReady: boolean

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ROOT_NOTES } from '../consts/scales'
 import { getCleanQuertyKeys } from './quertyKeys'
-import { $core, $core } from './core'
+import { $core } from './$core'
 import * as Tonal from 'tonal'
 import cloneDeep from 'clone-deep'
 

@@ -2,9 +2,9 @@ import { Text } from '@radix-ui/themes'
 import classcat from 'classcat'
 import { VboardKeyMenu } from './VboardKeyMenu'
 import { VboardKeyButton } from './VboardKeyButton'
-import { $core } from '../../views/core'
+import { $core } from '../../views/$core'
 import React from 'react'
-import { $midi } from '../../views/midi.store'
+import { $midi } from '../../views/$midi'
 
 type VboardKeyPropsT = {
 	keyCode: string

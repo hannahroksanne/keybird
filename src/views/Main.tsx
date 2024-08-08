@@ -11,8 +11,9 @@ import { $store } from './$store'
 import { MidiToggleSwitch } from '../components/MidiToggleSwitch'
 import { MidiWarningMessage } from '../components/MidiWarningMessage'
 import { MidiOutputSelector } from '../components/MidiOutputSelector'
-import { $midi } from './midi.store'
+import { $midi } from './$midi'
 import { useCoreStoreMonitor } from './setup'
+import { $core } from './$core'
 
 export const Main = () => {
 	useCoreStoreMonitor()
@@ -52,14 +53,14 @@ const MidiControls = () => {
 }
 
 const KeyNameSelect = () => {
-	const store = $store.use()
+	const rootNote = $core.use((state) => state.scaleRootNote)
 
-	const reportKeyNameChange = (keyName: string) => {
-		store.setScale(keyName, store.scaleType)
+	const reportKeyNameChange = (newRootNote: string) => {
+		$core.setScaleRootNote(newRootNote as any)
 	}
 
 	return (
-		<Select.Root size="3" value={$store.state.scaleRootNote} onValueChange={reportKeyNameChange}>
+		<Select.Root size="3" value={rootNote} onValueChange={reportKeyNameChange}>
 			<Select.Trigger variant="ghost" />
 			<Select.Content>
 				<Select.Group>
@@ -82,14 +83,14 @@ const KeyNameSelect = () => {
 }
 
 const ScaleNameSelect = () => {
-	const store = $store.use()
+	const scaleType = $core.use((state) => state.scaleType)
 
-	const changeScaleType = (scaleType: string) => {
-		store.setScale($store.state.scaleRootNote, scaleType as any)
+	const changeScaleType = (newScaleType: string) => {
+		$core.setScaleType(newScaleType as any)
 	}
 
 	return (
-		<Select.Root size="3" value={$store.state.scaleType} onValueChange={changeScaleType}>
+		<Select.Root size="3" value={scaleType} onValueChange={changeScaleType}>
 			<Select.Trigger variant="ghost" />
 			<Select.Content>
 				<Select.Group>

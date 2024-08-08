@@ -1,5 +1,5 @@
 import { Select } from '@radix-ui/themes'
-import { $midi } from '../views/midi.store'
+import { $midi } from '../views/$midi'
 
 export const MidiOutputSelector = () => {
 	const midiOutputs = $midi.use((state) => state.midiOutputs)
