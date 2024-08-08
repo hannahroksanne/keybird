@@ -21,7 +21,15 @@
 		"strict": false,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"noFallthroughCasesInSwitch": false
+		"noFallthroughCasesInSwitch": false,
+		"noImplicitReturns": false,
+		"noImplicitAny": false,
+		"noImplicitThis": false,
+		"noImplicitOverride": false,
+		"noImplicitUseStrict": false,
+		"noPropertyAccessFromIndexSignature": false,
+		"noUncheckedIndexedAccess": false,
+		"noEmitOnError": false
 	},
 	"include": ["src"]
 }

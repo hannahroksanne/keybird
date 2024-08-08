@@ -5,7 +5,6 @@ import * as React from 'react'
 import { Flex } from '../Flex'
 import { Text, Badge, Card, Heading } from '@radix-ui/themes'
 import { ChevronDownIcon, ChevronUpIcon, PlayIcon } from '@radix-ui/react-icons'
-import { Spacer } from '../Spacer'
 import { motion, useAnimate, useInView } from 'framer-motion'
 import { ChordCard } from './ChordCard'
 
