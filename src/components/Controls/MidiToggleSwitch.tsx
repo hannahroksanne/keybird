@@ -1,7 +1,7 @@
 import { Text, Switch, Tooltip } from '@radix-ui/themes'
-import { Flex } from '../components/Flex'
+import { Flex } from '../../components/Flex'
 import { KeyboardIcon } from '@radix-ui/react-icons'
-import { $midi } from '../stores/midi/$midi'
+import { $midi } from '../../stores/midi/$midi'
 
 export const MidiToggleSwitch = () => {
 	const isMidiReady = $midi.useIsMidiReady()

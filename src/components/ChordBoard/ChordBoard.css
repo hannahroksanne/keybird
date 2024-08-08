@@ -2,7 +2,6 @@
 	z-index: 101;
 	padding: 24px;
 	width: 100%;
-	background: var(--favoriteDarkGradient0);
 }
 
 .ChordBoard[data-isexpanded='true'] {

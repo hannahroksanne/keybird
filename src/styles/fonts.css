@@ -53,3 +53,7 @@
 	font-weight: 700;
 	font-style: italic;
 }
+
+:root {
+	--fonts0: 'Sometype Mono', monospace;
+}

@@ -1,9 +1,11 @@
+import './MainMenuBar.css'
 import React from 'react'
 import * as Menubar from '@radix-ui/react-menubar'
 import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons'
-import './MainMenuBar.css'
 import { Flex } from '../Flex'
 import { Button, Text } from '@radix-ui/themes'
+import { SceneRouteController } from '../Controls/SceneRouteController'
+import { KeyboardTopControls } from '../Controls/KeyboardTopControls'
 
 const RADIO_ITEMS = ['Andy', 'Benoît', 'Luis']
 const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs']
@@ -11,17 +13,13 @@ const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs']
 export const MainMenuBar = () => {
 	return (
 		<Flex.Column p="3" gap="3" data-testid="MainMenuBar" className="MainMenuBar">
-			<Flex.Row justify="start" align="center" className="MainMenuBarRow">
-				<Flex.Row>
+			<Flex.Row justify="between" align="center" className="MainMenuBarRow">
+				<Flex.Row justify="start" align="center" gap="6">
 					<img src="/images/keybirdLogo.svg" className="MainMenuBarLogo" />
+					<SceneRouteController />
 				</Flex.Row>
-				<Menubar.Root className="MenubarRoot">
-					<FileMenu />
 
-					<EditMenu />
-					<ViewMenu />
-					<ProfilesMenu />
-				</Menubar.Root>
+				<KeyboardTopControls />
 			</Flex.Row>
 		</Flex.Column>
 	)

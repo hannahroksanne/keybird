@@ -1,0 +1,13 @@
+.BaseKey {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+.BaseKey > span {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4px 16px;
+}

@@ -121,7 +121,7 @@
 		0 0 12px #0000004d;
 	--boxShadowG: inset -3px -4px 12px -1px #00000023, 0 0 52px 8px #c834ff47, 0px 1px 54px 8px #a200c747,
 		0 0 12px #0000005c;
-	background: linear-gradient(to bottom right, #66bedf, #45aeff);
+	--backgroundBluey: linear-gradient(to bottom right, #66bedf, #45aeff);
 	--boxShadowH: -1px 4px 26px 2px rgba(17, 24, 39, 0.633), -10px 10px 30px -9px rgba(255, 199, 254, 0.036),
 		0px 4px 60px 8px rgb(242 2 255 / 27%), 20px 0px 130px 48px rgba(162, 0, 199, 0.111);
 	--boxShadowI: -1px 4px 26px 2px #111827ff, -10px 10px 30px -9px rgb(255 199 254 / 50%),
@@ -150,6 +150,30 @@
 /* box-shadow:
 		inset 0 0 30px 4px hsla(0, 0%, 0%, 0.17),
 		0 0 12px -5px hsla(1, 10%, 100%, 0.15); */
+
+[data-location='chords'] .pixel0 {
+	box-shadow: 50px 20px 500px 200px rgba(71, 207, 184, 0.06);
+}
+
+[data-location='chords'] .pixel1 {
+	box-shadow: 50px 20px 500px 200px rgba(85, 71, 207, 0.06);
+}
+
+[data-location='chords'] .pixel2 {
+	box-shadow: 50px 20px 500px 200px rgba(71, 207, 184, 0.06);
+}
+
+[data-location='settings'] .pixel0 {
+	box-shadow: 50px 20px 500px 200px rgba(162, 207, 71, 0.06);
+}
+
+[data-location='settings'] .pixel1 {
+	box-shadow: 50px 20px 500px 200px rgba(207, 146, 71, 0.06);
+}
+
+[data-location='settings'] .pixel2 {
+	box-shadow: 50px 20px 500px 200px rgba(207, 100, 71, 0.06);
+}
 
 .pixel0 {
 	position: absolute;

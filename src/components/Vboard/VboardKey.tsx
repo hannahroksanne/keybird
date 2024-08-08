@@ -66,6 +66,8 @@ export const VboardPlayableKey = React.memo((props: EnhancedPropsT) => {
 })
 
 export const VboardFunctionalKey = React.memo((props: EnhancedPropsT) => {
+	const handleClick = (event: MouseEvent) => {}
+
 	return (
 		<VboardKeyButton {...props}>
 			<VboardKeyMenu reportOpenMenu={props.reportOpenMenu}>

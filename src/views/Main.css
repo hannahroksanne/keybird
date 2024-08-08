@@ -31,3 +31,12 @@
 .OctaveDecrementButton {
 	border-radius: 0 4px 4px 0;
 }
+
+.MainView {
+	width: 100%;
+}
+
+.KeyboardContainer {
+	width: 100%;
+	height: 100%;
+}

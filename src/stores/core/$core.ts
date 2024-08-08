@@ -90,6 +90,11 @@ const useAreAltLabelsShown = () => {
 	return $core.use((state) => state.shouldShowAltLabels)
 }
 
+const useQwertyKeyCodes = () => {
+	const qwertyKeys = $core.use((state) => state.qwertyKeys)
+	return qwertyKeys.map((key) => key.keyCode)
+}
+
 // Get an array of { keyCode, row } objects.
 // We just need this array for rendering the
 // on screen keyboard one time, and each
@@ -151,6 +156,10 @@ const useQwertyKey = (keyCode: string): QwertyKeyT => {
 	return qwertyKey as QwertyKeyT
 }
 
+const useQwertyKeys = () => {
+	return $core.use((state) => state.qwertyKeys)
+}
+
 export const $core = {
 	use: useStore,
 	subscribe: useStore.subscribe,
@@ -169,6 +178,8 @@ export const $core = {
 	getPressedKeys,
 	setScaleType,
 	getQwertyKey,
+	useQwertyKeyCodes,
+	useQwertyKeys,
 	get state() {
 		return useStore.getState()
 	}

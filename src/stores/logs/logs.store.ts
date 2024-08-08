@@ -10,10 +10,12 @@ type DevelopmentLogT = {
 
 type StoreT = {
 	list: DevelopmentLogT[]
+	isLogListOpen: boolean
 }
 
 const INITIAL_STATE = {
-	list: []
+	list: [],
+	isLogListOpen: false
 }
 
 const useStore = create<StoreT>(() => {
@@ -28,10 +30,15 @@ const log = (id: string, data: AnyObjectT = {}) => {
 	useStore.setState({ list })
 }
 
+const toggleLogListOpen = (isLogListOpen: boolean) => {
+	useStore.setState({ isLogListOpen })
+}
+
 export const $logs = {
 	use: useStore,
 	getState: useStore.getState,
 	setState: useStore.setState,
+	toggleLogListOpen,
 
 	log,
 

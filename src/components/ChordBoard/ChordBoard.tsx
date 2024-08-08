@@ -6,11 +6,26 @@ import { Flex } from '../Flex'
 import { Text, Badge, Card, Heading } from '@radix-ui/themes'
 import { ChevronDownIcon, ChevronUpIcon, PlayIcon } from '@radix-ui/react-icons'
 import { Spacer } from '../Spacer'
-import { motion } from 'framer-motion'
+import { motion, useAnimate, useInView } from 'framer-motion'
+import { ChordCard } from './ChordCard'
+
+const useAnimation = () => {
+	const [ref, animate] = useAnimate()
+	const isInView = useInView(ref)
+
+	React.useEffect(() => {
+		if (isInView) {
+			animate('.ChordCardChordName', { opacity: 1, backgroundColor: '#000' }, { ease: 'linear', duration: 5 })
+		}
+	}, [isInView])
+
+	return ref
+}
 
 export const ChordBoard = (props: AnyObjectT) => {
 	const [isExpanded, setIsExpanded] = React.useState(false)
 	const HeadingIcon = isExpanded ? ChevronUpIcon : ChevronDownIcon
+	// const ref = useAnimation()
 
 	const toggleExpanded = () => {
 		setIsExpanded(!isExpanded)
@@ -32,18 +47,5 @@ export const ChordBoard = (props: AnyObjectT) => {
 				))}
 			</Flex.Row>
 		</Flex.Column>
-	)
-}
-
-const ChordCard = () => {
-	return (
-		<motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-			<Card className="ChordCard">
-				<Flex.Row gap="3" align="center">
-					<PlayIcon style={{ height: 16 }} />
-					<Text>maj7sus2add13</Text>
-				</Flex.Row>
-			</Card>
-		</motion.button>
 	)
 }

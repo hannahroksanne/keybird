@@ -9,6 +9,7 @@ import { VboardKey } from './VboardKey'
 
 import useKeyboardEvents from '@acusti/use-keyboard-events'
 import { $midi } from '../../stores/midi/$midi'
+import { $logs } from '../../stores'
 
 type VboardRowPropsT = {
 	index: number
@@ -46,13 +47,12 @@ export const Vboard = React.memo(() => {
 			$midi.setIsMidiEnabled(!isMidiEnabled)
 		}
 
-		if (qwertyKey.function === 'foo') {
-			console.log('foo')
+		if (qwertyKey.function === 'toggleDevLogList') {
+			$logs.toggleLogListOpen(!$logs.state.isLogListOpen)
 		}
 	}
 
 	const handleEngageButton = (event: KeyboardEvent) => {
-		console.log('handleEngageButton')
 		handleFunction(event)
 		const midi = $core.getMidiForKeyCode(event.code)
 		const isAlreadyPressed = $core.checkIfKeyIsPressed(event.code)
@@ -67,7 +67,6 @@ export const Vboard = React.memo(() => {
 	}
 
 	const handleDisengageButton = (event: KeyboardEvent) => {
-		console.log('keyup happened...')
 		const midi = $core.getMidiForKeyCode(event.code)
 		$core.reportKeyUp(event.code)
 		if (!midi) return
@@ -82,8 +81,6 @@ export const Vboard = React.memo(() => {
 
 	return (
 		<GrayTheme>
-			<GlowPixels />
-
 			<Flex.Column gap="2" p="2" className="Vboard" data-testid="Vboard">
 				{rows.map((qwertyKeys, index) => (
 					<VboardRow key={index} index={index} qwertyKeys={qwertyKeys} />
@@ -92,14 +89,3 @@ export const Vboard = React.memo(() => {
 		</GrayTheme>
 	)
 })
-
-// Make it look cool. That is all.
-const GlowPixels = () => {
-	return (
-		<>
-			<span className="pixel0"> </span>
-			<span className="pixel1"> </span>
-			<span className="pixel2"> </span>
-		</>
-	)
-}
