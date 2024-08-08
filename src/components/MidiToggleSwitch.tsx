@@ -1,6 +1,5 @@
 import { Text, Switch, Tooltip } from '@radix-ui/themes'
 import { Flex } from '../components/Flex'
-import { $store } from '../views/$store'
 import { KeyboardIcon } from '@radix-ui/react-icons'
 import { $midi } from '../stores/midi/$midi'
 

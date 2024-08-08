@@ -8,28 +8,28 @@ type NewChordT = {
 	name: string
 }
 
-export const getChordRelations = () => {
-	const _scales = toner.allScales.map((scale: any) => {
-		scale.chords = []
-		return scale
-	})
+// export const getChordRelations = () => {
+// 	const _scales = toner.allScales.map((scale: any) => {
+// 		scale.chords = []
+// 		return scale
+// 	})
 
-	for (const chord of toner.allChords) {
-		chord.scales = []
+// 	for (const chord of toner.allChords) {
+// 		chord.scales = []
 
-		for (const scale of _scales) {
-			const isChordInScale = isSubsetOf(chord.notes, scale.notes)
-			if (!isChordInScale) continue
-			chord.scales.push(scale.name)
-			scale.chords.push(chord.name)
-		}
-	}
+// 		for (const scale of _scales) {
+// 			const isChordInScale = isSubsetOf(chord.notes, scale.notes)
+// 			if (!isChordInScale) continue
+// 			chord.scales.push(scale.name)
+// 			scale.chords.push(chord.name)
+// 		}
+// 	}
 
-	console.log({
-		chords: toner.allChords,
-		scales: _scales
-	})
-}
+// 	console.log({
+// 		chords: toner.allChords,
+// 		scales: _scales
+// 	})
+// }
 
 export const toner = {
 	getChordNotes: Tonal.Chord.notes,
@@ -37,24 +37,24 @@ export const toner = {
 	getChordTypes: Tonal.ChordType.names,
 	getChord: Tonal.Chord.get,
 
-	checkIfChordIsInScale(chordName: string, scaleName: string) {
-		const scale = toner.getScale(scaleName)
-		const chordNotes = toner.getChordNotes(chordName)
-		const isChordInScale = isSubsetOf(chordNotes, scale)
-		return isChordInScale
-	},
+	// checkIfChordIsInScale(chordName: string, scaleName: string) {
+	// 	const scale = toner.getScale(scaleName)
+	// 	const chordNotes = toner.getChordNotes(chordName)
+	// 	const isChordInScale = isSubsetOf(chordNotes, scale)
+	// 	return isChordInScale
+	// },
 
-	getAllChords() {
-		return toner.rootNotes.flatMap((rootNote: string) => {
-			return toner.chordNames.map((chordName: string) => `${rootNote}${chordName}`)
-		})
-	},
+	// getAllChords() {
+	// 	return toner.rootNotes.flatMap((rootNote: string) => {
+	// 		return toner.chordNames.map((chordName: string) => `${rootNote}${chordName}`)
+	// 	})
+	// },
 
-	registerChord(chord: NewChordT) {
-		Tonal.ChordType.add(chord.intervals, chord.symbols, chord.name)
-	},
+	// registerChord(chord: NewChordT) {
+	// 	Tonal.ChordType.add(chord.intervals, chord.symbols, chord.name)
+	// },
 
-	getChordRelations,
+	// getChordRelations,
 	rootNotes: CONSTS.MUSIC.ROOT_NOTES,
 	scaleTypes: CONSTS.MUSIC.SCALE_TYPES,
 	scaleNAmes: CONSTS.MUSIC.SCALE_NAMES,

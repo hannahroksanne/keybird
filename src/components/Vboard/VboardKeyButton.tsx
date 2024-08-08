@@ -7,7 +7,7 @@ type PropsT = QwertyKeyT & {
 	color?: string
 	isDisabled?: boolean
 	children: React.ReactNode
-	buttonRef: React.RefObject<HTMLButtonElement>
+	buttonRef?: React.RefObject<HTMLButtonElement>
 }
 
 export const VboardKeyButton = (props: PropsT) => {

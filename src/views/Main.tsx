@@ -1,7 +1,7 @@
 import 'react-simple-keyboard/build/css/index.css'
 import '../styles/keyboard.css'
 import './Main.css'
-import { Box, Em, Select, Spinner } from '@radix-ui/themes'
+import { Box, Dialog, Em, Select, Spinner } from '@radix-ui/themes'
 import { Vboard } from '../components/Vboard/Vboard'
 import { Piano } from '../components/Piano'
 import { Flex } from '../components/Flex'
@@ -50,6 +50,7 @@ export const Main = () => {
 				<motion.div style={{ width: 150, height: 150, borderRadius: 50, background: 'azure', scaleX: scrollYProgress }} />
 			</Flex.Row>
 			<Flex.Column style={{ width: '100%', height: '100%' }}>
+				<ChordOverlay />
 				<ChordBoard />
 			</Flex.Column>
 			<Flex.Column style={{ width: '100%', height: '100%' }}>
@@ -72,6 +73,38 @@ const MidiControls = () => {
 			<MidiOutputSelector />
 			<MidiToggleSwitch />
 		</Flex.Row>
+	)
+}
+
+const ChordOverlay = () => {
+	return (
+		<Dialog.Root>
+			<Dialog.Trigger>
+				<Text>Expand</Text>
+			</Dialog.Trigger>
+			<Dialog.Content asChild>
+				<motion.div
+					initial={{ x: '100%' }}
+					animate={{ x: 0 }}
+					exit={{ x: '100%' }}
+					transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+					style={{
+						position: 'fixed',
+						top: 0,
+						right: 0,
+						bottom: 0,
+						left: 0,
+						backgroundColor: 'white',
+						zIndex: 1000,
+						padding: '20px',
+						boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
+					}}
+				>
+					<h2>Popup Content</h2>
+					<p>This is the sliding popup content.</p>
+				</motion.div>
+			</Dialog.Content>
+		</Dialog.Root>
 	)
 }
 

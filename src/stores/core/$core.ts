@@ -143,7 +143,7 @@ const checkIfKeyIsPressed = (keyCode: string) => {
 	return qwertyKey?.isPressed || false
 }
 
-const useQwertyKey = (keyCode: string) => {
+const useQwertyKey = (keyCode: string): QwertyKeyT => {
 	const qwertyKey = $core.use((state) => {
 		return state.qwertyKeys.find((key) => key.keyCode === keyCode)
 	})

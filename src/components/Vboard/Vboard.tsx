@@ -33,7 +33,7 @@ export const Vboard = React.memo(() => {
 	const handleFunction = (event: KeyboardEvent) => {
 		event.preventDefault()
 
-		const qwertyKey = $core.getQwertyKey(event.code)
+		const qwertyKey = $core.getQwertyKey(event.code) as QwertyKeyT
 		if (!qwertyKey) return
 
 		if (qwertyKey.function === 'toggleLabels') {
