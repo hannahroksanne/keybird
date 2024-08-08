@@ -1,0 +1,101 @@
+{
+	"rows": [
+		{
+			"keys": [
+				{ "function": "", "label": "`", "code": "Backquote", "width": 1, "variant": "surface", "color": "yellow" },
+				{ "function": "play", "label": "1", "code": "Digit1", "width": 1 },
+				{ "function": "play", "label": "2", "code": "Digit2", "width": 1 },
+				{ "function": "play", "label": "3", "code": "Digit3", "width": 1 },
+				{ "function": "play", "label": "4", "code": "Digit4", "width": 1 },
+				{ "function": "play", "label": "5", "code": "Digit5", "width": 1 },
+				{ "function": "play", "label": "6", "code": "Digit6", "width": 1 },
+				{ "function": "play", "label": "7", "code": "Digit7", "width": 1 },
+				{ "function": "play", "label": "8", "code": "Digit8", "width": 1 },
+				{ "function": "play", "label": "9", "code": "Digit9", "width": 1 },
+				{ "function": "play", "label": "0", "code": "Digit0", "width": 1 },
+				{ "function": "play", "label": "-", "code": "Minus", "width": 1 },
+				{ "function": "play", "label": "=", "code": "Equal", "width": 1 },
+				{ "function": "", "label": "backspace", "code": "Backspace", "width": 2, "variant": "surface", "color": "yellow" }
+			]
+		},
+		{
+			"keys": [
+				{ "function": "", "label": "tab", "code": "Tab", "width": 1.5, "variant": "surface", "color": "orange" },
+				{ "function": "play", "label": "q", "code": "KeyQ", "width": 1 },
+				{ "function": "play", "label": "w", "code": "KeyW", "width": 1 },
+				{ "function": "play", "label": "e", "code": "KeyE", "width": 1 },
+				{ "function": "play", "label": "r", "code": "KeyR", "width": 1 },
+				{ "function": "play", "label": "t", "code": "KeyT", "width": 1 },
+				{ "function": "play", "label": "y", "code": "KeyY", "width": 1 },
+				{ "function": "play", "label": "u", "code": "KeyU", "width": 1 },
+				{ "function": "play", "label": "i", "code": "KeyI", "width": 1 },
+				{ "function": "play", "label": "o", "code": "KeyO", "width": 1 },
+				{ "function": "play", "label": "p", "code": "KeyP", "width": 1 },
+				{ "function": "play", "label": "[", "code": "BracketLeft", "width": 1 },
+				{ "function": "play", "label": "]", "code": "BracketRight", "width": 1 },
+				{
+					"function": "suspend",
+					"label": "\\",
+					"code": "Backslash",
+					"width": 1.5,
+					"className": "VboardBackSlashKey",
+					"variant": "surface",
+					"color": "orange"
+				}
+			]
+		},
+		{
+			"keys": [
+				{ "function": "", "label": "caps", "code": "CapsLock", "width": 1.75, "variant": "surface", "color": "crimson" },
+				{ "function": "play", "label": "a", "code": "KeyA", "width": 1 },
+				{ "function": "play", "label": "s", "code": "KeyS", "width": 1 },
+				{ "function": "play", "label": "d", "code": "KeyD", "width": 1 },
+				{ "function": "play", "label": "f", "code": "KeyF", "width": 1 },
+				{ "function": "play", "label": "g", "code": "KeyG", "width": 1 },
+				{ "function": "play", "label": "h", "code": "KeyH", "width": 1 },
+				{ "function": "play", "label": "j", "code": "KeyJ", "width": 1 },
+				{ "function": "play", "label": "k", "code": "KeyK", "width": 1 },
+				{ "function": "play", "label": "l", "code": "KeyL", "width": 1 },
+				{ "function": "play", "label": ";", "code": "Semicolon", "width": 1 },
+				{ "function": "play", "label": "'", "code": "Quote", "width": 1 },
+				{ "function": "", "label": "enter", "code": "Enter", "width": 2.25, "variant": "surface", "color": "crimson" }
+			]
+		},
+		{
+			"keys": [
+				{ "function": "", "label": "shift", "code": "ShiftLeft", "width": 2.25, "variant": "surface", "color": "purple" },
+				{ "function": "play", "label": "z", "code": "KeyZ", "width": 1 },
+				{ "function": "play", "label": "x", "code": "KeyX", "width": 1 },
+				{ "function": "play", "label": "c", "code": "KeyC", "width": 1 },
+				{ "function": "play", "label": "v", "code": "KeyV", "width": 1 },
+				{ "function": "play", "label": "b", "code": "KeyB", "width": 1 },
+				{ "function": "play", "label": "n", "code": "KeyN", "width": 1 },
+				{ "function": "play", "label": "m", "code": "KeyM", "width": 1 },
+				{ "function": "play", "label": ",", "code": "Comma", "width": 1 },
+				{ "function": "play", "label": ".", "code": "Period", "width": 1 },
+				{ "function": "play", "label": "/", "code": "Slash", "width": 1 },
+				{
+					"function": "",
+					"label": "rightShift",
+					"code": "ShiftRight",
+					"width": 2.75,
+					"variant": "surface",
+					"color": "purple"
+				}
+			]
+		},
+		{
+			"keys": [
+				{ "function": "", "label": "ctrl", "code": "ControlLeft", "width": 1, "variant": "surface", "color": "sky" },
+				{ "function": "", "label": "fn", "code": "Fn", "width": 1, "variant": "surface", "color": "gold" },
+				{ "function": "", "label": "meta", "code": "MetaLeft", "width": 1, "variant": "surface", "color": "mint" },
+				{ "function": "", "label": "alt", "code": "AltLeft", "width": 1, "variant": "surface", "color": "tomato" },
+				{ "function": "", "label": "space", "code": "Space", "width": 7, "variant": "surface", "color": "cyan" },
+				{ "function": "", "label": "alt", "code": "AltRight", "width": 1, "variant": "surface", "color": "tomato" },
+				{ "function": "", "label": "ctrl", "code": "ControlRight", "width": 1, "variant": "surface", "color": "sky" },
+				{ "function": "decreaseOctave", "label": "-", "code": "ArrowDown", "width": 0.625 },
+				{ "function": "increaseOctave", "label": "+", "code": "ArrowUp", "width": 0.625 }
+			]
+		}
+	]
+}

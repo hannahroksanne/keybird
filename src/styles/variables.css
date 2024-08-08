@@ -1,0 +1,12 @@
+:root {
+	--innerWhiteShadow: inset 0 0 10px hsla(0, 0%, 100%, 0.5);
+	--bigWhiteShadow: 0 0 50px hsla(0, 0%, 100%, 0.75);
+
+	--testShadow: 0 5px 10px rgba(245, 245, 245, 0.75), 0 15px 40px rgba(218, 219, 222, 0.9);
+
+	--hotGirlShadow: inset -40px -10px 92px -4px var(--pink-12), inset 40px -30px 62px 0px var(--blue-a11),
+		0px 0px 50px -4px var(--accent-a11), -30px 10px 50px -5px var(--blue-9), -30px -25px 50px -5px var(--green-a6),
+		60px -7px 84px -6px var(--green-a11), 80px 24px 46px -6px var(--red-a11);
+
+	--gradientImage0: url('https://i.imgur.com/hhIykYI.jpeg');
+}
