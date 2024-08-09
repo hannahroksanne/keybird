@@ -13,6 +13,7 @@ type StoreT = {
 	scaleType: string
 	qwertyKeys: QwertyKeyT[]
 	shouldShowAltLabels: boolean
+	octave: number
 }
 
 const INITIAL_STATE = {
@@ -20,7 +21,8 @@ const INITIAL_STATE = {
 	scaleRootNote: 'B',
 	scaleType: 'minor',
 	qwertyKeys: CONSTS.QWERTY_KEYS,
-	shouldShowAltLabels: false
+	shouldShowAltLabels: false,
+	octave: 2
 }
 
 const useStore = create<StoreT>(
@@ -31,6 +33,16 @@ const useStore = create<StoreT>(
 		}
 	})
 )
+
+const incrementOctave = () => {
+	const octave = $core.state.octave + 1
+	$core.setState({ octave })
+}
+
+const decrementOctave = () => {
+	const octave = $core.state.octave - 1
+	$core.setState({ octave })
+}
 
 const getQwertyKey = (keyCode: string) => {
 	const qwertyKey = $core.state.qwertyKeys.find((key) => {
@@ -180,6 +192,8 @@ export const $core = {
 	getQwertyKey,
 	useQwertyKeyCodes,
 	useQwertyKeys,
+	incrementOctave,
+	decrementOctave,
 	get state() {
 		return useStore.getState()
 	}

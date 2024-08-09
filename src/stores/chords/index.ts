@@ -2,13 +2,13 @@ import { create } from 'zustand'
 import { toner } from '../../utilities/toner/toner'
 
 type StoreT = {
-	inScaleChorNames: string[]
+	inScaleChordNames: string[]
 	inScaleChords: AnyObjectT[]
 }
 
 const INITIAL_STATE = {
 	inScaleChords: [],
-	inScaleChorNames: []
+	inScaleChordNames: []
 }
 
 const useStore = create<StoreT>(() => {
@@ -17,7 +17,7 @@ const useStore = create<StoreT>(() => {
 	}
 })
 
-export const $logs = {
+export const $chords = {
 	use: useStore,
 	getState: useStore.getState,
 	setState: useStore.setState,

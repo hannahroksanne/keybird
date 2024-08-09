@@ -31,11 +31,21 @@ type NewChordT = {
 // 	})
 // }
 
+const getOctavedNotes = (notes: string[], octave) => {
+	return notes.map((note) => note + octave)
+}
+
+const getMidiNotes = (notes: string[]) => {
+	return notes.map(Tonal.Note.midi)
+}
+
 export const toner = {
 	getChordNotes: Tonal.Chord.notes,
 	getScale: Tonal.Scale.get,
 	getChordTypes: Tonal.ChordType.names,
 	getChord: Tonal.Chord.get,
+	getOctavedNotes,
+	getMidiNotes,
 
 	// checkIfChordIsInScale(chordName: string, scaleName: string) {
 	// 	const scale = toner.getScale(scaleName)
@@ -50,9 +60,9 @@ export const toner = {
 	// 	})
 	// },
 
-	// registerChord(chord: NewChordT) {
-	// 	Tonal.ChordType.add(chord.intervals, chord.symbols, chord.name)
-	// },
+	registerChord(chord: NewChordT) {
+		Tonal.ChordType.add(chord.intervals, chord.symbols, chord.name)
+	},
 
 	// getChordRelations,
 	rootNotes: CONSTS.MUSIC.ROOT_NOTES,
@@ -63,6 +73,10 @@ export const toner = {
 	scales: CONSTS.MUSIC.SCALES,
 	chords: CONSTS.MUSIC.CHORDS
 }
+
+CONSTS.MUSIC.CHORD_TYPES.forEach((chord) => {
+	toner.registerChord(chord)
+})
 
 // const generateTonerData = () => {
 // 	CONSTS.MUSIC.CHORD_TYPES.forEach((chord) => {

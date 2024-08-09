@@ -21,6 +21,7 @@ export const MessyKeys = () => {
 	return (
 		<Flex.Row gap="3" wrap="wrap" px="4">
 			{sortedQwertyKeys.map((key, index) => {
+				if (!key.isConfigurable) return null
 				return <Key key={key.keyCode} {...key} />
 			})}
 		</Flex.Row>
@@ -47,7 +48,6 @@ const BaseKey = (props) => {
 		<Button
 			variant={props.variant}
 			color={props.color}
-			disabled={props.isDisabled}
 			className={className}
 			style={{ gap: 0, flexGrow: props.width, position: 'relative' }}
 		>

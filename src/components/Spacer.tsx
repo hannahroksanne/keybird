@@ -9,5 +9,8 @@ type PropsT = {
 export const Spacer = (props: PropsT) => {
 	const finalWidth = props.width ?? props.size
 	const finalHeight = props.height ?? finalWidth
-	return <Box as="span" style={{ width: finalWidth, height: finalHeight }} />
+
+	return (
+		<Box as="span" style={{ width: finalWidth, height: finalHeight, minWidth: finalWidth, minHeight: finalHeight }} />
+	)
 }

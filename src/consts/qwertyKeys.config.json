@@ -1,5 +1,6 @@
 [
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "yellow",
@@ -25,6 +26,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "",
@@ -50,6 +52,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -75,6 +78,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -100,6 +104,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -125,6 +130,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -150,6 +156,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -175,6 +182,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -200,6 +208,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -225,6 +234,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -250,6 +260,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -275,6 +286,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -300,6 +312,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -325,11 +338,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "yellow",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -350,11 +364,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "orange",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -375,6 +390,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -400,6 +416,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -425,6 +442,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -450,6 +468,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -475,6 +494,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -500,6 +520,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -525,6 +546,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -550,6 +572,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -575,6 +598,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -600,6 +624,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -625,6 +650,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -650,6 +676,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -675,6 +702,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "orange",
@@ -700,11 +728,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "crimson",
 		"function": "foo",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -725,6 +754,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -750,6 +780,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -775,6 +806,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -800,6 +832,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -825,6 +858,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -850,6 +884,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -875,6 +910,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -900,6 +936,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -925,6 +962,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -950,6 +988,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -975,6 +1014,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1000,11 +1040,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "crimson",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1025,11 +1066,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "purple",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1050,6 +1092,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1075,6 +1118,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1100,6 +1144,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1125,6 +1170,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1150,6 +1196,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1175,6 +1222,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1200,6 +1248,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1225,6 +1274,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1250,6 +1300,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1275,6 +1326,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": true,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "default",
@@ -1300,11 +1352,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "purple",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1325,11 +1378,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "sky",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1350,6 +1404,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "gold",
@@ -1375,11 +1430,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "mint",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1400,11 +1456,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "tomato",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1425,11 +1482,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "cyan",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1450,11 +1508,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "tomato",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1475,11 +1534,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "sky",
 		"function": "",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1500,6 +1560,7 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": false,
 		"altLabel": "",
 		"color": "red",
@@ -1525,11 +1586,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": true,
 		"altLabel": "",
 		"color": "default",
 		"function": "decreaseOctave",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,
@@ -1550,11 +1612,12 @@
 		"rootNote": ""
 	},
 	{
+		"isConfigurable": false,
 		"isIgnored": true,
 		"altLabel": "",
 		"color": "default",
 		"function": "increaseOctave",
-		"isDisabled": false,
+		"isDisabled": true,
 		"isFunctional": true,
 		"isPlayable": false,
 		"isPressed": false,

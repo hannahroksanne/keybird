@@ -12,8 +12,8 @@ const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs']
 
 export const MainMenuBar = () => {
 	return (
-		<Flex.Column p="3" gap="3" data-testid="MainMenuBar" className="MainMenuBar">
-			<Flex.Row justify="between" align="center" className="MainMenuBarRow">
+		<Flex.Column p="4" gap="3" data-testid="MainMenuBar" className="MainMenuBar">
+			<Flex.Row gap="4" justify="between" align="center" className="MainMenuBarRow" wrap="wrap">
 				<Flex.Row justify="start" align="center" gap="6">
 					<img src="/images/keybirdLogo.svg" className="MainMenuBarLogo" />
 					<SceneRouteController />

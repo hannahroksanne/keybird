@@ -96,6 +96,7 @@ type QwertyKeyT = {
 	isPlayable: boolean
 	isFunctional: boolean
 	isDisabled: boolean
+	isConfigurable: boolean
 	function: string
 	variant: string
 	color: string
@@ -121,6 +122,7 @@ const foo: QuertyKeyT = {
 	isPlayable: false,
 	isFunctional: false,
 	isDisabled: false,
+	isConfigurable: false,
 	function: 'play',
 	variant: 'outline',
 	color: 'gray',

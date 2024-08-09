@@ -2,18 +2,21 @@
 	max-width: 100px;
 }
 
+@media screen and (max-width: 1000px) {
+	.MainMenuBar .MainMenuBarRow {
+		justify-content: center;
+	}
+
+	.MainMenuBar {
+		justify-content: center;
+	}
+}
+
 .MainMenuBar {
-	height: 48px;
-	margin-top: 12px;
-	margin-bottom: 12px;
-	padding: 0 4px 0 8px;
 	justify-content: center;
 }
 
 .MainMenuBar .MainMenuBarRow {
-	height: 64px;
-	padding: 0 8px 0 12px;
-	gap: 24px;
 }
 
 .MenubarRoot {

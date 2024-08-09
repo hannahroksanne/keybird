@@ -3,6 +3,8 @@ import { CONSTS } from '../consts'
 import { $core } from '../stores/core/$core'
 import * as Tonal from 'tonal'
 import cloneDeep from 'clone-deep'
+import { toner } from '../utilities/toner/toner'
+import { $chords } from '../stores/chords'
 
 const getScaleNotes = (rootNote: string, scaleType: string) => {
 	return Tonal.Scale.get(`${rootNote} ${scaleType}`).notes
@@ -16,6 +18,7 @@ export const useCoreStoreMonitor = () => {
 	useKeyMapper()
 	useScaleManager()
 	useRelatedKeysHandler()
+	useChordsWatcher()
 }
 
 const useScaleManager = () => {
@@ -121,4 +124,23 @@ const useKeyMapper = () => {
 		pastResults.current[scaleNotesString] = qwertyKeys
 		$core.setState({ qwertyKeys })
 	}, [scaleNotesString])
+}
+
+const useChordsWatcher = () => {
+	const scaleRootNote = $core.use((state) => state.scaleRootNote)
+	const scaleType = $core.use((state) => state.scaleType)
+
+	React.useEffect(() => {
+		const scaleName = `${scaleRootNote} ${scaleType}`
+		const scale = toner.scales.find((scale) => scale.name === scaleName)
+		const chordNames = scale.chords
+		$chords.setState({ inScaleChordNames: chordNames })
+
+		const inScaleChords = chordNames.map((chordName) => {
+			return toner.chords.find((chord) => chord.name === chordName)
+		})
+
+		console.log({ scale, scaleName, chordNames, scales: toner.scales, chords: toner.chords, inScaleChords })
+		$chords.setState({ inScaleChords })
+	}, [scaleRootNote, scaleType])
 }
