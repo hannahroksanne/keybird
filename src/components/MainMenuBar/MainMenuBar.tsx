@@ -3,9 +3,10 @@ import React from 'react'
 import * as Menubar from '@radix-ui/react-menubar'
 import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icons'
 import { Flex } from '../Flex'
-import { Button, Text } from '@radix-ui/themes'
+import { Button, Text, TextField } from '@radix-ui/themes'
 import { SceneRouteController } from '../Controls/SceneRouteController'
 import { KeyboardTopControls } from '../Controls/KeyboardTopControls'
+import { $core } from '../../stores'
 
 const RADIO_ITEMS = ['Andy', 'Benoît', 'Luis']
 const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs']
@@ -18,10 +19,25 @@ export const MainMenuBar = () => {
 					<img src="/images/keybirdLogo.svg" className="MainMenuBarLogo" />
 					<SceneRouteController />
 				</Flex.Row>
-
+				<OctaveInput />
 				<KeyboardTopControls />
 			</Flex.Row>
 		</Flex.Column>
+	)
+}
+
+const OctaveInput = () => {
+	const octave = $core.use((state) => state.octave)
+
+	const setOctave = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Number(event.target.value)
+		$core.setState({ octave: value })
+	}
+
+	return (
+		<TextField.Root placeholder="Max Chord Complexity" type="number" min="0" max="7" value={octave} onChange={setOctave}>
+			<TextField.Slot></TextField.Slot>
+		</TextField.Root>
 	)
 }
 

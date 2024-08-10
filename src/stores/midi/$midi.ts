@@ -1,5 +1,9 @@
-import { WebMidi } from 'webmidi'
+import { Note, WebMidi } from 'webmidi'
 import { create } from 'zustand'
+import range from 'array-range'
+import uniqueRandomArray from 'unique-random-array'
+import { toner } from '../../utilities/toner/toner'
+import { $core } from '../core'
 
 type StoreT = {
 	isMidiReady: boolean
@@ -14,8 +18,10 @@ type StoreT = {
 	setMidiError: (error: Error) => void
 	setWarningMessage: (warningMessage: string) => void
 	setErrorMessage: (errorMessage: string) => void
-	broadcastNoteStart: (midi: number) => void
-	broadcastNoteEnd: (midi: number) => void
+	playChord: (notes: string[]) => void
+	stopNotes: (notes: string[]) => void
+	playNote: (note: string) => void
+	stopNote: (note: string) => void
 }
 
 const INITIAL_STATE = {
@@ -36,7 +42,14 @@ const prepareMidi = (handleSuccess: any, handleError: any) => {
 	}, 2000)
 }
 
-const getMidiOutput = () => {
+const getSelectedMidiOutput = () => {
+	const { selectedMidiOutputName } = $midi.state
+	const midiOutputs = WebMidi.outputs
+	const output = midiOutputs.find((output) => output.name === selectedMidiOutputName)
+	return output
+}
+
+const getInitialMidiOutput = () => {
 	const midiOutputs = WebMidi.outputs
 	const selectedMidiOutputName = midiOutputs[0]?.name
 
@@ -52,7 +65,7 @@ const store = create<StoreT>((set, get) => {
 	const setIsMidiReady = (isMidiReady: boolean) => {
 		console.log('Midi is ready.')
 		console.log('Midi outputs:', WebMidi.outputs)
-		const { midiOutputs, selectedMidiOutputName } = getMidiOutput()
+		const { midiOutputs, selectedMidiOutputName } = getInitialMidiOutput()
 		const isMidiEnabled = !!selectedMidiOutputName
 		set({ isMidiReady, isMidiEnabled, midiOutputs, selectedMidiOutputName })
 	}
@@ -74,59 +87,81 @@ const store = create<StoreT>((set, get) => {
 	const setErrorMessage = (errorMessage: string) => {
 		set({ errorMessage })
 	}
-
-	const handleMidiIssue = () => {
-		const { isMidiReady, isMidiEnabled } = get()
-		const isThereAnIssue = !isMidiEnabled || !isMidiReady
-
-		const clearAfterDelay = () => {
-			if (timeout) clearTimeout(timeout)
-
-			timeout = setTimeout(() => {
-				$midi.setUserWarningMessage('')
-			}, 5000)
-		}
-
-		if (!isMidiReady) {
-			$midi.setUserWarningMessage('Midi is not ready.')
-			clearAfterDelay()
-			return
-		}
-
-		if (!isMidiEnabled) {
-			$midi.setUserWarningMessage('Midi is not enabled.')
-			clearAfterDelay()
-		}
-
-		return isThereAnIssue
-	}
-
-	const broadcastNoteStart = (midi: number) => {
-		const isThereAnIssue = handleMidiIssue()
-		if (isThereAnIssue) return
-
-		const outputName = get().selectedMidiOutputName
-		const output = WebMidi.outputs.find((output) => output.name === outputName)
-		if (!output) return
-
-		console.log('sending the note...', midi)
-		output.playNote(midi, {
-			attack: 0.05
+	const velocityRange = range(0.35, 0.5, 0.05)
+	const getRandomVelocity = uniqueRandomArray(velocityRange)
+	const getRandomRawVelocity = uniqueRandomArray(range(45, 66))
+	const createNote = (note: string) => {
+		return new Note(note, {
+			duration: 1250,
+			attack: getRandomVelocity(),
+			release: getRandomVelocity(),
+			rawAttack: getRandomRawVelocity(),
+			rawRelease: getRandomRawVelocity()
 		})
 	}
 
-	const broadcastNoteEnd = (midi: number) => {
-		const isThereAnIssue = handleMidiIssue()
-		if (isThereAnIssue) return
+	const createNotes = (notes: string[]) => {
+		const octavedNotes = toner.getOctavedNotes(notes, $core.state.octave)
 
-		const outputName = get().selectedMidiOutputName
-		const output = WebMidi.outputs.find((output) => output.name === outputName)
-		if (!output) return
-
-		console.log('stopping the note...', midi)
-		output.sendNoteOff(midi, {
-			release: 0.2
+		return octavedNotes.map((note) => {
+			const isAlreadyNote = note instanceof Note
+			return isAlreadyNote ? note : createNote(note)
 		})
+	}
+
+	const playNotesStaggered = (output, notes: string[] | Note[], stagger = 222) => {
+		notes.forEach((note, index) => {
+			setTimeout(() => {
+				output.playNote(note)
+			}, index * stagger)
+		})
+	}
+
+	const checkIfShouldContinue = () => {
+		const { isMidiReady, isMidiEnabled, selectedMidiOutputName } = get()
+		const shouldContinue = isMidiReady && isMidiEnabled && selectedMidiOutputName
+		return shouldContinue
+	}
+
+	const prepare = (notes, options) => {
+		const _notes = createNotes(notes)
+		const output = getSelectedMidiOutput()
+		return [output, _notes]
+	}
+
+	const playChord = (_notes: string[], options = { isStaggered: true }) => {
+		const shouldContinue = checkIfShouldContinue()
+		if (!shouldContinue) return
+
+		const [output, notes] = prepare(_notes, options)
+
+		if (options.staggered || true) {
+			return playNotesStaggered(output, notes, 189)
+		}
+
+		output.playNote(notes)
+	}
+
+	const playNote = (note: string, options = {}) => {
+		const shouldContinue = checkIfShouldContinue()
+		if (!shouldContinue) return
+
+		const [output, notes] = prepare([note], options)
+		output.playNote(notes[0])
+	}
+
+	const stopNotes = (_notes: string[], options = {}) => {
+		const shouldContinue = checkIfShouldContinue()
+		if (!shouldContinue) return
+		const [output, notes] = prepare(_notes, options)
+
+		output.stopNote(_notes, {
+			release: getRandomVelocity()
+		})
+	}
+
+	const stopNote = (_note: string, options = {}) => {
+		stopNotes([_note], options)
 	}
 
 	prepareMidi(setIsMidiReady, setMidiError)
@@ -137,8 +172,10 @@ const store = create<StoreT>((set, get) => {
 		setIsMidiReady,
 		setWarningMessage,
 		setErrorMessage,
-		broadcastNoteStart,
-		broadcastNoteEnd,
+		playNote,
+		stopNote,
+		playChord,
+		stopNotes,
 		setIsMidiEnabled
 	}
 })
@@ -171,8 +208,10 @@ export const $midi = {
 	setIsMidiEnabled: store.getState().setIsMidiEnabled,
 	setUserWarningMessage: store.getState().setWarningMessage,
 	setUserErrorMessage: store.getState().setErrorMessage,
-	broadcastNoteStart: store.getState().broadcastNoteStart,
-	broadcastNoteEnd: store.getState().broadcastNoteEnd,
+	playChord: store.getState().playChord,
+	stopNotes: store.getState().stopNotes,
+	playNote: store.getState().playNote,
+	stopNote: store.getState().stopNote,
 
 	get state() {
 		return store.getState()

@@ -1,6 +1,7 @@
 import * as Tonal from 'tonal'
 import { isSubsetOf } from 'is-subset-of'
 import { CONSTS } from '../../consts'
+import mems from 'mems'
 
 type NewChordT = {
 	intervals: string[]
@@ -31,13 +32,12 @@ type NewChordT = {
 // 	})
 // }
 
-const getOctavedNotes = (notes: string[], octave) => {
-	return notes.map((note) => note + octave)
-}
-
-const getMidiNotes = (notes: string[]) => {
-	return notes.map(Tonal.Note.midi)
-}
+const getOctavedNotes = mems((notes: string[], octave) => {
+	return notes.map((note) => {
+		const hasOctave = note.match(/\d/)
+		return hasOctave ? note : note + octave
+	})
+})
 
 export const toner = {
 	getChordNotes: Tonal.Chord.notes,
@@ -45,8 +45,6 @@ export const toner = {
 	getChordTypes: Tonal.ChordType.names,
 	getChord: Tonal.Chord.get,
 	getOctavedNotes,
-	getMidiNotes,
-
 	// checkIfChordIsInScale(chordName: string, scaleName: string) {
 	// 	const scale = toner.getScale(scaleName)
 	// 	const chordNotes = toner.getChordNotes(chordName)

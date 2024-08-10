@@ -5,6 +5,7 @@ import * as Tonal from 'tonal'
 import cloneDeep from 'clone-deep'
 import { toner } from '../utilities/toner/toner'
 import { $chords } from '../stores/chords'
+import mems from 'mems'
 
 const getScaleNotes = (rootNote: string, scaleType: string) => {
 	return Tonal.Scale.get(`${rootNote} ${scaleType}`).notes
@@ -78,15 +79,127 @@ const useRelatedKeysHandler = () => {
 	}, [pressedKeys.length])
 }
 
+const pastResults = new Map()
+
+const layouts = {
+	default: [
+		'Digit1',
+		'Digit2',
+		'Digit3',
+		'Digit4',
+		'Digit5',
+		'Digit6',
+		'Digit7',
+		'Digit8',
+		'Digit9',
+		'Digit0',
+		'Minus',
+		'Equal',
+		'KeyQ',
+		'KeyW',
+		'KeyE',
+		'KeyR',
+		'KeyT',
+		'KeyY',
+		'KeyU',
+		'KeyI',
+		'KeyO',
+		'KeyP',
+		'BracketLeft',
+		'BracketRight',
+		'Backslash',
+		'KeyA',
+		'KeyS',
+		'KeyD',
+		'KeyF',
+		'KeyG',
+		'KeyH',
+		'KeyJ',
+		'KeyK',
+		'KeyL',
+		'Semicolon',
+		'Quote',
+		'ShiftLeft',
+		'KeyZ',
+		'KeyX',
+		'KeyC',
+		'KeyV',
+		'KeyB',
+		'KeyN',
+		'KeyM',
+		'Comma',
+		'Period',
+		'Slash'
+	],
+	sidewaysRight: [
+		'Digit1',
+		'KeyQ',
+		'KeyA',
+		'KeyZ',
+		'Digit2',
+		'KeyW',
+		'KeyS',
+		'KeyX',
+		'Digit3',
+		'KeyE',
+		'KeyD',
+		'KeyC',
+		'Digit4',
+		'KeyR',
+		'KeyF',
+		'KeyV',
+		'Digit5',
+		'KeyT',
+		'KeyG',
+		'KeyB',
+		'Digit6',
+		'KeyY',
+		'KeyH',
+		'KeyN',
+		'Digit7',
+		'KeyU',
+		'KeyJ',
+		'KeyM',
+		'Digit8',
+		'KeyI',
+		'KeyK',
+		'Comma',
+		'Digit9',
+		'KeyO',
+		'KeyL',
+		'Period',
+		'Digit0',
+		'KeyP',
+		'Semicolon',
+		'Slash',
+		'Minus',
+		'BracketLeft',
+		'Quote',
+		'Equal',
+		'BracketRight'
+	]
+}
+
+const separatePlayableAndFunctionalQwertyKeys = (keys: QwertyKeyT[]) => {
+	const separationTarget = { playableQwertyKeys: [], functionalQwertyKeys: [] }
+
+	return keys.reduce((final, key) => {
+		if (key.isPlayable) final.playableQwertyKeys.push(key)
+		else final.functionalQwertyKeys.push(key)
+		return final
+	}, separationTarget)
+}
+
 const useKeyMapper = () => {
 	const scaleNotesString = $core.use((state) => state.scaleNotes.join(' '))
-	const pastResults = React.useRef<AnyObjectT>({})
+	const layoutName = $core.use((state) => state.layoutName)
+	const octave = $core.use((state) => state.octave)
 
 	// Whenever the scaleNotes changes, update the
 	// mapping of the qwertyKeys.
 	React.useEffect(() => {
 		console.log('remapping qwertyKeys')
-		const pastResult = pastResults.current[scaleNotesString]
+		const pastResult = pastResults.get(scaleNotesString + layoutName)
 
 		if (pastResult) {
 			const qwertyKeys = cloneDeep(pastResult)
@@ -95,16 +208,22 @@ const useKeyMapper = () => {
 			return
 		}
 
-		const cleanQwertyKeys = CONSTS.getQwertyKeysClone()
+		const separated = separatePlayableAndFunctionalQwertyKeys(CONSTS.QWERTY_KEYS)
+		const { playableQwertyKeys, functionalQwertyKeys } = separated
 		const scaleNotes = $core.state.scaleNotes
 		const target = createReducerTarget()
+		const layout = layouts[layoutName]
+		const layoutSortedQwertyKeys = []
 
-		const { qwertyKeys } = cleanQwertyKeys.reduce((final, key) => {
-			if (!key.isPlayable) {
-				final.qwertyKeys.push(key)
-				return final
-			}
+		layout.forEach((keyCode: string, index: number) => {
+			const qwertyKey = playableQwertyKeys.find((key) => key.keyCode === keyCode)
+			layoutSortedQwertyKeys[index] = qwertyKey
+		})
 
+		console.log({ playableQwertyKeys, functionalQwertyKeys, layoutSortedQwertyKeys })
+
+		const { qwertyKeys } = layoutSortedQwertyKeys.reduce((final, qwertyKey) => {
+			const key = { ...qwertyKey }
 			const rootNote = scaleNotes[final.index % scaleNotes.length]
 			const allNotesIndex = CONSTS.MUSIC.ROOT_NOTES.indexOf(rootNote)
 			const isFirstIteration = final.lastRootNoteIndex === -1
@@ -121,9 +240,14 @@ const useKeyMapper = () => {
 			return final
 		}, target)
 
-		pastResults.current[scaleNotesString] = qwertyKeys
-		$core.setState({ qwertyKeys })
-	}, [scaleNotesString])
+		const final = CONSTS.QWERTY_KEYS.map((key: QwertyKeyT) => {
+			if (key.isFunctional) return { ...key }
+			return qwertyKeys.find((k) => k.keyCode === key.keyCode)
+		})
+
+		pastResults.set(scaleNotesString + layoutName, final)
+		$core.setState({ qwertyKeys: final })
+	}, [scaleNotesString, octave, layoutName])
 }
 
 const useChordsWatcher = () => {

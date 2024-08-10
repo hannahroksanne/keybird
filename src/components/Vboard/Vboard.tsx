@@ -54,24 +54,22 @@ export const Vboard = React.memo(() => {
 
 	const handleEngageButton = (event: KeyboardEvent) => {
 		handleFunction(event)
-		const midi = $core.getMidiForKeyCode(event.code)
+		const key = $core.getQwertyKey(event.code) as QwertyKeyT
 		const isAlreadyPressed = $core.checkIfKeyIsPressed(event.code)
 		if (isAlreadyPressed) return
 		$core.reportKeyDown(event.code)
-		if (!midi) return
+		if (!key.isPlayable) return
 		const isMidiEnabled = $midi.state.isMidiEnabled
 		const isMidiReady = $midi.state.isMidiReady
 		const shouldBroadcast = isMidiEnabled && isMidiReady
-		shouldBroadcast && midiOn.push(midi)
-		shouldBroadcast && $midi.broadcastNoteStart(midi)
+		shouldBroadcast && $midi.playNote(key.note)
 	}
 
 	const handleDisengageButton = (event: KeyboardEvent) => {
-		const midi = $core.getMidiForKeyCode(event.code)
+		const key = $core.getQwertyKey(event.code)
 		$core.reportKeyUp(event.code)
-		if (!midi) return
-		midiOn.splice(midiOn.indexOf(midi), 1)
-		$midi.broadcastNoteEnd(midi)
+		if (!key.isPlayable) return
+		$midi.stopNote(key.note)
 	}
 
 	useKeyboardEvents({

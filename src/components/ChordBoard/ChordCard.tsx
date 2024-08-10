@@ -17,18 +17,26 @@ const useChord = (chordName: string) => {
 	}, [chordName])
 }
 
-export const ChordCard = (props: PropsT) => {
+export const ChordCard = React.memo((props: PropsT) => {
+	const maxComplexity = $core.use((state) => state.maxChordComplexity)
+
 	const chord = useChord(props.chordName)
 	const color = tonicColors[chord.tonic]
 
+	const onMouseDown = () => {
+		$midi.playChord(chord.notes)
+	}
+
+	if (chord.notes.length > maxComplexity) return null
+
 	return (
-		<Card className="ChordCard" style={{ background: `var(--${color}-a6)` }}>
+		<Card className="ChordCard" style={{ background: `var(--${color}-a6)` }} onMouseDown={onMouseDown}>
 			<Flex.Row gap="3" align="center">
 				<Text className="ChordCardChordName">{chord.symbol}</Text>
 			</Flex.Row>
 		</Card>
 	)
-}
+})
 
 const tonicColors = {
 	C: 'mint',
@@ -53,13 +61,6 @@ const tonicColors = {
 const playChord = (chordName: string) => {
 	// get octave from $core
 	const octave = $core.state.octave
-	const notes = toner.getChordNotes(chordName)
-	const octavedNotes = toner.getOctavedNotes(notes, octave)
-	const midiNotes = toner.getMidiNotes(octavedNotes)
-
-	for (const midiNote of midiNotes) {
-		$midi.broadcastNoteStart(midiNote)
-	}
 }
 
 // handleChord({

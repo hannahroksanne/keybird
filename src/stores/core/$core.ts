@@ -8,21 +8,25 @@ const getScaleNotes = (rootNote: string, scaleType: string) => {
 }
 
 type StoreT = {
+	layoutName: string
 	scaleNotes: string[]
 	scaleRootNote: string
 	scaleType: string
 	qwertyKeys: QwertyKeyT[]
 	shouldShowAltLabels: boolean
 	octave: number
+	maxChordComplexity: number
 }
 
 const INITIAL_STATE = {
+	layoutName: 'sidewaysRight',
 	scaleNotes: getScaleNotes('B', 'minor'),
 	scaleRootNote: 'B',
 	scaleType: 'minor',
 	qwertyKeys: CONSTS.QWERTY_KEYS,
 	shouldShowAltLabels: false,
-	octave: 2
+	octave: 2,
+	maxChordComplexity: 5
 }
 
 const useStore = create<StoreT>(
@@ -39,12 +43,16 @@ const incrementOctave = () => {
 	$core.setState({ octave })
 }
 
+const setMaxChordComplexity = (maxChordComplexity: string) => {
+	useStore.setState({ maxChordComplexity: Number(maxChordComplexity) })
+}
+
 const decrementOctave = () => {
 	const octave = $core.state.octave - 1
 	$core.setState({ octave })
 }
 
-const getQwertyKey = (keyCode: string) => {
+const getQwertyKey = (keyCode: string): QwertyKeyT => {
 	const qwertyKey = $core.state.qwertyKeys.find((key) => {
 		return key.keyCode === keyCode
 	}) as QwertyKeyT
@@ -191,6 +199,7 @@ export const $core = {
 	setScaleType,
 	getQwertyKey,
 	useQwertyKeyCodes,
+	setMaxChordComplexity,
 	useQwertyKeys,
 	incrementOctave,
 	decrementOctave,

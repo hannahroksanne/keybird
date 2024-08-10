@@ -3,7 +3,7 @@ import './ChordCard.css'
 
 import * as React from 'react'
 import { Flex } from '../Flex'
-import { Badge, Heading } from '@radix-ui/themes'
+import { Badge, Heading, TextField } from '@radix-ui/themes'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import { ChordCard } from './ChordCard'
 import { $core } from '../../stores'
@@ -23,8 +23,9 @@ export const ChordBoard = (props: AnyObjectT) => {
 	return (
 		<Flex.Column gap="3" p="4" data-testid="ChordBoard" className="ChordBoard">
 			<Spacer size="12px" />
-			<Flex.Row gap="3" mb="3">
+			<Flex.Row gap="3" mb="3" justify="between">
 				<SectionHeading />
+				<MaxComplexityInput />
 			</Flex.Row>
 			<Flex.Row gap="3" wrap="wrap">
 				{inScaleChordNames.map((chordName, index) => (
@@ -32,6 +33,50 @@ export const ChordBoard = (props: AnyObjectT) => {
 				))}
 			</Flex.Row>
 		</Flex.Column>
+	)
+}
+
+const MaxComplexityInput = () => {
+	const maxComplexity = $core.use((state) => state.maxChordComplexity)
+
+	const setMaxComplexity = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value
+		$core.setMaxChordComplexity(value)
+	}
+
+	return (
+		<TextField.Root
+			placeholder="Max Chord Complexity"
+			type="number"
+			min="2"
+			max="7"
+			value={maxComplexity}
+			onChange={setMaxComplexity}
+		>
+			<TextField.Slot></TextField.Slot>
+		</TextField.Root>
+	)
+}
+
+const MinComplexityInput = () => {
+	const maxComplexity = $core.use((state) => state.maxChordComplexity)
+
+	const setMaxComplexity = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value
+		$core.setMaxChordComplexity(value)
+	}
+
+	return (
+		<TextField.Root
+			placeholder="Min Chord Complexity"
+			type="number"
+			min="2"
+			max="6"
+			value={maxComplexity}
+			onChange={setMaxComplexity}
+		>
+			<TextField.Slot></TextField.Slot>
+		</TextField.Root>
 	)
 }
 
