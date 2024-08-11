@@ -37,6 +37,7 @@ export const VboardKey = (props: VboardKeyPropsT) => {
 	}
 
 	const Component = isPlayable ? VboardPlayableKey : VboardFunctionalKey
+	// @ts-ignore
 	return <Component {...finalProps} />
 }
 
