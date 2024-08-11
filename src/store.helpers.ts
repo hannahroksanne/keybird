@@ -69,6 +69,6 @@ export function generateKeyMap(options: GenerateKeyMapOptionsT): KeyMapT {
 		}
 	})
 
-	console.log({ keyMap })
+	// @ts-ignore
 	return keyMap
 }
