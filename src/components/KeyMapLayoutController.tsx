@@ -1,6 +1,6 @@
 import { Select } from '@radix-ui/themes'
 import { store } from '../store'
-import appConfig from '../app.config.json'
+import appConfig from '../consts/app.config.json'
 
 export const KeyMapLayoutController = () => {
 	const keyMapLayoutName = store.useKeyMapLayoutName()

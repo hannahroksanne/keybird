@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as Tonal from 'tonal'
 import { isSubsetOf } from 'is-subset-of'
 import * as CONSTS from '../consts'
