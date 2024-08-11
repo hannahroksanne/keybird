@@ -2,10 +2,10 @@ import React from 'react'
 import { store } from './store'
 import { toner } from './utilities/toner'
 import { generateKeyMap } from './store.helpers'
-import defaultKeysConfig from './defaultKeys.config.json'
+import defaultKeysConfig from './consts/defaultKeys.config.json'
 import { WebMidi } from 'webmidi'
 import Soundfont, { InstrumentName } from 'soundfont-player'
-import keyMapLayoutsConfig from './keyMapLayouts.config.json'
+import keyMapLayoutsConfig from './consts/keyMapLayouts.config.json'
 import { chords } from './consts/chords'
 
 const playableKeyCodes = Object.values(defaultKeysConfig).reduce((final, key) => {
@@ -124,15 +124,16 @@ function useMidiOutputsSync() {
 		setInterval(() => {
 			const midiOutputName = store.midiOutputName
 			const outputNames = WebMidi.outputs.map((output) => output.name)
-			const isSelectedOutputStillAvailable = outputNames.includes(midiOutputName)
+			const mergedMidiOutputNames = [...outputNames, 'built-in instrument']
+			const isSelectedOutputStillAvailable = mergedMidiOutputNames.includes(midiOutputName)
 			if (!isSelectedOutputStillAvailable) store.setMidiOutputName('')
 		}, 30000)
 	}, [])
 }
 
-async function loadInstrument(name: InstrumentName) {
+async function loadInstrument(context, name: InstrumentName) {
 	return new Promise((resolve, reject) => {
-		Soundfont.instrument(new AudioContext(), name).then(resolve).catch(reject)
+		Soundfont.instrument(context, name).then(resolve).catch(reject)
 	})
 }
 
@@ -144,13 +145,16 @@ function useInstrumentLoader() {
 		if (areInstrumentsLoaded) return
 		if (!isOutputEnabled) return
 
-		const loader0 = loadInstrument('acoustic_grand_piano')
-		const loader1 = loadInstrument('acoustic_guitar_nylon')
-		const loader2 = loadInstrument('electric_guitar_clean')
-		const loader3 = loadInstrument('xylophone')
-		const loader4 = loadInstrument('marimba')
+		const context = new AudioContext()
+		store.setAudioContext(context)
+		const loader0 = loadInstrument(context, 'acoustic_grand_piano')
+		const loader1 = loadInstrument(context, 'acoustic_guitar_nylon')
+		const loader2 = loadInstrument(context, 'electric_guitar_clean')
+		const loader3 = loadInstrument(context, 'xylophone')
+		const loader4 = loadInstrument(context, 'marimba')
 
 		const whenAllAreDone = Promise.all([loader0, loader1, loader2, loader3, loader4])
+
 		whenAllAreDone.then((instruments) => {
 			store.set('instruments')({
 				acoustic_grand_piano: instruments[0],
@@ -161,6 +165,8 @@ function useInstrumentLoader() {
 			})
 
 			store.setAreInstrumentsLoaded(true)
+			const midiOutputNames = store.midiOutputNames
+			store.setMidiOutputNames([...midiOutputNames, 'built-in instrument'])
 		})
 	}, [isOutputEnabled])
 }

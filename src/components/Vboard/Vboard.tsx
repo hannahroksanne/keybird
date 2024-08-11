@@ -8,7 +8,7 @@ import { GrayTheme } from '../Themes'
 import { VboardKey } from './VboardKey'
 import { store } from '../../store'
 import isEmpty from 'is-empty'
-import keyboardLayoutsConfig from '../../keyboardLayouts.config.json'
+import keyboardLayoutsConfig from '../../consts/keyboardLayouts.config.json'
 import { Text } from '@radix-ui/themes'
 import { OutputController } from '../OutputController'
 import { Spacer } from '../Spacer'
@@ -45,6 +45,7 @@ export const Vboard = React.memo(() => {
 
 	return (
 		<Flex.Column gap="2" p="2" className="VboardContainer">
+			<DataRow />
 			<GrayTheme>
 				<Flex.Column gap="2" p="2" className="Vboard" data-testid="Vboard">
 					{rows.map((keyCodes, index) => (
@@ -52,7 +53,7 @@ export const Vboard = React.memo(() => {
 					))}
 				</Flex.Column>
 			</GrayTheme>
-			<DataRow />
+			<OptionsRow />
 		</Flex.Column>
 	)
 })
@@ -61,25 +62,25 @@ const DataRow = () => {
 	const playingNotes = store.usePlayingNotes()
 
 	return (
-		<Flex.Row gap="3" mb="2" mt="2" className="VboardDataRow">
-			<Flex.Row gap="3" justify="between" align="center" style={{ width: '100%' }}>
-				<Flex.Row gap="3" align="center">
-					{playingNotes.map((note, index) => (
-						<Text size="1" key={note + index} className="VboardDataRowNote">
-							{note}
-						</Text>
-					))}
-				</Flex.Row>
-				<Spacer />
-				<Flex.Row gap="3">
-					<KeyNameSelect />
-					<ScaleTypeSelect />
-					<OctaveController />
-					<MidiOutputSelector />
-					<MidiToggleButton />
-					<OutputController />
-				</Flex.Row>
-			</Flex.Row>
+		<Flex.Row gap="3" align="center">
+			{playingNotes.map((note, index) => (
+				<Text size="1" key={note + index} className="VboardDataRowNote">
+					{note}
+				</Text>
+			))}
+		</Flex.Row>
+	)
+}
+
+const OptionsRow = () => {
+	return (
+		<Flex.Row gap="3" mb="2" mt="2" className="VboardDataRow" justify="end" align="center" style={{ width: '100%' }}>
+			<KeyNameSelect />
+			<ScaleTypeSelect />
+			<OctaveController />
+			<MidiOutputSelector />
+			<MidiToggleButton />
+			<OutputController />
 		</Flex.Row>
 	)
 }

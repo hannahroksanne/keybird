@@ -1,7 +1,8 @@
 import { create } from 'zustand'
-import appConfig from './app.config.json'
+import appConfig from './consts/app.config.json'
 
 type MainStateT = {
+  audioContext: any
 	logs: LogConfigT[]
 	isLogsOverlayOpen: boolean
 	octave: number
@@ -31,9 +32,11 @@ type MainStateT = {
   selectedInstrumentName: string
   isOutputEnabled: boolean
   areInstrumentsLoaded: boolean
+  isBuiltInInstrumentSelected: boolean
 }
 
 const MAIN_INITIAL_STATE = {
+  audioContext: null,
 	isLogsOverlayOpen: false,
 	logs: [],
 	
@@ -68,6 +71,7 @@ const MAIN_INITIAL_STATE = {
   maxChordComplexity: 5,
 	chordTypeFilter: 'all',
   areInstrumentsLoaded: false,
+  isBuiltInInstrumentSelected: false
 }
 
 const useMainStore = create<MainStateT>(() => MAIN_INITIAL_STATE)
@@ -261,7 +265,16 @@ const getAreInstrumentsLoaded = get('areInstrumentsLoaded')
 const setAreInstrumentsLoaded = set('areInstrumentsLoaded')
 const toggleAreInstrumentsLoaded = toggle('areInstrumentsLoaded')
 
+const useAudioContext = use('audioContext')
+const getAudioContext = get('audioContext')
+const setAudioContext = set('audioContext')
+
+const useIsBuiltInInstrumentSelected = use('isBuiltInInstrumentSelected')
+const getIsBuiltInInstrumentSelected = get('isBuiltInInstrumentSelected')
+const setIsBuiltInInstrumentSelected = set('isBuiltInInstrumentSelected')
+
 type StoreT = {
+  audioContext: any,
 	reset: () => void
   setState: (state: any) => void
   set: (state: any) => (value: any) => void
@@ -341,7 +354,15 @@ type StoreT = {
   setAreInstrumentsLoaded: (areInstrumentsLoaded: boolean) => void
   toggleAreInstrumentsLoaded: () => void
   toggleIsMidiEnabled: () => void
+  useAudioContext: () => any
+  getAudioContext: () => any
+  setAudioContext: (audioContext: any) => void
+  useIsBuiltInInstrumentSelected: () => boolean
+  getIsBuiltInInstrumentSelected: () => boolean
+  setIsBuiltInInstrumentSelected: (isBuiltInInstrumentSelected: boolean) => void
   
+
+  isBuiltInInstrumentSelected: boolean
   areInstrumentsLoaded: boolean
   loadedInstruments: AnyObjectT
   selectedInstrumentName: string
@@ -452,6 +473,20 @@ export const store: StoreT = {
   setAreInstrumentsLoaded,
   toggleAreInstrumentsLoaded,
   toggleIsMidiEnabled,
+  useAudioContext,
+  getAudioContext,
+  setAudioContext,
+  useIsBuiltInInstrumentSelected,
+  getIsBuiltInInstrumentSelected,
+  setIsBuiltInInstrumentSelected,
+
+  get isBuiltInInstrumentSelected() {
+    return getIsBuiltInInstrumentSelected()
+  },
+
+  get audioContext() {
+    return getAudioContext()
+  },
   
   get areInstrumentsLoaded() {
     return getAreInstrumentsLoaded()

@@ -1,6 +1,6 @@
 import { store } from './store'
 import { toner } from './utilities/toner'
-import defaultKeysConfig from './defaultKeys.config.json'
+import defaultKeysConfig from './consts/defaultKeys.config.json'
 import getRandom from 'just-random'
 import filterObject from 'just-filter-object'
 import { chords } from './consts/chords'

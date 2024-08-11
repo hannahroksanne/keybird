@@ -9,8 +9,12 @@ export const MidiOutputSelector = () => {
 	const isGoodToGo = isMidiEnabled && isMidiConnected
 	const value = isGoodToGo ? selectedMidiOutputName : 'Disabled'
 
+	const setMidiOutputName = (newMidiOutputName: string) => {
+		store.setMidiOutputName(newMidiOutputName)
+	}
+
 	return (
-		<Select.Root value={value}>
+		<Select.Root value={value} onValueChange={setMidiOutputName}>
 			<Select.Trigger>
 				<Text className="normalFont">MIDI Output: {value}</Text>
 			</Select.Trigger>

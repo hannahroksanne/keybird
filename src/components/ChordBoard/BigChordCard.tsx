@@ -5,7 +5,7 @@ import { Flex } from '../Flex'
 import { Text, Button } from '@radix-ui/themes'
 import { toner } from '../../utilities/toner'
 import { store } from '../../store'
-import appConfig from '../../app.config.json'
+import appConfig from '../../consts/app.config.json'
 import classcat from 'classcat'
 
 type PropsT = {

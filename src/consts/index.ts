@@ -1,15 +1,9 @@
-import QWERTY_KEYS from './qwertyKeys.config.json'
-import MUSIC from './music.config.json'
+import rootNotes from './rootNotes.json'
+import scaleNames from './chords/scaleNames.json'
+import scaleTypesNames from './chords/scaleTypesNames.json'
+import chordNames from './chords/chordNames.json'
+import chordTypes from './chords/chordTypes.json'
+import scales from './chords/scales.json'
+import chords from './chords/chords.json'
 
-import cloneDeep from 'clone-deep'
-
-export const getQwertyKeysClone = () => {
-	const nonIgnoredQwertyKeys = QWERTY_KEYS.filter((key) => !key.isIgnored)
-	return cloneDeep(nonIgnoredQwertyKeys)
-}
-
-export const CONSTS = {
-	getQwertyKeysClone,
-	QWERTY_KEYS,
-	MUSIC
-}
+export { rootNotes, scaleNames, scaleTypesNames, chordNames, scales, chords, chordTypes }

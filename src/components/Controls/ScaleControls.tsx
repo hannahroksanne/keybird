@@ -1,4 +1,4 @@
-import { Spinner, Select } from '@radix-ui/themes'
+import { Spinner, Select, Text } from '@radix-ui/themes'
 import { Flex } from '../Flex'
 import { store } from '../../store'
 
@@ -10,8 +10,10 @@ export const KeyNameSelect = () => {
 	}
 
 	return (
-		<Select.Root size="3" value={rootNote} onValueChange={reportKeyNameChange}>
-			<Select.Trigger variant="ghost" />
+		<Select.Root size="2" value={rootNote} onValueChange={reportKeyNameChange}>
+			<Select.Trigger>
+				<Text className="normalFont">Key: {rootNote}</Text>
+			</Select.Trigger>
 			<Select.Content position="popper">
 				<Select.Item value="C">C</Select.Item>
 				<Select.Item value="C#">C#</Select.Item>
@@ -38,8 +40,10 @@ export const ScaleTypeSelect = () => {
 	}
 
 	return (
-		<Select.Root size="3" value={scaleType} onValueChange={changeScaleType}>
-			<Select.Trigger variant="ghost" />
+		<Select.Root size="2" value={scaleType} onValueChange={changeScaleType}>
+			<Select.Trigger>
+				<Text className="normalFont">Scale: {scaleType}</Text>
+			</Select.Trigger>
 			<Select.Content position="popper">
 				<Select.Item value="major">major</Select.Item>
 				<Select.Item value="minor">minor</Select.Item>

@@ -1,6 +1,6 @@
 import * as Tonal from 'tonal'
 import { isSubsetOf } from 'is-subset-of'
-import { CONSTS } from '../consts'
+import * as CONSTS from '../consts'
 import mems from 'mems'
 import range from 'array-range'
 
@@ -11,8 +11,6 @@ import getSkewness from 'just-skewness'
 import getVariance from 'just-variance'
 import groupBy from 'just-group-by'
 import sortBy from 'just-sort-by'
-
-globalThis.CONSTS = CONSTS
 
 const getFirstTwo = (target: string) => target.slice(0, 2)
 const checkSharpOrFlat = (target: string) => getFirstTwo(target).match(/[#b]/)
@@ -43,7 +41,7 @@ const getScale = (scaleName: string) => Tonal.Scale.get(scaleName)
 globalThis.getScale = getScale
 
 export const getAllChordsInScale = mems((scaleName: string) => {
-	const allChordNames = CONSTS.MUSIC.CHORD_NAMES
+	const allChordNames = CONSTS.chordNames
 	const scale = getScale(scaleName)
 	const inScaleChordNames = []
 
@@ -58,7 +56,7 @@ export const getAllChordsInScale = mems((scaleName: string) => {
 
 globalThis.getAllChordsInScale = getAllChordsInScale
 
-const scalesMap = CONSTS.MUSIC.SCALES.reduce((final, scale) => {
+const scalesMap = CONSTS.scales.reduce((final, scale) => {
 	final.set(scale.name, scale)
 	return final
 }, new Map())
@@ -91,7 +89,7 @@ const getNotesRootNotes = (notes: string[]) => {
 	return notes.map(getNoteRootNote)
 }
 const getOctavedNotes = (notes, octave) => {
-	const rootNotes = CONSTS.MUSIC.ROOT_NOTES
+	const rootNotes = CONSTS.rootNotes
 	let currentOctave = octave
 	let lastNoteRootIndex = -1
 
@@ -174,76 +172,11 @@ export const toner = {
 	getChordNamesFromScaleName,
 	getManyOctavedNotes,
 	getAllChordsInScale,
-	rootNotes: CONSTS.MUSIC.ROOT_NOTES,
-	scaleTypes: CONSTS.MUSIC.SCALE_TYPES,
-	scaleNAmes: CONSTS.MUSIC.SCALE_NAMES,
-	chordNames: CONSTS.MUSIC.CHORD_NAMES,
+	rootNotes: CONSTS.rootNotes,
+	scaleTypes: CONSTS.scaleTypes,
+	scaleNAmes: CONSTS.scaleNames,
+	chordNames: CONSTS.chordNames,
 	chordTypes: chordTypes,
-	scales: CONSTS.MUSIC.SCALES,
-	chords: CONSTS.MUSIC.CHORDS
+	scales: CONSTS.scales,
+	chords: CONSTS.chords
 }
-
-// const generateTonerData = () => {
-// 	chordTypes.forEach((chord) => {
-// 		toner.registerChord(chord)
-// 	})
-// 	toner.allChordTypes = toner.getChordTypes()
-// 	toner.allChordNames = toner.rootNotes.flatMap((rootNote) => {
-// 		return toner.allChordTypes.map((chordName) => `${rootNote}${chordName}`)
-// 	})
-// 	toner.allChords = toner.allChordNames.map((chordName) => {
-// 		return toner.getChord(chordName)
-// 	})
-// }
-
-// generateTonerData()
-
-// export const getChordRelations = () => {
-// 	const _scales = toner.allScales.map((scale: any) => {
-// 		scale.chords = []
-// 		return scale
-// 	})
-
-// 	for (const chord of toner.allChords) {
-// 		chord.scales = []
-
-// 		for (const scale of _scales) {
-// 			const isChordInScale = isSubsetOf(chord.notes, scale.notes)
-// 			if (!isChordInScale) continue
-// 			chord.scales.push(scale.name)
-// 			scale.chords.push(chord.name)
-// 		}
-// 	}
-
-// 	console.log({
-// 		chords: toner.allChords,
-// 		scales: _scales
-// 	})
-// }
-
-// checkIfChordIsInScale(chordName: string, scaleName: string) {
-// 	const scale = toner.getScale(scaleName)
-// 	const chordNotes = toner.getChordNotes(chordName)
-// 	const isChordInScale = isSubsetOf(chordNotes, scale)
-// 	return isChordInScale
-// },
-
-// getAllChords() {
-// 	return toner.rootNotes.flatMap((rootNote: string) => {
-// 		return toner.chordNames.map((chordName: string) => `${rootNote}${chordName}`)
-// 	})
-// },
-
-// getChordRelations,
-
-// Tonal.Scale.scaleChords("B minor").map((symbol) => {
-//   const scaleNotes = Tonal.Scale.get("B minor").notes
-
-//   for (const scaleNote of scaleNotes) {
-//     const chordName = scaleNote + symbol
-//     const chordNotes = Tonal.Chord.get(scaleName)
-//     const isInScale =
-//     console.log(chordName, chordNotes)
-//   }
-
-// })

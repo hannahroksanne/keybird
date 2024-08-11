@@ -1,13 +1,13 @@
 import './ConfigurableKeys.css'
 import React from 'react'
 import classcat from 'classcat'
-import defaultKeysConfig from '../defaultKeys.config.json'
-import keyboardLayoutsConfig from '../keyboardLayouts.config.json'
+import defaultKeysConfig from '../consts/defaultKeys.config.json'
+import keyboardLayoutsConfig from '../consts/keyboardLayouts.config.json'
 import { Button, Text, ContextMenu, ScrollArea } from '@radix-ui/themes'
 import { Flex } from './Flex'
 import { store } from '../store'
 import isEmpty from 'is-empty'
-import appConfig from '../app.config.json'
+import appConfig from '../consts/app.config.json'
 
 const usePlayableKeyCodes = () => {
 	const layoutName = store.useKeyboardLayoutName()
