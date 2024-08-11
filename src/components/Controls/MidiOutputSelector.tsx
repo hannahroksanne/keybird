@@ -12,7 +12,7 @@ export const MidiOutputSelector = () => {
 	return (
 		<Select.Root value={value}>
 			<Select.Trigger />
-			<Select.Content>
+			<Select.Content position="popper">
 				{midiOutputs.map((output) => (
 					<Select.Item key={output.name} value={output.name}>
 						{output.name}

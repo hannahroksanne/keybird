@@ -2,62 +2,64 @@ import { Text } from '@radix-ui/themes'
 import classcat from 'classcat'
 import { VboardKeyMenu } from './VboardKeyMenu'
 import { VboardKeyButton } from './VboardKeyButton'
-import { $core } from '../../stores/core/$core'
 import React from 'react'
+import { store } from '../../store'
 
 type VboardKeyPropsT = {
 	keyCode: string
 }
 
 export const VboardKey = (props: VboardKeyPropsT) => {
-	const qwertyKey = $core.useQwertyKey(props.keyCode)
-	const isSharpKey = qwertyKey.note.includes('#')
-	const areAltLabelsShown = $core.useAreAltLabelsShown()
-	const isSharpKeyClassName = isSharpKey && 'VboardSharpNoteKey'
-	const isFunctionalClassName = qwertyKey.isFunctional && 'VboardFunctionalKey'
-	const isPlayableClassName = qwertyKey.isPlayable && 'VboardPlayableKey'
-	const isPressedClassName = qwertyKey.isPressed && 'VboardPressedKey'
-	const isRelatedClassName = qwertyKey.isRelated && 'VboardRelatedKey'
+	const pressedKeyCodes = store.usePressedKeyCodes()
+	const shouldShowAltLabels = store.shouldShowAltLabels
+	const key = store.useKeyMapping(props.keyCode) as KeyMappingT
 
-	const keyClassName = `VboardKey${qwertyKey.keyCode}`
-	const baseClassNAme = ['VboardButton', isPlayableClassName, isSharpKeyClassName]
+	const isFunctionalClassName = key.isFunctional && 'VboardFunctionalKey'
+	const isPlayableClassName = key.isPlayable && 'VboardPlayableKey'
+	const isPressed = pressedKeyCodes.includes(key.keyCode)
+	const isPressedClassName = isPressed && 'VboardPressedKey'
+	const keyClassName = `VboardKey${key.keyCode}`
+	const baseClassNAme = ['VboardButton', isPlayableClassName]
 	const modifierClassNames = [isPressedClassName, keyClassName, isFunctionalClassName]
-	const className = classcat([...baseClassNAme, ...modifierClassNames, isRelatedClassName])
+	const className = classcat([...baseClassNAme, ...modifierClassNames])
 
-	const color = qwertyKey.isPressed ? qwertyKey.color : qwertyKey.isRelated ? '' : qwertyKey.color
-	const variant = qwertyKey.isPressed ? qwertyKey.variant : qwertyKey.isRelated ? 'soft' : qwertyKey.variant
-	const altLabel = qwertyKey.altLabel || qwertyKey.note || qwertyKey.label
-	const label = areAltLabelsShown ? altLabel : qwertyKey.label
+	const altLabel = key.alternateLabel || key.label
+	const label = shouldShowAltLabels ? altLabel : key.label
 	const buttonRef = React.useRef<HTMLButtonElement>(null)
 	const reportOpenMenu = console.log
-	const isPlayable = qwertyKey.isPlayable
+	const isPlayable = key.isPlayable
 
 	const finalProps = {
-		...props,
-		...qwertyKey,
+		...key,
 		reportOpenMenu,
 		buttonRef,
-		className,
-		color,
-		variant,
-		label
+		className
 	}
 
 	const Component = isPlayable ? VboardPlayableKey : VboardFunctionalKey
 	return <Component {...finalProps} />
 }
 
-type EnhancedPropsT = QwertyKeyT & {
+type EnhancedPropsT = {
+	buttonRef: React.RefObject<HTMLButtonElement>
 	reportOpenMenu: () => void
 	className: string
-	color: string
-	variant: string
-	label: string
 }
 
-export const VboardPlayableKey = React.memo((props: EnhancedPropsT) => {
+type PlayableKeyPropsT = PlayableKeyMappingT & EnhancedPropsT
+type FunctionalKeyPropsT = FunctionalKeyMappingT & EnhancedPropsT
+
+export const VboardPlayableKey = React.memo((props: PlayableKeyPropsT) => {
+	const isRootNotePlaying = store.useIsRootNotePlaying(props.rootNote)
+	const isPlaying = store.useIsNotePlaying(props.note)
+	const isSharp = props.note.includes('#')
+	const isPlayingClassName = isPlaying && 'VboardPlayingKey'
+	const isSharpKeyClassName = isSharp && 'VboardSharpNoteKey'
+	const isRelatedClassName = isRootNotePlaying && 'VboardRelatedKey'
+	const className = classcat([props.className, isPlayingClassName, isSharpKeyClassName, isRelatedClassName])
+
 	return (
-		<VboardKeyButton {...props}>
+		<VboardKeyButton {...props} className={className}>
 			<VboardKeyMenu reportOpenMenu={props.reportOpenMenu}>
 				<Text>{props.label}</Text>
 			</VboardKeyMenu>
@@ -65,7 +67,8 @@ export const VboardPlayableKey = React.memo((props: EnhancedPropsT) => {
 	)
 })
 
-export const VboardFunctionalKey = React.memo((props: EnhancedPropsT) => {
+export const VboardFunctionalKey = React.memo((props: FunctionalKeyPropsT) => {
+	// TODO: Make functional keys clickable.
 	const handleClick = (event: MouseEvent) => {}
 
 	return (

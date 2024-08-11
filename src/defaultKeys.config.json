@@ -1,0 +1,602 @@
+{
+	"Backquote": {
+		"keyCode": "Backquote",
+		"function": "toggleAlternateLabels",
+		"color": "yellow",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "`",
+		"width": 1
+	},
+	"Digit1": {
+		"keyCode": "Digit1",
+		"function": "play",
+		"color": "",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "1",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit2": {
+		"keyCode": "Digit2",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "2",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit3": {
+		"keyCode": "Digit3",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "3",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit4": {
+		"keyCode": "Digit4",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "4",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit5": {
+		"keyCode": "Digit5",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "5",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit6": {
+		"keyCode": "Digit6",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "6",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit7": {
+		"keyCode": "Digit7",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "7",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit8": {
+		"keyCode": "Digit8",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "8",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit9": {
+		"keyCode": "Digit9",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "9",
+		"variant": "outline",
+		"width": 1
+	},
+	"Digit0": {
+		"keyCode": "Digit0",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "0",
+		"variant": "outline",
+		"width": 1
+	},
+	"Minus": {
+		"keyCode": "Minus",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "-",
+		"variant": "outline",
+		"width": 1
+	},
+	"Equal": {
+		"keyCode": "Equal",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "=",
+		"variant": "outline",
+		"width": 1
+	},
+	"Backspace": {
+		"keyCode": "Backspace",
+		"function": "",
+		"color": "yellow",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "backspace",
+		"width": 2
+	},
+	"Tab": {
+		"keyCode": "Tab",
+		"function": "",
+		"color": "orange",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "tab",
+		"width": 1.5
+	},
+	"KeyQ": {
+		"keyCode": "KeyQ",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "q",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyW": {
+		"keyCode": "KeyW",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "w",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyE": {
+		"keyCode": "KeyE",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "e",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyR": {
+		"keyCode": "KeyR",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "r",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyT": {
+		"keyCode": "KeyT",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "t",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyY": {
+		"keyCode": "KeyY",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "y",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyU": {
+		"keyCode": "KeyU",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "u",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyI": {
+		"keyCode": "KeyI",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "i",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyO": {
+		"keyCode": "KeyO",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "o",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyP": {
+		"keyCode": "KeyP",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "p",
+		"variant": "outline",
+		"width": 1
+	},
+	"BracketLeft": {
+		"keyCode": "BracketLeft",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "[",
+		"variant": "outline",
+		"width": 1
+	},
+	"BracketRight": {
+		"keyCode": "BracketRight",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "]",
+		"variant": "outline",
+		"width": 1
+	},
+	"Backslash": {
+		"keyCode": "Backslash",
+		"function": "toggleMidiOutputEnabled",
+		"color": "orange",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "\\",
+		"width": 1.5
+	},
+	"CapsLock": {
+		"keyCode": "CapsLock",
+		"function": "",
+		"color": "crimson",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "caps",
+		"width": 1.75
+	},
+	"KeyA": {
+		"keyCode": "KeyA",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "a",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyS": {
+		"keyCode": "KeyS",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "s",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyD": {
+		"keyCode": "KeyD",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "d",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyF": {
+		"keyCode": "KeyF",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "f",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyG": {
+		"keyCode": "KeyG",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "g",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyH": {
+		"keyCode": "KeyH",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "h",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyJ": {
+		"keyCode": "KeyJ",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "j",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyK": {
+		"keyCode": "KeyK",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "k",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyL": {
+		"keyCode": "KeyL",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "l",
+		"variant": "outline",
+		"width": 1
+	},
+	"Semicolon": {
+		"keyCode": "Semicolon",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": ";",
+		"variant": "outline",
+		"width": 1
+	},
+	"Quote": {
+		"keyCode": "Quote",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "'",
+		"variant": "outline",
+		"width": 1
+	},
+	"Enter": {
+		"keyCode": "Enter",
+		"function": "",
+		"color": "crimson",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "enter",
+		"width": 2.25
+	},
+	"ShiftLeft": {
+		"keyCode": "ShiftLeft",
+		"function": "",
+		"color": "purple",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "shift",
+		"width": 2.25
+	},
+	"KeyZ": {
+		"keyCode": "KeyZ",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "z",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyX": {
+		"keyCode": "KeyX",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "x",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyC": {
+		"keyCode": "KeyC",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "c",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyV": {
+		"keyCode": "KeyV",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "v",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyB": {
+		"keyCode": "KeyB",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "b",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyN": {
+		"keyCode": "KeyN",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "n",
+		"variant": "outline",
+		"width": 1
+	},
+	"KeyM": {
+		"keyCode": "KeyM",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "m",
+		"variant": "outline",
+		"width": 1
+	},
+	"Comma": {
+		"keyCode": "Comma",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": ",",
+		"variant": "outline",
+		"width": 1
+	},
+	"Period": {
+		"keyCode": "Period",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": ".",
+		"variant": "outline",
+		"width": 1
+	},
+	"Slash": {
+		"keyCode": "Slash",
+		"function": "play",
+		"color": "default",
+		"isFunctional": false,
+		"isPlayable": true,
+		"label": "/",
+		"variant": "outline",
+		"width": 1
+	},
+	"ShiftRight": {
+		"keyCode": "ShiftRight",
+		"function": "",
+		"color": "purple",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "rightShift",
+		"width": 2.75
+	},
+	"ControlLeft": {
+		"keyCode": "ControlLeft",
+		"function": "",
+		"color": "sky",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "ctrl",
+		"width": 1
+	},
+	"Fn": {
+		"keyCode": "Fn",
+		"function": "",
+		"color": "gold",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "fn",
+		"width": 1
+	},
+	"MetaLeft": {
+		"keyCode": "MetaLeft",
+		"function": "",
+		"color": "mint",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "meta",
+		"width": 1
+	},
+	"AltLeft": {
+		"keyCode": "AltLeft",
+		"function": "",
+		"color": "tomato",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "alt",
+		"width": 1
+	},
+	"Space": {
+		"keyCode": "Space",
+		"function": "",
+		"color": "cyan",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "space",
+		"width": 9
+	},
+	"AltRight": {
+		"keyCode": "AltRight",
+		"function": "",
+		"color": "tomato",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "alt",
+		"width": 1
+	},
+	"ControlRight": {
+		"keyCode": "ControlRight",
+		"function": "",
+		"color": "sky",
+		"variant": "surface",
+		"isFunctional": true,
+		"isPlayable": false,
+		"label": "ctrl",
+		"width": 1
+	}
+}

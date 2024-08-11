@@ -6,24 +6,24 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Button, Heading, Link, Text } from '@radix-ui/themes'
 import { $logs } from '../../stores'
 import { Flex } from '../Flex'
+import { store } from '../../store'
 
 export const LogList = () => {
-	const isLogListOpen = $logs.use((state) => state.isLogListOpen)
-	const logList = $logs.use((state) => state.list)
+	const logs = store.useLogs()
 
 	const closeLogList = () => {
-		$logs.toggleLogListOpen(false)
+		store.setIsLogsOverlayOpen(false)
 	}
 
 	return (
-		<Dialog.Root open={isLogListOpen}>
+		<Dialog.Root open={true}>
 			<Dialog.Overlay className="LogListOverlay" />
 			<Dialog.Content className="LogList">
 				<Flex.Column className="LogListContent" gap="3">
 					<Dialog.Title className="LogListTitle">Log List</Dialog.Title>
 					<Dialog.Description className="LogListDescription">Lorem ipsum betch.</Dialog.Description>
 					<Flex.Column gap="2" className="LogListLogs">
-						{logList.map((log, index) => {
+						{logs.map((log, index) => {
 							return (
 								<Flex.Column key={index} gap="2">
 									<Heading size="6">{log.title}</Heading>

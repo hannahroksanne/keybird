@@ -1,0 +1,31 @@
+{
+	"defaultScaleRootNote": "F#",
+	"defaultScaleType": "minor",
+	"defaultOctave": 2,
+	"defaultKeyMapLayoutName": "push",
+	"defaultKeyboardLayoutName": "standard",
+
+	"keyMapLayoutNames": [
+		"push",
+
+		"rightDown",
+		"rightDownQuads",
+		"rightDownTrios",
+		"rightDownPairs",
+
+		"rightUp",
+		"rightUpQuads",
+		"rightUpTrios",
+		"rightUpPairs",
+
+		"leftDown",
+		"leftDownQuads",
+		"leftDownTrios",
+		"leftDownPairs",
+
+		"leftUp",
+		"leftUpQuads",
+		"leftUpTrios",
+		"leftUpPairs"
+	]
+}

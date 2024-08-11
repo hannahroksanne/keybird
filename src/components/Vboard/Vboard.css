@@ -1,12 +1,16 @@
 .Vboard {
-	display: flex;
-	flex-direction: column;
 	aspect-ratio: 14 / 4;
 	background: var(--gray-4);
 	overflow: hidden;
 	box-shadow: inset 0 0 0 1px var(--accent-a8);
 	position: relative;
 	z-index: 100;
+}
+
+.VboardContainer {
+}
+
+.VboardDataRow {
 }
 
 .Vboard .VboardRow {
@@ -23,6 +27,11 @@
 	overflow: hidden;
 	transition: all 0.22s;
 	box-shadow: inset 0 0 0 1px var(--accent-a8);
+}
+
+.Vboard .VboardButton.VboardPlayingKey:not(.VboardPressedKey) {
+	background: var(--accent-3);
+	opacity: 0.5;
 }
 
 .Vboard .VboardButton.VboardPlayableKey.VboardPressedKey {
@@ -81,10 +90,10 @@
 }
 /* inset 0 0 0 1px var(--accent-a8),  */
 :root {
-	--mintBorderBoxShadow: -2px 2px 0px -1px var(--mint-6), 2px -2px 1px -1px var(--mint-6),
-		-2px -2px 1px -1px var(--mint-6), 2px 2px 1px -1px var(--mint-6);
-	--mintBorderBoxShadow1: -2px 2px 0px -1px var(--mint-8), 2px -2px 1px -1px var(--mint-8),
-		-2px -2px 1px -1px var(--mint-8), 2px 2px 1px -1px var(--mint-8);
+	--mintBorderBoxShadow: -2px 2px 0px -1px var(--mint-6), 2px -2px 1px -1px var(--mint-6), -2px -2px 1px -1px var(--mint-6),
+		2px 2px 1px -1px var(--mint-6);
+	--mintBorderBoxShadow1: -2px 2px 0px -1px var(--mint-8), 2px -2px 1px -1px var(--mint-8), -2px -2px 1px -1px var(--mint-8),
+		2px 2px 1px -1px var(--mint-8);
 	--rainbowGradient: linear-gradient(70deg, rgb(14, 190, 255), rgb(255, 221, 64), rgb(174, 99, 228), rgb(71, 207, 115));
 	--redGradient: linear-gradient(45deg, #ff3d3d, #ff9a9e, #ffd1d1, #ff6b6b, #ff3d3d, #ff5252, #ff3d3d);
 	--blueGradient: linear-gradient(45deg, #4facfe, #00f2fe, #7ee8fa, #4facfe, #4facfe, #00f2fe, #4facfe);
@@ -114,13 +123,10 @@
 		0px 0px 90px 58px #a200c733;
 	--boxShadowC: -1px 4px 26px 2px #1118276b, -10px 10px 30px -9px rgb(255 199 254 / 50%),
 		0px 4px 530px 38px rgb(131 2 255 / 32%), 20px 0px 310px 48px rgb(141 199 0 / 37%);
-	--boxShadowD: inset -3px -4px 12px -1px #00000023, 0 0 52px 8px #fdfdfd2b, 0px 1px 54px 8px #89499829,
-		0 0 12px #000000c7;
+	--boxShadowD: inset -3px -4px 12px -1px #00000023, 0 0 52px 8px #fdfdfd2b, 0px 1px 54px 8px #89499829, 0 0 12px #000000c7;
 	--boxShadowE: linear-gradient(to bottom right, #ff48e9, #45c4ff, #63ffd2);
-	--boxShadowF: inset -3px -4px 12px -1px #00000000, 0 0 52px 8px #e2e2e200, 0px 1px 54px 8px #8949980a,
-		0 0 12px #0000004d;
-	--boxShadowG: inset -3px -4px 12px -1px #00000023, 0 0 52px 8px #c834ff47, 0px 1px 54px 8px #a200c747,
-		0 0 12px #0000005c;
+	--boxShadowF: inset -3px -4px 12px -1px #00000000, 0 0 52px 8px #e2e2e200, 0px 1px 54px 8px #8949980a, 0 0 12px #0000004d;
+	--boxShadowG: inset -3px -4px 12px -1px #00000023, 0 0 52px 8px #c834ff47, 0px 1px 54px 8px #a200c747, 0 0 12px #0000005c;
 	--backgroundBluey: linear-gradient(to bottom right, #66bedf, #45aeff);
 	--boxShadowH: -1px 4px 26px 2px rgba(17, 24, 39, 0.633), -10px 10px 30px -9px rgba(255, 199, 254, 0.036),
 		0px 4px 60px 8px rgb(242 2 255 / 27%), 20px 0px 130px 48px rgba(162, 0, 199, 0.111);

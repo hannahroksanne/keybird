@@ -1,76 +1,36 @@
 import './Vboard.css'
 import './VboardKeyMenu.css'
 
+import useKeyboardEvents from '@acusti/use-keyboard-events'
 import * as React from 'react'
 import { Flex } from '../Flex'
 import { GrayTheme } from '../Themes'
-import { $core } from '../../stores/core/$core'
 import { VboardKey } from './VboardKey'
-
-import useKeyboardEvents from '@acusti/use-keyboard-events'
-import { $midi } from '../../stores/midi/$midi'
-import { $logs } from '../../stores'
+import { store } from '../../store'
+import isEmpty from 'is-empty'
+import keyboardLayoutsConfig from '../../keyboardLayouts.config.json'
+import { Text } from '@radix-ui/themes'
 
 type VboardRowPropsT = {
 	index: number
-	qwertyKeys: string[]
+	keyCodes: string[]
 }
 
-const VboardRow = (props: VboardRowPropsT) => {
+const VboardRow = React.memo((props: VboardRowPropsT) => {
+	const keyMap = store.useKeyMap()
+	if (isEmpty(keyMap)) return null
+
 	return (
 		<Flex.Row gap="2" data-testid={`VboardRow${props.index}`} className="VboardRow">
-			{props.qwertyKeys.map((keyCode) => {
+			{props.keyCodes.map((keyCode) => {
 				return <VboardKey key={keyCode} keyCode={keyCode} />
 			})}
 		</Flex.Row>
 	)
-}
-
-const midiOn: number[] = []
+})
 
 export const Vboard = React.memo(() => {
-	const rows = $core.useQwertyStringRows() as string[][]
-
-	const handleFunction = (event: KeyboardEvent) => {
-		event.preventDefault()
-
-		const qwertyKey = $core.getQwertyKey(event.code) as QwertyKeyT
-		if (!qwertyKey) return
-
-		if (qwertyKey.function === 'toggleLabels') {
-			const shouldShowAltLabels = $core.state.shouldShowAltLabels
-			$core.setShouldShowAltLabels(!shouldShowAltLabels)
-		}
-
-		if (qwertyKey.function === 'toggleMidiOutput') {
-			const isMidiEnabled = $midi.state.isMidiEnabled
-			$midi.setIsMidiEnabled(!isMidiEnabled)
-		}
-
-		if (qwertyKey.function === 'toggleDevLogList') {
-			$logs.toggleLogListOpen(!$logs.state.isLogListOpen)
-		}
-	}
-
-	const handleEngageButton = (event: KeyboardEvent) => {
-		handleFunction(event)
-		const key = $core.getQwertyKey(event.code) as QwertyKeyT
-		const isAlreadyPressed = $core.checkIfKeyIsPressed(event.code)
-		if (isAlreadyPressed) return
-		$core.reportKeyDown(event.code)
-		if (!key.isPlayable) return
-		const isMidiEnabled = $midi.state.isMidiEnabled
-		const isMidiReady = $midi.state.isMidiReady
-		const shouldBroadcast = isMidiEnabled && isMidiReady
-		shouldBroadcast && $midi.playNote(key.note)
-	}
-
-	const handleDisengageButton = (event: KeyboardEvent) => {
-		const key = $core.getQwertyKey(event.code)
-		$core.reportKeyUp(event.code)
-		if (!key.isPlayable) return
-		$midi.stopNote(key.note)
-	}
+	const rows = keyboardLayoutsConfig.default.rows
 
 	useKeyboardEvents({
 		onKeyDown: handleEngageButton,
@@ -78,12 +38,59 @@ export const Vboard = React.memo(() => {
 	})
 
 	return (
-		<GrayTheme>
-			<Flex.Column gap="2" p="2" className="Vboard" data-testid="Vboard">
-				{rows.map((qwertyKeys, index) => (
-					<VboardRow key={index} index={index} qwertyKeys={qwertyKeys} />
-				))}
-			</Flex.Column>
-		</GrayTheme>
+		<Flex.Column gap="2" p="2" className="VboardContainer">
+			<DataRow />
+			<GrayTheme>
+				<Flex.Column gap="2" p="2" className="Vboard" data-testid="Vboard">
+					{rows.map((keyCodes, index) => (
+						<VboardRow key={index} index={index} keyCodes={keyCodes} />
+					))}
+				</Flex.Column>
+			</GrayTheme>
+		</Flex.Column>
 	)
 })
+
+const DataRow = () => {
+	const playingNotes = store.usePlayingNotes()
+
+	return (
+		<Flex.Row gap="3" p="2" className="VboardDataRow">
+			{playingNotes.map((note, index) => (
+				<Text size="1" key={note + index} className="VboardDataRowNote">
+					{note}
+				</Text>
+			))}
+		</Flex.Row>
+	)
+}
+
+const handleFunctionalKey = (key) => {
+	store.addPressedKeyCode(key.keyCode)
+
+	if (key.function === 'toggleAlternateLabels') {
+		const shouldShowAltLabels = store.shouldShowAltLabels
+		store.setShouldShowAltLabels(!shouldShowAltLabels)
+	}
+
+	if (key.function === 'toggleMidiOutputEnabled') {
+		const isMidiEnabled = store.isMidiEnabled
+		store.setIsMidiEnabled(!isMidiEnabled)
+	}
+}
+
+const handleEngageButton = (event: KeyboardEvent) => {
+	event.preventDefault()
+	const key = store.getKeyMapping(event.code)
+	const isKeyAlreadyPressed = store.getIsKeyCodePressed(key.keyCode)
+	if (isKeyAlreadyPressed) return
+	if (key.isFunctional) return handleFunctionalKey(key)
+	if (key.isPlayable) return store.addPressedKeyCode(key.keyCode)
+}
+
+const handleDisengageButton = (event: KeyboardEvent) => {
+	event.preventDefault()
+	const key = store.getKeyMapping(event.code)
+	if (key.isFunctional) store.removePressedKeyCode(key.keyCode)
+	if (key.isPlayable) store.removePressedKeyCode(key.keyCode)
+}

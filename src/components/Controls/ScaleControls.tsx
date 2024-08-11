@@ -4,9 +4,10 @@ import { MidiOutputSelector } from './MidiOutputSelector'
 import { MidiToggleSwitch } from './MidiToggleSwitch'
 import { MidiWarningMessage } from '../MidiWarningMessage'
 import { Flex } from '../Flex'
+import { store } from '../../store'
 
 export const MidiControls = () => {
-	const isMidiReady = $midi.useIsMidiReady()
+	const isMidiReady = store.useIsMidiConnected()
 
 	if (!isMidiReady) {
 		return <Spinner title="Preparing midi." />
@@ -22,50 +23,46 @@ export const MidiControls = () => {
 }
 
 export const KeyNameSelect = () => {
-	const rootNote = $core.use((state) => state.scaleRootNote)
+	const rootNote = store.useScaleRootNote()
 
 	const reportKeyNameChange = (newRootNote: string) => {
-		$core.setScaleRootNote(newRootNote as any)
+		store.setScaleRootNote(newRootNote)
 	}
 
 	return (
 		<Select.Root size="3" value={rootNote} onValueChange={reportKeyNameChange}>
 			<Select.Trigger variant="ghost" />
-			<Select.Content>
-				<Select.Group>
-					<Select.Item value="C">C</Select.Item>
-					<Select.Item value="C#">C#</Select.Item>
-					<Select.Item value="D">D</Select.Item>
-					<Select.Item value="D#">D#</Select.Item>
-					<Select.Item value="E">E</Select.Item>
-					<Select.Item value="F">F</Select.Item>
-					<Select.Item value="F#">F#</Select.Item>
-					<Select.Item value="G">G</Select.Item>
-					<Select.Item value="G#">G#</Select.Item>
-					<Select.Item value="A">A</Select.Item>
-					<Select.Item value="A#">A#</Select.Item>
-					<Select.Item value="B">B</Select.Item>
-				</Select.Group>
+			<Select.Content position="popper">
+				<Select.Item value="C">C</Select.Item>
+				<Select.Item value="C#">C#</Select.Item>
+				<Select.Item value="D">D</Select.Item>
+				<Select.Item value="D#">D#</Select.Item>
+				<Select.Item value="E">E</Select.Item>
+				<Select.Item value="F">F</Select.Item>
+				<Select.Item value="F#">F#</Select.Item>
+				<Select.Item value="G">G</Select.Item>
+				<Select.Item value="G#">G#</Select.Item>
+				<Select.Item value="A">A</Select.Item>
+				<Select.Item value="A#">A#</Select.Item>
+				<Select.Item value="B">B</Select.Item>
 			</Select.Content>
 		</Select.Root>
 	)
 }
 
 export const ScaleNameSelect = () => {
-	const scaleType = $core.use((state) => state.scaleType)
+	const scaleType = store.useScaleType()
 
 	const changeScaleType = (newScaleType: string) => {
-		$core.setScaleType(newScaleType as any)
+		store.setScaleType(newScaleType)
 	}
 
 	return (
 		<Select.Root size="3" value={scaleType} onValueChange={changeScaleType}>
 			<Select.Trigger variant="ghost" />
-			<Select.Content>
-				<Select.Group>
-					<Select.Item value="major">major</Select.Item>
-					<Select.Item value="minor">minor</Select.Item>
-				</Select.Group>
+			<Select.Content position="popper">
+				<Select.Item value="major">major</Select.Item>
+				<Select.Item value="minor">minor</Select.Item>
 			</Select.Content>
 		</Select.Root>
 	)

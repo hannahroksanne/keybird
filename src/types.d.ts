@@ -1,3 +1,70 @@
+type KeyConfigT = {
+	keyCode: string
+	color: string
+	variant: string
+	label: string
+	width: number
+	isFunctional: boolean
+	isPlayable: boolean
+	function: string
+}
+
+type PlayableKeyMappingT = KeyConfigT & {
+	note: string
+	rootNote: string
+	alternateLabel: string
+}
+
+type FunctionalKeyMappingT = KeyConfigT & {
+	alternateLabel: string
+}
+
+type KeyMappingT = FunctionalKeyMappingT | PlayableKeyMappingT
+
+type KeyConfigMapT = {
+	[keyCode: string]: KeyConfigT
+}
+
+type KeyMapT = {
+	[keyCode: string]: KeyMappingT
+}
+
+type LogConfigT = {
+	level: 'info' | 'warn' | 'error' | 'success'
+	title: string
+	message: string
+	data: AnyObjectT
+}
+
+type LogsConfigT = {
+	[key: string]: LogConfigT
+}
+
+type MainStateT = {
+	logs: LogConfigT[]
+	isLogsOverlayOpen: boolean
+	octave: number
+	scaleName: string
+	scaleRootNote: string
+	scaleType: string
+	scaleNotes: string[]
+	scaleChordNames: string[]
+	keyMapLayoutName: string
+	keyboardLayoutName: string
+	shouldShowAltLabels: boolean
+	isMidiConnected: boolean
+	isMidiEnabled: boolean
+	midiOutputName: string
+	midiConnectionError: any
+	pressedKeyCodes: string[]
+	playingNotes: string[]
+	playingRootNotes: string[]
+	keyMap: KeyMapT
+	playingChordNames: string[]
+}
+
+// ####################### old below
+
 type VboardRootNoteT = 'C' | 'C#' | 'D' | 'D#' | 'E' | 'F' | 'F#' | 'G' | 'G#' | 'A' | 'A#' | 'B'
 
 type VboardLayoutKeyT = {
@@ -138,15 +205,4 @@ const foo: QuertyKeyT = {
 type KeyCodeAndRowT = {
 	keyCode: string
 	row: number
-}
-
-type LogConfigT = {
-	level: 'info' | 'warn' | 'error' | 'success'
-	title: string
-	message: string
-	data: AnyObjectT
-}
-
-type LogsConfigT = {
-	[key: string]: LogConfigT
 }

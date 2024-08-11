@@ -135,7 +135,7 @@ const store = create<StoreT>((set, get) => {
 
 		const [output, notes] = prepare(_notes, options)
 
-		if (options.staggered || true) {
+		if (options.isStaggered || true) {
 			return playNotesStaggered(output, notes, 189)
 		}
 

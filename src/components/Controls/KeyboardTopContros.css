@@ -4,3 +4,7 @@
 	max-height: 36px;
 	width: 100%;
 }
+
+.OctaveController .rt-TextFieldSlot {
+	padding-right: 16px;
+}
