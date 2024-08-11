@@ -1,0 +1,1952 @@
+[
+	{
+		"empty": false,
+		"name": "fifth",
+		"setNum": 2064,
+		"chroma": "100000010000",
+		"normalized": "100000010000",
+		"intervals": ["1P", "5P"],
+		"quality": "Unknown",
+		"symbols": ["5"]
+	},
+	{
+		"empty": false,
+		"name": "suspended fourth",
+		"setNum": 2128,
+		"chroma": "100001010000",
+		"normalized": "100001000010",
+		"intervals": ["1P", "4P", "5P"],
+		"quality": "Unknown",
+		"symbols": ["sus4", "sus"]
+	},
+	{
+		"empty": false,
+		"name": "suspended fourth seventh",
+		"setNum": 2130,
+		"chroma": "100001010010",
+		"normalized": "100001010010",
+		"intervals": ["1P", "4P", "5P", "7m"],
+		"quality": "Unknown",
+		"symbols": ["7sus4", "7sus"]
+	},
+	{
+		"empty": false,
+		"name": "augmented",
+		"setNum": 2184,
+		"chroma": "100010001000",
+		"normalized": "100010001000",
+		"intervals": ["1P", "3M", "5A"],
+		"quality": "Augmented",
+		"symbols": ["aug", "+", "+5", "^#5"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh flat sixth",
+		"setNum": 2185,
+		"chroma": "100010001001",
+		"normalized": "100010001001",
+		"intervals": ["1P", "3M", "6m", "7M"],
+		"quality": "Major",
+		"symbols": ["M7b6", "^7b6"]
+	},
+	{
+		"empty": false,
+		"name": "augmented seventh",
+		"setNum": 2185,
+		"chroma": "100010001001",
+		"normalized": "100010001001",
+		"intervals": ["1P", "3M", "5A", "7M"],
+		"quality": "Augmented",
+		"symbols": ["maj7#5", "maj7+5", "+maj7", "^7#5"]
+	},
+	{
+		"empty": false,
+		"name": "major",
+		"setNum": 2192,
+		"chroma": "100010010000",
+		"normalized": "100001000100",
+		"intervals": ["1P", "3M", "5P"],
+		"quality": "Major",
+		"symbols": ["M", "^", "", "maj"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh",
+		"setNum": 2193,
+		"chroma": "100010010001",
+		"normalized": "100010010001",
+		"intervals": ["1P", "3M", "5P", "7M"],
+		"quality": "Major",
+		"symbols": ["maj7", "Δ", "ma7", "M7", "Maj7", "^7"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh",
+		"setNum": 2194,
+		"chroma": "100010010010",
+		"normalized": "100010010010",
+		"intervals": ["1P", "3M", "5P", "7m"],
+		"quality": "Major",
+		"symbols": ["7", "dom"]
+	},
+	{
+		"empty": false,
+		"name": "sixth",
+		"setNum": 2196,
+		"chroma": "100010010100",
+		"normalized": "100010010100",
+		"intervals": ["1P", "3M", "5P", "6M"],
+		"quality": "Major",
+		"symbols": ["6", "add6", "add13", "M6"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh sharp eleventh",
+		"setNum": 2225,
+		"chroma": "100010110001",
+		"normalized": "100010110001",
+		"intervals": ["1P", "3M", "5P", "7M", "11A"],
+		"quality": "Major",
+		"symbols": ["maj#4", "Δ#4", "Δ#11", "M7#11", "^7#11", "maj7#11"]
+	},
+	{
+		"empty": false,
+		"name": "lydian dominant seventh",
+		"setNum": 2226,
+		"chroma": "100010110010",
+		"normalized": "100010110010",
+		"intervals": ["1P", "3M", "5P", "7m", "11A"],
+		"quality": "Major",
+		"symbols": ["7#11", "7#4"]
+	},
+	{
+		"empty": false,
+		"name": "minor augmented",
+		"setNum": 2312,
+		"chroma": "100100001000",
+		"normalized": "100001000100",
+		"intervals": ["1P", "3m", "5A"],
+		"quality": "Augmented",
+		"symbols": ["m#5", "-#5", "m+"]
+	},
+	{
+		"empty": false,
+		"name": "minor",
+		"setNum": 2320,
+		"chroma": "100100010000",
+		"normalized": "100001001000",
+		"intervals": ["1P", "3m", "5P"],
+		"quality": "Minor",
+		"symbols": ["m", "min", "-"]
+	},
+	{
+		"empty": false,
+		"name": "minor/major seventh",
+		"setNum": 2321,
+		"chroma": "100100010001",
+		"normalized": "100010001100",
+		"intervals": ["1P", "3m", "5P", "7M"],
+		"quality": "Minor",
+		"symbols": ["m/ma7", "m/maj7", "mM7", "mMaj7", "m/M7", "-Δ7", "mΔ", "-^7", "-maj7"]
+	},
+	{
+		"empty": false,
+		"name": "minor seventh",
+		"setNum": 2322,
+		"chroma": "100100010010",
+		"normalized": "100010010100",
+		"intervals": ["1P", "3m", "5P", "7m"],
+		"quality": "Minor",
+		"symbols": ["m7", "min7", "mi7", "-7"]
+	},
+	{
+		"empty": false,
+		"name": "minor sixth",
+		"setNum": 2324,
+		"chroma": "100100010100",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5P", "6M"],
+		"quality": "Minor",
+		"symbols": ["m6", "-6"]
+	},
+	{
+		"empty": false,
+		"name": "diminished",
+		"setNum": 2336,
+		"chroma": "100100100000",
+		"normalized": "100000100100",
+		"intervals": ["1P", "3m", "5d"],
+		"quality": "Diminished",
+		"symbols": ["dim", "°", "o"]
+	},
+	{
+		"empty": false,
+		"name": "half-diminished",
+		"setNum": 2338,
+		"chroma": "100100100010",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5d", "7m"],
+		"quality": "Diminished",
+		"symbols": ["m7b5", "ø", "-7b5", "h7", "h"]
+	},
+	{
+		"empty": false,
+		"name": "diminished seventh",
+		"setNum": 2340,
+		"chroma": "100100100100",
+		"normalized": "100100100100",
+		"intervals": ["1P", "3m", "5d", "7d"],
+		"quality": "Diminished",
+		"symbols": ["dim7", "°7", "o7"]
+	},
+	{
+		"empty": false,
+		"name": "dominant sharp ninth",
+		"setNum": 2450,
+		"chroma": "100110010010",
+		"normalized": "100100101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A"],
+		"quality": "Major",
+		"symbols": ["7#9"]
+	},
+	{
+		"empty": false,
+		"name": "suspended second",
+		"setNum": 2576,
+		"chroma": "101000010000",
+		"normalized": "100001000010",
+		"intervals": ["1P", "2M", "5P"],
+		"quality": "Unknown",
+		"symbols": ["sus2"]
+	},
+	{
+		"empty": false,
+		"name": "eleventh",
+		"setNum": 2642,
+		"chroma": "101001010010",
+		"normalized": "100101001010",
+		"intervals": ["1P", "5P", "7m", "9M", "11P"],
+		"quality": "Unknown",
+		"symbols": ["11"]
+	},
+	{
+		"empty": false,
+		"name": "major ninth",
+		"setNum": 2705,
+		"chroma": "101010010001",
+		"normalized": "100011010100",
+		"intervals": ["1P", "3M", "5P", "7M", "9M"],
+		"quality": "Major",
+		"symbols": ["maj9", "Δ9", "^9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth",
+		"setNum": 2706,
+		"chroma": "101010010010",
+		"normalized": "100100101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M"],
+		"quality": "Major",
+		"symbols": ["9"]
+	},
+	{
+		"empty": false,
+		"name": "sixth added ninth",
+		"setNum": 2708,
+		"chroma": "101010010100",
+		"normalized": "100101001010",
+		"intervals": ["1P", "3M", "5P", "6M", "9M"],
+		"quality": "Major",
+		"symbols": ["6add9", "6/9", "69", "M69"]
+	},
+	{
+		"empty": false,
+		"name": "major thirteenth",
+		"setNum": 2709,
+		"chroma": "101010010101",
+		"normalized": "100101011010",
+		"intervals": ["1P", "3M", "5P", "7M", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["maj13", "Maj13", "^13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth",
+		"setNum": 2710,
+		"chroma": "101010010110",
+		"normalized": "100101101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["13"]
+	},
+	{
+		"empty": false,
+		"name": "major sharp eleventh (lydian)",
+		"setNum": 2737,
+		"chroma": "101010110001",
+		"normalized": "100011010101",
+		"intervals": ["1P", "3M", "5P", "7M", "9M", "11A"],
+		"quality": "Major",
+		"symbols": ["maj9#11", "Δ9#11", "^9#11"]
+	},
+	{
+		"empty": false,
+		"name": "minor/major ninth",
+		"setNum": 2833,
+		"chroma": "101100010001",
+		"normalized": "100010001101",
+		"intervals": ["1P", "3m", "5P", "7M", "9M"],
+		"quality": "Minor",
+		"symbols": ["mM9", "mMaj9", "-^9"]
+	},
+	{
+		"empty": false,
+		"name": "minor ninth",
+		"setNum": 2834,
+		"chroma": "101100010010",
+		"normalized": "100010010101",
+		"intervals": ["1P", "3m", "5P", "7m", "9M"],
+		"quality": "Minor",
+		"symbols": ["m9", "-9"]
+	},
+	{
+		"empty": false,
+		"name": "minor thirteenth",
+		"setNum": 2838,
+		"chroma": "101100010110",
+		"normalized": "100010110101",
+		"intervals": ["1P", "3m", "5P", "7m", "9M", "13M"],
+		"quality": "Minor",
+		"symbols": ["m13", "-13"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh",
+		"setNum": 2898,
+		"chroma": "101101010010",
+		"normalized": "100101011010",
+		"intervals": ["1P", "3m", "5P", "7m", "9M", "11P"],
+		"quality": "Minor",
+		"symbols": ["m11", "-11"]
+	},
+	{
+		"empty": false,
+		"name": "suspended fourth flat ninth",
+		"setNum": 3154,
+		"chroma": "110001010010",
+		"normalized": "100010100101",
+		"intervals": ["1P", "4P", "5P", "7m", "9m"],
+		"quality": "Unknown",
+		"symbols": ["b9sus", "phryg", "7b9sus", "7b9sus4"]
+	},
+	{
+		"empty": false,
+		"name": "altered",
+		"setNum": 3202,
+		"chroma": "110010000010",
+		"normalized": "100000101100",
+		"intervals": ["1P", "3M", "7m", "9m"],
+		"quality": "Major",
+		"symbols": ["alt7"]
+	},
+	{
+		"empty": false,
+		"name": "dominant flat ninth",
+		"setNum": 3218,
+		"chroma": "110010010010",
+		"normalized": "100100100101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m"],
+		"quality": "Major",
+		"symbols": ["7b9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh (no third)",
+		"setNum": 2066,
+		"chroma": "100000010010",
+		"normalized": "100000010010",
+		"intervals": ["1P", "5P", "7m"],
+		"quality": "Unknown",
+		"symbols": ["7(no3)"]
+	},
+	{
+		"empty": false,
+		"name": "major eleventh",
+		"setNum": 2769,
+		"chroma": "101011010001",
+		"normalized": "100011010110",
+		"intervals": ["1P", "3M", "5P", "7M", "9M", "11P"],
+		"quality": "Major",
+		"symbols": ["maj11"]
+	},
+	{
+		"empty": false,
+		"name": "no fifth",
+		"setNum": 2177,
+		"chroma": "100010000001",
+		"normalized": "100000011000",
+		"intervals": ["1P", "3M", "7M"],
+		"quality": "Major",
+		"symbols": ["no5", "maj7(no5)", "(no5)"]
+	},
+	{
+		"empty": false,
+		"name": "added eleventh",
+		"setNum": 2256,
+		"chroma": "100011010000",
+		"normalized": "100001000110",
+		"intervals": ["1P", "3M", "5P", "11P"],
+		"quality": "Major",
+		"symbols": ["add11"]
+	},
+	{
+		"empty": false,
+		"name": "minor",
+		"setNum": 2320,
+		"chroma": "100100010000",
+		"normalized": "100001001000",
+		"intervals": ["1P", "3m", "5P"],
+		"quality": "Minor",
+		"symbols": ["m", "min"]
+	},
+	{
+		"empty": false,
+		"name": "suspended second",
+		"setNum": 2576,
+		"chroma": "101000010000",
+		"normalized": "100001000010",
+		"intervals": ["1P", "2M", "5P"],
+		"quality": "Unknown",
+		"symbols": ["sus2"]
+	},
+	{
+		"empty": false,
+		"name": "suspended fourth",
+		"setNum": 2128,
+		"chroma": "100001010000",
+		"normalized": "100001000010",
+		"intervals": ["1P", "4P", "5P"],
+		"quality": "Unknown",
+		"symbols": ["sus4"]
+	},
+	{
+		"empty": false,
+		"name": "minor seventh",
+		"setNum": 2322,
+		"chroma": "100100010010",
+		"normalized": "100010010100",
+		"intervals": ["1P", "3m", "5P", "7m"],
+		"quality": "Minor",
+		"symbols": ["m7", "min7"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh",
+		"setNum": 2898,
+		"chroma": "101101010010",
+		"normalized": "100101011010",
+		"intervals": ["1P", "3m", "5P", "7m", "9M", "11P"],
+		"quality": "Minor",
+		"symbols": ["m11", "min11"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh flat thirteenth",
+		"setNum": 2906,
+		"chroma": "101101011010",
+		"normalized": "101010110101",
+		"intervals": ["1P", "3m", "5P", "7m", "9M", "11P", "13m"],
+		"quality": "Minor",
+		"symbols": ["m11♭13", "min11♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh suspended second",
+		"setNum": 2578,
+		"chroma": "101000010010",
+		"normalized": "100001001010",
+		"intervals": ["1P", "2M", "5P", "7m"],
+		"quality": "Unknown",
+		"symbols": ["7sus2"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh suspended fourth",
+		"setNum": 2130,
+		"chroma": "100001010010",
+		"normalized": "100001010010",
+		"intervals": ["1P", "4P", "5P", "7m"],
+		"quality": "Unknown",
+		"symbols": ["7sus4"]
+	},
+	{
+		"empty": false,
+		"name": "minor ninth",
+		"setNum": 2834,
+		"chroma": "101100010010",
+		"normalized": "100010010101",
+		"intervals": ["1P", "3m", "5P", "7m", "9M"],
+		"quality": "Minor",
+		"symbols": ["m9", "min9"]
+	},
+	{
+		"empty": false,
+		"name": "minor added ninth and eleventh",
+		"setNum": 2896,
+		"chroma": "101101010000",
+		"normalized": "100001011010",
+		"intervals": ["1P", "3m", "5P", "9M", "11P"],
+		"quality": "Minor",
+		"symbols": ["madd9add11", "minadd9add11"]
+	},
+	{
+		"empty": false,
+		"name": "minor added ninth",
+		"setNum": 2832,
+		"chroma": "101100010000",
+		"normalized": "100001011000",
+		"intervals": ["1P", "3m", "5P", "9M"],
+		"quality": "Minor",
+		"symbols": ["madd9", "minadd9"]
+	},
+	{
+		"empty": false,
+		"name": "minor (no fifth) added ninth",
+		"setNum": 2816,
+		"chroma": "101100000000",
+		"normalized": "100000000101",
+		"intervals": ["1P", "3m", "9M"],
+		"quality": "Minor",
+		"symbols": ["m(no5)add9", "min(no5)add9"]
+	},
+	{
+		"empty": false,
+		"name": "minor added eleventh",
+		"setNum": 2384,
+		"chroma": "100101010000",
+		"normalized": "100001001010",
+		"intervals": ["1P", "3m", "5P", "11P"],
+		"quality": "Minor",
+		"symbols": ["madd11", "minadd11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth suspended fourth",
+		"setNum": 2642,
+		"chroma": "101001010010",
+		"normalized": "100101001010",
+		"intervals": ["1P", "4P", "5P", "7m", "9M"],
+		"quality": "Unknown",
+		"symbols": ["9sus4"]
+	},
+	{
+		"empty": false,
+		"name": "minor (no fifth)",
+		"setNum": 2304,
+		"chroma": "100100000000",
+		"normalized": "100000000100",
+		"intervals": ["1P", "3m"],
+		"quality": "Minor",
+		"symbols": ["m(no5)", "min(no5)"]
+	},
+	{
+		"empty": false,
+		"name": "diminished",
+		"setNum": 2336,
+		"chroma": "100100100000",
+		"normalized": "100000100100",
+		"intervals": ["1P", "3m", "5d"],
+		"quality": "Diminished",
+		"symbols": ["dim", "°"]
+	},
+	{
+		"empty": false,
+		"name": "minor seventh flat five",
+		"setNum": 2338,
+		"chroma": "100100100010",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5d", "7m"],
+		"quality": "Diminished",
+		"symbols": ["m7♭5", "min7♭5"]
+	},
+	{
+		"empty": false,
+		"name": "minor seventh flat five flat ninth",
+		"setNum": 3362,
+		"chroma": "110100100010",
+		"normalized": "100010110100",
+		"intervals": ["1P", "3m", "5d", "7m", "9m"],
+		"quality": "Diminished",
+		"symbols": ["m7♭5♭9", "min7♭5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh flat five flat ninth",
+		"setNum": 3426,
+		"chroma": "110101100010",
+		"normalized": "100010110101",
+		"intervals": ["1P", "3m", "5d", "7m", "9m", "11P"],
+		"quality": "Diminished",
+		"symbols": ["m11♭5♭9", "min11♭5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "diminished sharp fifth",
+		"setNum": 2312,
+		"chroma": "100100001000",
+		"normalized": "100001000100",
+		"intervals": ["1P", "3m", "5A"],
+		"quality": "Augmented",
+		"symbols": ["dim♯5", "°♯5"]
+	},
+	{
+		"empty": false,
+		"name": "diminished flat ninth",
+		"setNum": 3360,
+		"chroma": "110100100000",
+		"normalized": "100000110100",
+		"intervals": ["1P", "3m", "5d", "9m"],
+		"quality": "Diminished",
+		"symbols": ["dim♭9", "°♭9"]
+	},
+	{
+		"empty": false,
+		"name": "diminished flat ninth eleventh",
+		"setNum": 3424,
+		"chroma": "110101100000",
+		"normalized": "100000110101",
+		"intervals": ["1P", "3m", "5d", "9m", "11P"],
+		"quality": "Diminished",
+		"symbols": ["dim♭9add11", "°♭9add11"]
+	},
+	{
+		"empty": false,
+		"name": "diminished flat ninth eleventh flat thirteenth",
+		"setNum": 3432,
+		"chroma": "110101101000",
+		"normalized": "100011010110",
+		"intervals": ["1P", "3m", "5d", "9m", "11P", "13m"],
+		"quality": "Diminished",
+		"symbols": ["dim♭9add11♭13", "°♭9add11♭13"]
+	},
+	{
+		"empty": false,
+		"name": "major",
+		"setNum": 2192,
+		"chroma": "100010010000",
+		"normalized": "100001000100",
+		"intervals": ["1P", "3M", "5P"],
+		"quality": "Major",
+		"symbols": ["M", "maj"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh",
+		"setNum": 2193,
+		"chroma": "100010010001",
+		"normalized": "100010010001",
+		"intervals": ["1P", "3M", "5P", "7M"],
+		"quality": "Major",
+		"symbols": ["maj7", "M7"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh suspended second",
+		"setNum": 2577,
+		"chroma": "101000010001",
+		"normalized": "100001000110",
+		"intervals": ["1P", "2M", "5P", "7M"],
+		"quality": "Unknown",
+		"symbols": ["maj7sus2"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh suspended fourth",
+		"setNum": 2129,
+		"chroma": "100001010001",
+		"normalized": "100001010001",
+		"intervals": ["1P", "4P", "5P", "7M"],
+		"quality": "Unknown",
+		"symbols": ["maj7sus4"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh suspended second thirteenth",
+		"setNum": 2581,
+		"chroma": "101000010101",
+		"normalized": "100001010110",
+		"intervals": ["1P", "2M", "5P", "7M", "13M"],
+		"quality": "Unknown",
+		"symbols": ["maj7sus2add13"]
+	},
+	{
+		"empty": false,
+		"name": "major added thirteenth",
+		"setNum": 2196,
+		"chroma": "100010010100",
+		"normalized": "100010010100",
+		"intervals": ["1P", "3M", "5P", "13M"],
+		"quality": "Major",
+		"symbols": ["Madd13", "majadd13"]
+	},
+	{
+		"empty": false,
+		"name": "major ninth",
+		"setNum": 2705,
+		"chroma": "101010010001",
+		"normalized": "100011010100",
+		"intervals": ["1P", "3M", "5P", "7M", "9M"],
+		"quality": "Major",
+		"symbols": ["maj9", "M9"]
+	},
+	{
+		"empty": false,
+		"name": "major ninth suspended fourth",
+		"setNum": 2641,
+		"chroma": "101001010001",
+		"normalized": "100011010010",
+		"intervals": ["1P", "4P", "5P", "7M", "9M"],
+		"quality": "Unknown",
+		"symbols": ["maj9sus4"]
+	},
+	{
+		"empty": false,
+		"name": "major added ninth",
+		"setNum": 2704,
+		"chroma": "101010010000",
+		"normalized": "100001010100",
+		"intervals": ["1P", "3M", "5P", "9M"],
+		"quality": "Major",
+		"symbols": ["Madd9", "majadd9"]
+	},
+	{
+		"empty": false,
+		"name": "major added eleventh",
+		"setNum": 2256,
+		"chroma": "100011010000",
+		"normalized": "100001000110",
+		"intervals": ["1P", "3M", "5P", "11P"],
+		"quality": "Major",
+		"symbols": ["Madd11", "majadd11"]
+	},
+	{
+		"empty": false,
+		"name": "major thirteenth",
+		"setNum": 2709,
+		"chroma": "101010010101",
+		"normalized": "100101011010",
+		"intervals": ["1P", "3M", "5P", "7M", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["maj13", "M13"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh sharp eleventh",
+		"setNum": 2225,
+		"chroma": "100010110001",
+		"normalized": "100010110001",
+		"intervals": ["1P", "3M", "5P", "7M", "11A"],
+		"quality": "Major",
+		"symbols": ["maj7♯11", "M7♯11"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh (no third)",
+		"setNum": 2065,
+		"chroma": "100000010001",
+		"normalized": "100000010001",
+		"intervals": ["1P", "5P", "7M"],
+		"quality": "Unknown",
+		"symbols": ["maj7(no3)", "M7(no3)"]
+	},
+	{
+		"empty": false,
+		"name": "major (no fifth)",
+		"setNum": 2176,
+		"chroma": "100010000000",
+		"normalized": "100000001000",
+		"intervals": ["1P", "3M"],
+		"quality": "Major",
+		"symbols": ["M(no5)", "maj(no5)"]
+	},
+	{
+		"empty": false,
+		"name": "sixth suspended fourth",
+		"setNum": 2132,
+		"chroma": "100001010100",
+		"normalized": "100001010100",
+		"intervals": ["1P", "4P", "5P", "6M"],
+		"quality": "Unknown",
+		"symbols": ["6sus4"]
+	},
+	{
+		"empty": false,
+		"name": "sixth suspended second",
+		"setNum": 2580,
+		"chroma": "101000010100",
+		"normalized": "100001010010",
+		"intervals": ["1P", "2M", "5P", "6M"],
+		"quality": "Unknown",
+		"symbols": ["6sus2"]
+	},
+	{
+		"empty": false,
+		"name": "minor sixth",
+		"setNum": 2324,
+		"chroma": "100100010100",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5P", "6M"],
+		"quality": "Minor",
+		"symbols": ["m6", "min6"]
+	},
+	{
+		"empty": false,
+		"name": "minor thirteenth",
+		"setNum": 2838,
+		"chroma": "101100010110",
+		"normalized": "100010110101",
+		"intervals": ["1P", "3m", "5P", "7m", "9M", "13M"],
+		"quality": "Minor",
+		"symbols": ["m13", "min13"]
+	},
+	{
+		"empty": false,
+		"name": "minor thirteenth suspended fourth",
+		"setNum": 2646,
+		"chroma": "101001010110",
+		"normalized": "100101011010",
+		"intervals": ["1P", "4P", "5P", "7m", "9M", "13M"],
+		"quality": "Unknown",
+		"symbols": ["m13sus4", "min13sus4"]
+	},
+	{
+		"empty": false,
+		"name": "minor seventh flat nine",
+		"setNum": 3346,
+		"chroma": "110100010010",
+		"normalized": "100010010110",
+		"intervals": ["1P", "3m", "5P", "7m", "9m"],
+		"quality": "Minor",
+		"symbols": ["m7♭9", "min7♭9"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh flat nine",
+		"setNum": 3410,
+		"chroma": "110101010010",
+		"normalized": "100101101010",
+		"intervals": ["1P", "3m", "5P", "7m", "9m", "11P"],
+		"quality": "Minor",
+		"symbols": ["m11♭9", "min11♭9"]
+	},
+	{
+		"empty": false,
+		"name": "minor eleventh flat nine flat thirteenth",
+		"setNum": 3418,
+		"chroma": "110101011010",
+		"normalized": "101010110101",
+		"intervals": ["1P", "3m", "5P", "7m", "9m", "11P", "13m"],
+		"quality": "Minor",
+		"symbols": ["m11♭9♭13", "min11♭9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "minor added thirteenth",
+		"setNum": 2324,
+		"chroma": "100100010100",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5P", "13M"],
+		"quality": "Minor",
+		"symbols": ["madd13", "minadd13"]
+	},
+	{
+		"empty": false,
+		"name": "minor sixth eleventh",
+		"setNum": 2388,
+		"chroma": "100101010100",
+		"normalized": "100100101010",
+		"intervals": ["1P", "3m", "5P", "6M", "11P"],
+		"quality": "Minor",
+		"symbols": ["m6add11", "min6add11"]
+	},
+	{
+		"empty": false,
+		"name": "minor sixth ninth",
+		"setNum": 2836,
+		"chroma": "101100010100",
+		"normalized": "100010100101",
+		"intervals": ["1P", "3m", "5P", "6M", "9M"],
+		"quality": "Minor",
+		"symbols": ["m6add9", "min6add9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth",
+		"setNum": 2710,
+		"chroma": "101010010110",
+		"normalized": "100101101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth suspended fourth",
+		"setNum": 2646,
+		"chroma": "101001010110",
+		"normalized": "100101011010",
+		"intervals": ["1P", "4P", "5P", "7m", "9M", "13M"],
+		"quality": "Unknown",
+		"symbols": ["13sus4"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh",
+		"setNum": 2194,
+		"chroma": "100010010010",
+		"normalized": "100010010010",
+		"intervals": ["1P", "3M", "5P", "7m"],
+		"quality": "Major",
+		"symbols": ["7"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth",
+		"setNum": 2450,
+		"chroma": "100110010010",
+		"normalized": "100100101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A"],
+		"quality": "Major",
+		"symbols": ["7♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat ninth",
+		"setNum": 3218,
+		"chroma": "110010010010",
+		"normalized": "100100100101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m"],
+		"quality": "Major",
+		"symbols": ["7♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp eleventh",
+		"setNum": 2226,
+		"chroma": "100010110010",
+		"normalized": "100010110010",
+		"intervals": ["1P", "3M", "5P", "7m", "11A"],
+		"quality": "Major",
+		"symbols": ["7♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat fifth",
+		"setNum": 2210,
+		"chroma": "100010100010",
+		"normalized": "100010100010",
+		"intervals": ["1P", "3M", "5d", "7m"],
+		"quality": "Major",
+		"symbols": ["7♭5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp fifth",
+		"setNum": 2186,
+		"chroma": "100010001010",
+		"normalized": "100010001010",
+		"intervals": ["1P", "3M", "5A", "7m"],
+		"quality": "Augmented",
+		"symbols": ["7♯5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat ninth flat thirteenth",
+		"setNum": 3226,
+		"chroma": "110010011010",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13m"],
+		"quality": "Major",
+		"symbols": ["7♭9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat ninth sharp thirteenth",
+		"setNum": 3218,
+		"chroma": "110010010010",
+		"normalized": "100100100101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13A"],
+		"quality": "Major",
+		"symbols": ["7♭9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth sharp thirteenth",
+		"setNum": 2450,
+		"chroma": "100110010010",
+		"normalized": "100100101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13A"],
+		"quality": "Major",
+		"symbols": ["7♯9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth flat thirteenth",
+		"setNum": 2458,
+		"chroma": "100110011010",
+		"normalized": "100110011010",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13m"],
+		"quality": "Major",
+		"symbols": ["7♯9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat fifth flat ninth",
+		"setNum": 3234,
+		"chroma": "110010100010",
+		"normalized": "100010110010",
+		"intervals": ["1P", "3M", "5d", "7m", "9m"],
+		"quality": "Major",
+		"symbols": ["7♭5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat fifth sharp ninth",
+		"setNum": 2466,
+		"chroma": "100110100010",
+		"normalized": "100010100110",
+		"intervals": ["1P", "3M", "5d", "7m", "9A"],
+		"quality": "Major",
+		"symbols": ["7♭5♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp fifth sharp ninth",
+		"setNum": 2442,
+		"chroma": "100110001010",
+		"normalized": "100010101001",
+		"intervals": ["1P", "3M", "5A", "7m", "9A"],
+		"quality": "Augmented",
+		"symbols": ["7♯5♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp fifth flat ninth",
+		"setNum": 3210,
+		"chroma": "110010001010",
+		"normalized": "100010101100",
+		"intervals": ["1P", "3M", "5A", "7m", "9m"],
+		"quality": "Augmented",
+		"symbols": ["7♯5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth",
+		"setNum": 2706,
+		"chroma": "101010010010",
+		"normalized": "100100101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M"],
+		"quality": "Major",
+		"symbols": ["9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp eleventh",
+		"setNum": 2738,
+		"chroma": "101010110010",
+		"normalized": "100101010101",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "11A"],
+		"quality": "Major",
+		"symbols": ["9♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth flat fifth",
+		"setNum": 2722,
+		"chroma": "101010100010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M"],
+		"quality": "Major",
+		"symbols": ["9♭5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp fifth",
+		"setNum": 2698,
+		"chroma": "101010001010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M"],
+		"quality": "Augmented",
+		"symbols": ["9♯5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth flat thirteenth",
+		"setNum": 2714,
+		"chroma": "101010011010",
+		"normalized": "100110101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13m"],
+		"quality": "Major",
+		"symbols": ["9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp thirteenth",
+		"setNum": 2706,
+		"chroma": "101010010010",
+		"normalized": "100100101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13A"],
+		"quality": "Major",
+		"symbols": ["9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp eleventh",
+		"setNum": 2742,
+		"chroma": "101010110110",
+		"normalized": "101010101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "11A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth",
+		"setNum": 3222,
+		"chroma": "110010010110",
+		"normalized": "100100101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp ninth",
+		"setNum": 2454,
+		"chroma": "100110010110",
+		"normalized": "100101101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp fifth",
+		"setNum": 2702,
+		"chroma": "101010001110",
+		"normalized": "100011101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "13M"],
+		"quality": "Augmented",
+		"symbols": ["13♯5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat fifth",
+		"setNum": 2726,
+		"chroma": "101010100110",
+		"normalized": "100110101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth sharp eleventh",
+		"setNum": 3254,
+		"chroma": "110010110110",
+		"normalized": "100101101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "11A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭9♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth flat thirteenth",
+		"setNum": 3226,
+		"chroma": "110010011010",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13m"],
+		"quality": "Major",
+		"symbols": ["13♭9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp ninth flat thirteenth",
+		"setNum": 2458,
+		"chroma": "100110011010",
+		"normalized": "100110011010",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13m"],
+		"quality": "Major",
+		"symbols": ["13♯9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "diminished seventh",
+		"setNum": 2340,
+		"chroma": "100100100100",
+		"normalized": "100100100100",
+		"intervals": ["1P", "3m", "5d", "7d"],
+		"quality": "Diminished",
+		"symbols": ["dim7", "°7"]
+	},
+	{
+		"empty": false,
+		"name": "half-diminished seventh",
+		"setNum": 2338,
+		"chroma": "100100100010",
+		"normalized": "100010100100",
+		"intervals": ["1P", "3m", "5d", "7m"],
+		"quality": "Diminished",
+		"symbols": ["ø7", "m7♭5", "min7♭5"]
+	},
+	{
+		"empty": false,
+		"name": "half-diminished ninth",
+		"setNum": 2850,
+		"chroma": "101100100010",
+		"normalized": "100010101100",
+		"intervals": ["1P", "3m", "5d", "7m", "9M"],
+		"quality": "Diminished",
+		"symbols": ["ø9", "m9♭5", "min9♭5"]
+	},
+	{
+		"empty": false,
+		"name": "half-diminished eleventh",
+		"setNum": 2914,
+		"chroma": "101101100010",
+		"normalized": "100010101101",
+		"intervals": ["1P", "3m", "5d", "7m", "9M", "11P"],
+		"quality": "Diminished",
+		"symbols": ["ø11", "m11♭5", "min11♭5"]
+	},
+	{
+		"empty": false,
+		"name": "half-diminished thirteenth",
+		"setNum": 2854,
+		"chroma": "101100100110",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3m", "5d", "7m", "9M", "13M"],
+		"quality": "Diminished",
+		"symbols": ["ø13", "m13♭5", "min13♭5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented major seventh",
+		"setNum": 2185,
+		"chroma": "100010001001",
+		"normalized": "100010001001",
+		"intervals": ["1P", "3M", "5A", "7M"],
+		"quality": "Augmented",
+		"symbols": ["maj7♯5", "maj7aug", "maj7+", "M7♯5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented",
+		"setNum": 2184,
+		"chroma": "100010001000",
+		"normalized": "100010001000",
+		"intervals": ["1P", "3M", "5A"],
+		"quality": "Augmented",
+		"symbols": ["aug", "+", "+5", "aug5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented dominant seventh",
+		"setNum": 2186,
+		"chroma": "100010001010",
+		"normalized": "100010001010",
+		"intervals": ["1P", "3M", "5A", "7m"],
+		"quality": "Augmented",
+		"symbols": ["7♯5", "7aug", "7+", "7♭13"]
+	},
+	{
+		"empty": false,
+		"name": "augmented ninth",
+		"setNum": 2698,
+		"chroma": "101010001010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M"],
+		"quality": "Augmented",
+		"symbols": ["9♯5", "9+", "9aug"]
+	},
+	{
+		"empty": false,
+		"name": "augmented eleventh",
+		"setNum": 2762,
+		"chroma": "101011001010",
+		"normalized": "100101010101",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "11P"],
+		"quality": "Augmented",
+		"symbols": ["11♯5", "11+", "11aug"]
+	},
+	{
+		"empty": false,
+		"name": "augmented thirteenth",
+		"setNum": 2702,
+		"chroma": "101010001110",
+		"normalized": "100011101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "13M"],
+		"quality": "Augmented",
+		"symbols": ["13♯5", "13+", "13aug"]
+	},
+	{
+		"empty": false,
+		"name": "seventh flat fifth",
+		"setNum": 2210,
+		"chroma": "100010100010",
+		"normalized": "100010100010",
+		"intervals": ["1P", "3M", "5d", "7m"],
+		"quality": "Major",
+		"symbols": ["7♭5"]
+	},
+	{
+		"empty": false,
+		"name": "seventh sharp fifth",
+		"setNum": 2186,
+		"chroma": "100010001010",
+		"normalized": "100010001010",
+		"intervals": ["1P", "3M", "5A", "7m"],
+		"quality": "Augmented",
+		"symbols": ["7♯5"]
+	},
+	{
+		"empty": false,
+		"name": "ninth flat fifth",
+		"setNum": 2722,
+		"chroma": "101010100010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M"],
+		"quality": "Major",
+		"symbols": ["9♭5"]
+	},
+	{
+		"empty": false,
+		"name": "ninth sharp fifth",
+		"setNum": 2698,
+		"chroma": "101010001010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M"],
+		"quality": "Augmented",
+		"symbols": ["9♯5"]
+	},
+	{
+		"empty": false,
+		"name": "eleventh flat fifth",
+		"setNum": 2786,
+		"chroma": "101011100010",
+		"normalized": "100010101011",
+		"intervals": ["1P", "3M", "5d", "7m", "9M", "11P"],
+		"quality": "Major",
+		"symbols": ["11♭5"]
+	},
+	{
+		"empty": false,
+		"name": "eleventh sharp fifth",
+		"setNum": 2762,
+		"chroma": "101011001010",
+		"normalized": "100101010101",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "11P"],
+		"quality": "Augmented",
+		"symbols": ["11♯5"]
+	},
+	{
+		"empty": false,
+		"name": "thirteenth flat fifth",
+		"setNum": 2726,
+		"chroma": "101010100110",
+		"normalized": "100110101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭5"]
+	},
+	{
+		"empty": false,
+		"name": "thirteenth sharp fifth",
+		"setNum": 2702,
+		"chroma": "101010001110",
+		"normalized": "100011101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "13M"],
+		"quality": "Augmented",
+		"symbols": ["13♯5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented major ninth",
+		"setNum": 2697,
+		"chroma": "101010001001",
+		"normalized": "100010011010",
+		"intervals": ["1P", "3M", "5A", "7M", "9M"],
+		"quality": "Augmented",
+		"symbols": ["maj9♯5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented major eleventh",
+		"setNum": 2761,
+		"chroma": "101011001001",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3M", "5A", "7M", "9M", "11P"],
+		"quality": "Augmented",
+		"symbols": ["maj11♯5"]
+	},
+	{
+		"empty": false,
+		"name": "augmented major thirteenth",
+		"setNum": 2701,
+		"chroma": "101010001101",
+		"normalized": "100011011010",
+		"intervals": ["1P", "3M", "5A", "7M", "9M", "13M"],
+		"quality": "Augmented",
+		"symbols": ["maj13♯5"]
+	},
+	{
+		"empty": false,
+		"name": "eleventh",
+		"setNum": 2642,
+		"chroma": "101001010010",
+		"normalized": "100101001010",
+		"intervals": ["1P", "5P", "7m", "9M", "11P"],
+		"quality": "Unknown",
+		"symbols": ["11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth",
+		"setNum": 2450,
+		"chroma": "100110010010",
+		"normalized": "100100101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A"],
+		"quality": "Major",
+		"symbols": ["7♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp eleventh",
+		"setNum": 2226,
+		"chroma": "100010110010",
+		"normalized": "100010110010",
+		"intervals": ["1P", "3M", "5P", "7m", "11A"],
+		"quality": "Major",
+		"symbols": ["7♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat ninth sharp thirteenth",
+		"setNum": 3218,
+		"chroma": "110010010010",
+		"normalized": "100100100101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13A"],
+		"quality": "Major",
+		"symbols": ["7♭9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat ninth flat thirteenth",
+		"setNum": 3226,
+		"chroma": "110010011010",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13m"],
+		"quality": "Major",
+		"symbols": ["7♭9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth sharp thirteenth",
+		"setNum": 2450,
+		"chroma": "100110010010",
+		"normalized": "100100101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13A"],
+		"quality": "Major",
+		"symbols": ["7♯9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp ninth flat thirteenth",
+		"setNum": 2458,
+		"chroma": "100110011010",
+		"normalized": "100110011010",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13m"],
+		"quality": "Major",
+		"symbols": ["7♯9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat fifth flat ninth",
+		"setNum": 3234,
+		"chroma": "110010100010",
+		"normalized": "100010110010",
+		"intervals": ["1P", "3M", "5d", "7m", "9m"],
+		"quality": "Major",
+		"symbols": ["7♭5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh flat fifth sharp ninth",
+		"setNum": 2466,
+		"chroma": "100110100010",
+		"normalized": "100010100110",
+		"intervals": ["1P", "3M", "5d", "7m", "9A"],
+		"quality": "Major",
+		"symbols": ["7♭5♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp fifth sharp ninth",
+		"setNum": 2442,
+		"chroma": "100110001010",
+		"normalized": "100010101001",
+		"intervals": ["1P", "3M", "5A", "7m", "9A"],
+		"quality": "Augmented",
+		"symbols": ["7♯5♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh sharp fifth flat ninth",
+		"setNum": 3210,
+		"chroma": "110010001010",
+		"normalized": "100010101100",
+		"intervals": ["1P", "3M", "5A", "7m", "9m"],
+		"quality": "Augmented",
+		"symbols": ["7♯5♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp eleventh",
+		"setNum": 2738,
+		"chroma": "101010110010",
+		"normalized": "100101010101",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "11A"],
+		"quality": "Major",
+		"symbols": ["9♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth flat fifth",
+		"setNum": 2722,
+		"chroma": "101010100010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M"],
+		"quality": "Major",
+		"symbols": ["9♭5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp fifth",
+		"setNum": 2698,
+		"chroma": "101010001010",
+		"normalized": "100010101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M"],
+		"quality": "Augmented",
+		"symbols": ["9♯5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth flat thirteenth",
+		"setNum": 2714,
+		"chroma": "101010011010",
+		"normalized": "100110101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13m"],
+		"quality": "Major",
+		"symbols": ["9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant ninth sharp thirteenth",
+		"setNum": 2706,
+		"chroma": "101010010010",
+		"normalized": "100100101010",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "13A"],
+		"quality": "Major",
+		"symbols": ["9♯13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp eleventh",
+		"setNum": 2742,
+		"chroma": "101010110110",
+		"normalized": "101010101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "11A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth",
+		"setNum": 3222,
+		"chroma": "110010010110",
+		"normalized": "100100101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp ninth",
+		"setNum": 2454,
+		"chroma": "100110010110",
+		"normalized": "100101101001",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♯9"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp fifth",
+		"setNum": 2702,
+		"chroma": "101010001110",
+		"normalized": "100011101010",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "13M"],
+		"quality": "Augmented",
+		"symbols": ["13♯5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat fifth",
+		"setNum": 2726,
+		"chroma": "101010100110",
+		"normalized": "100110101010",
+		"intervals": ["1P", "3M", "5d", "7m", "9M", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭5"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth sharp eleventh",
+		"setNum": 3254,
+		"chroma": "110010110110",
+		"normalized": "100101101101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "11A", "13M"],
+		"quality": "Major",
+		"symbols": ["13♭9♯11"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth flat ninth flat thirteenth",
+		"setNum": 3226,
+		"chroma": "110010011010",
+		"normalized": "100100110101",
+		"intervals": ["1P", "3M", "5P", "7m", "9m", "13m"],
+		"quality": "Major",
+		"symbols": ["13♭9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "dominant thirteenth sharp ninth flat thirteenth",
+		"setNum": 2458,
+		"chroma": "100110011010",
+		"normalized": "100110011010",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13m"],
+		"quality": "Major",
+		"symbols": ["13♯9♭13"]
+	},
+	{
+		"empty": false,
+		"name": "minor",
+		"setNum": 2320,
+		"chroma": "100100010000",
+		"normalized": "100001001000",
+		"intervals": ["1P", "3m", "5P"],
+		"quality": "Minor",
+		"symbols": ["m"]
+	},
+	{
+		"empty": false,
+		"name": "major",
+		"setNum": 2192,
+		"chroma": "100010010000",
+		"normalized": "100001000100",
+		"intervals": ["1P", "3M", "5P"],
+		"quality": "Major",
+		"symbols": ["maj"]
+	},
+	{
+		"empty": false,
+		"name": "major seventh",
+		"setNum": 2193,
+		"chroma": "100010010001",
+		"normalized": "100010010001",
+		"intervals": ["1P", "3M", "5P", "7M"],
+		"quality": "Major",
+		"symbols": ["maj7"]
+	},
+	{
+		"empty": false,
+		"name": "dominant seventh",
+		"setNum": 2194,
+		"chroma": "100010010010",
+		"normalized": "100010010010",
+		"intervals": ["1P", "3M", "5P", "7m"],
+		"quality": "Major",
+		"symbols": ["7"]
+	},
+	{
+		"empty": false,
+		"name": "diminished seventh",
+		"setNum": 2340,
+		"chroma": "100100100100",
+		"normalized": "100100100100",
+		"intervals": ["1P", "3m", "5d", "7d"],
+		"quality": "Diminished",
+		"symbols": ["dim7"]
+	},
+	{
+		"empty": false,
+		"name": "augmented",
+		"setNum": 2184,
+		"chroma": "100010001000",
+		"normalized": "100010001000",
+		"intervals": ["1P", "3M", "5A"],
+		"quality": "Augmented",
+		"symbols": ["aug"]
+	},
+	{
+		"empty": false,
+		"name": "suspended fourth",
+		"setNum": 2128,
+		"chroma": "100001010000",
+		"normalized": "100001000010",
+		"intervals": ["1P", "4P", "5P"],
+		"quality": "Unknown",
+		"symbols": ["sus4"]
+	},
+	{
+		"name": "Augmented Major Seventh Suspended Fourth",
+		"intervals": ["1P", "4P", "5A", "7M"],
+		"symbols": ["M7#5sus4"]
+	},
+	{
+		"name": "Augmented Seventh Suspended Fourth",
+		"intervals": ["1P", "4P", "5A", "7m"],
+		"symbols": ["7#5sus4"]
+	},
+	{
+		"name": "Major Seventh Suspended Fourth",
+		"intervals": ["1P", "4P", "5P", "7M"],
+		"symbols": ["M7sus4"]
+	},
+	{
+		"name": "Dominant Seventh No Fifth",
+		"intervals": ["1P", "3M", "7m"],
+		"symbols": ["7no5"]
+	},
+	{
+		"name": "Augmented Seventh",
+		"intervals": ["1P", "3M", "5A", "7m"],
+		"symbols": ["7#5", "+7", "7+", "7aug", "aug7"]
+	},
+	{
+		"name": "Dominant Seventh Flat Thirteen",
+		"intervals": ["1P", "3M", "7m", "13m"],
+		"symbols": ["7b13"]
+	},
+	{
+		"name": "Dominant Seventh Add Sixth",
+		"intervals": ["1P", "3M", "5P", "7m", "13M"],
+		"symbols": ["7add6", "67", "7add13"]
+	},
+	{
+		"name": "Dominant Seventh Flat Sixth",
+		"intervals": ["1P", "3M", "5P", "6m", "7m"],
+		"symbols": ["7b6"]
+	},
+	{
+		"name": "Major Flat Fifth",
+		"intervals": ["1P", "3M", "5d"],
+		"symbols": ["Mb5"]
+	},
+	{
+		"name": "Major Seventh Flat Fifth",
+		"intervals": ["1P", "3M", "5d", "7M"],
+		"symbols": ["M7b5"]
+	},
+	{
+		"name": "Dominant Seventh Flat Fifth",
+		"intervals": ["1P", "3M", "5d", "7m"],
+		"symbols": ["7b5"]
+	},
+	{
+		"name": "Major Sixth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5P", "6M", "11A"],
+		"symbols": ["M6#11", "M6b5", "6#11", "6b5"]
+	},
+	{
+		"name": "Dominant Seventh Sharp Eleventh Flat Thirteen",
+		"intervals": ["1P", "3M", "5P", "7m", "11A", "13m"],
+		"symbols": ["7#11b13", "7b5b13"]
+	},
+	{
+		"name": "Minor Flat Sixth Major Seventh",
+		"intervals": ["1P", "3m", "6m", "7M"],
+		"symbols": ["mb6M7"]
+	},
+	{
+		"name": "Minor Seventh Sharp Fifth",
+		"intervals": ["1P", "3m", "6m", "7m"],
+		"symbols": ["m7#5"]
+	},
+	{
+		"name": "Minor Major seventh",
+		"intervals": ["1P", "3m", "5P", "7M"],
+		"symbols": ["mmaj7", "minmaj7"]
+	},
+	{
+		"name": "Minor Major Seventh Flat Sixth",
+		"intervals": ["1P", "3m", "5P", "6m", "7M"],
+		"symbols": ["mMaj7b6"]
+	},
+	{
+		"name": "Diminished Major Seventh",
+		"intervals": ["1P", "3m", "5d", "7M"],
+		"symbols": ["oM7"]
+	},
+	{
+		"name": "Diminished Seventh Major Seventh",
+		"intervals": ["1P", "3m", "5d", "6M", "7M"],
+		"symbols": ["o7M7"]
+	},
+	{
+		"name": "Quartal",
+		"intervals": ["1P", "4P", "7m", "10m"],
+		"symbols": ["4", "quartal"]
+	},
+	{
+		"name": "Minor Add Fourth",
+		"intervals": ["1P", "3m", "4P", "5P"],
+		"symbols": ["madd4"]
+	},
+	{
+		"name": "Minor Seventh Add Eleventh",
+		"intervals": ["1P", "3m", "5P", "7m", "11P"],
+		"symbols": ["m7add11", "m7add4"]
+	},
+	{
+		"name": "Augmented Add Sharp Ninth",
+		"intervals": ["1P", "3M", "5A", "9A"],
+		"symbols": ["+add#9"]
+	},
+	{
+		"name": "Augmented Seventh Sharp Ninth",
+		"intervals": ["1P", "3M", "5A", "7m", "9A"],
+		"symbols": ["7#5#9", "7#9#5", "7alt"]
+	},
+	{
+		"name": "Dominant Thirteen Sharp Ninth",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13M"],
+		"symbols": ["13#9"]
+	},
+	{
+		"name": "Dominant Seventh Sharp Ninth Flat Thirteen",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "13m"],
+		"symbols": ["7#9b13"]
+	},
+	{
+		"name": "Major Seventh Sharp Ninth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5P", "7M", "9A", "11A"],
+		"symbols": ["maj7#9#11"]
+	},
+	{
+		"name": "Dominant Seventh Sharp Ninth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "11A"],
+		"symbols": ["7#9#11", "7b5#9", "7#9b5"]
+	},
+	{
+		"name": "Dominant Thirteen Sharp Ninth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "11A", "13M"],
+		"symbols": ["13#9#11"]
+	},
+	{
+		"name": "Dominant Seventh Sharp Ninth Sharp Eleventh Flat Thirteen",
+		"intervals": ["1P", "3M", "5P", "7m", "9A", "11A", "13m"],
+		"symbols": ["7#9#11b13"]
+	},
+	{
+		"name": "Augmented Major Ninth Suspended Fourth",
+		"intervals": ["1P", "4P", "5A", "7M", "9M"],
+		"symbols": ["M9#5sus4"]
+	},
+	{
+		"name": "Suspended Fourth Add Ninth",
+		"intervals": ["1P", "2M", "4P", "5P"],
+		"symbols": ["sus24", "sus4add9"]
+	},
+	{
+		"name": "Major Ninth Suspended Fourth",
+		"intervals": ["1P", "4P", "5P", "7M", "9M"],
+		"symbols": ["M9sus4"]
+	},
+	{
+		"name": "Ninth Suspended Fourth",
+		"intervals": ["1P", "4P", "5P", "7m", "9M"],
+		"symbols": ["9sus4", "9sus"]
+	},
+	{
+		"name": "Thirteenth Suspended Fourth",
+		"intervals": ["1P", "4P", "5P", "7m", "9M", "13M"],
+		"symbols": ["13sus4", "13sus"]
+	},
+	{
+		"name": "Dominant Ninth No Fifth",
+		"intervals": ["1P", "3M", "7m", "9M"],
+		"symbols": ["9no5"]
+	},
+	{
+		"name": "Dominant Thirteenth No Fifth",
+		"intervals": ["1P", "3M", "7m", "9M", "13M"],
+		"symbols": ["13no5"]
+	},
+	{
+		"name": "Augmented Add Ninth",
+		"intervals": ["1P", "3M", "5A", "9M"],
+		"symbols": ["M#5add9", "+add9"]
+	},
+	{
+		"name": "Major Ninth Augmented Fifth",
+		"intervals": ["1P", "3M", "5A", "7M", "9M"],
+		"symbols": ["maj9#5", "Maj9#5"]
+	},
+	{
+		"name": "Dominant Ninth Augmented Fifth",
+		"intervals": ["1P", "3M", "5A", "7m", "9M"],
+		"symbols": ["9#5", "9+"]
+	},
+	{
+		"name": "Dominant Ninth Flat Thirteen",
+		"intervals": ["1P", "3M", "7m", "9M", "13m"],
+		"symbols": ["9b13"]
+	},
+	{
+		"name": "Major Add Ninth",
+		"intervals": ["1P", "3M", "5P", "9M"],
+		"symbols": ["Madd9", "2", "add9", "add2"]
+	},
+	{
+		"name": "Major Seventh Add Thirteenth",
+		"intervals": ["1P", "3M", "5P", "6M", "7M", "9M"],
+		"symbols": ["M7add13"]
+	},
+	{
+		"name": "Major Ninth Flat Fifth",
+		"intervals": ["1P", "3M", "5d", "7M", "9M"],
+		"symbols": ["M9b5"]
+	},
+	{
+		"name": "Dominant Ninth Flat Fifth",
+		"intervals": ["1P", "3M", "5d", "7m", "9M"],
+		"symbols": ["9b5"]
+	},
+	{
+		"name": "Dominant Thirteenth Flat Fifth",
+		"intervals": ["1P", "3M", "5d", "6M", "7m", "9M"],
+		"symbols": ["13b5"]
+	},
+	{
+		"name": "Dominant Ninth Augmented Fifth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5A", "7m", "9M", "11A"],
+		"symbols": ["9#5#11"]
+	},
+	{
+		"name": "Dominant Ninth Sharp Eleventh",
+		"intervals": ["1P", "3M", "5P", "7m", "9M", "11A"],
+		"symbols": ["9#11", "9+4", "9#4"]
+	}
+]

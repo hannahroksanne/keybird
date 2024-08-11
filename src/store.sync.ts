@@ -1,9 +1,12 @@
 import React from 'react'
 import { store } from './store'
-import { toner } from './utilities/toner/toner'
+import { toner } from './utilities/toner'
 import { generateKeyMap } from './store.helpers'
 import defaultKeysConfig from './defaultKeys.config.json'
 import { WebMidi } from 'webmidi'
+import Soundfont, { InstrumentName } from 'soundfont-player'
+import keyMapLayoutsConfig from './keyMapLayouts.config.json'
+import { chords } from './consts/chords'
 
 const playableKeyCodes = Object.values(defaultKeysConfig).reduce((final, key) => {
 	if (key.isPlayable) final.push(key.keyCode)
@@ -43,18 +46,7 @@ function useScaleNotesSync() {
 
 		const scale = toner.getScale(scaleName)
 		store.setScaleNotes(scale.notes)
-	}, [scaleName])
-}
-
-function useScaleChordNamesSync() {
-	const scaleName = store.useScaleName()
-	const ref = React.useRef('')
-
-	React.useEffect(() => {
-		if (ref.current === scaleName) return
-		ref.current = scaleName
-
-		const chordNames = toner.getChordNamesFromScaleName(scaleName)
+		const chordNames = chords[scaleName]
 		store.setScaleChordNames(chordNames)
 	}, [scaleName])
 }
@@ -85,7 +77,6 @@ function useKeyMapSync() {
 	const ref2 = React.useRef('')
 
 	React.useEffect(() => {
-		console.log('useKeyMapSync----')
 		if (!scaleNotes.length) return
 		const isOctaveSame = ref0.current === octave
 		const isNotesSame = ref1.current === joinedScaleNotes
@@ -95,8 +86,13 @@ function useKeyMapSync() {
 		ref1.current = joinedScaleNotes
 		ref2.current = keyMapLayoutName
 
-		console.log('useKeyMapSync')
-		const keyMap = generateKeyMap()
+		const keyMap = generateKeyMap({
+			keyMapLayout: keyMapLayoutsConfig[store.keyMapLayoutName],
+			scaleName: store.scaleName,
+			scaleNotes,
+			octave
+		})
+
 		store.setKeyMap(keyMap)
 	}, [octave, joinedScaleNotes, keyMapLayoutName])
 }
@@ -113,34 +109,68 @@ function useMidiSync() {
 	React.useEffect(() => {
 		if (!isMidiConnected) return
 		const outputs = WebMidi.outputs
+		const outputNames = outputs.map((output) => output.name)
 		const firstOutput = outputs[0] || ({} as any)
 		const midiOutputName = firstOutput.name || ''
 		store.setMidiOutputName(midiOutputName)
+		store.setMidiOutputNames(outputNames)
+		store.setIsMidiEnabled(true)
 	}, [isMidiConnected])
 }
 
+// Every 30s check and make sure all the midi outputs are still available.
 function useMidiOutputsSync() {
-	const ref = React.useRef([])
-
 	React.useEffect(() => {
 		setInterval(() => {
 			const midiOutputName = store.midiOutputName
-			const outputs = WebMidi.outputs
-			const outputNames = outputs.map((output) => output.name)
-			const isSame = ref.current.join('') === outputNames.join('')
-			if (isSame) store.setMidiOutputNames(outputNames)
+			const outputNames = WebMidi.outputs.map((output) => output.name)
 			const isSelectedOutputStillAvailable = outputNames.includes(midiOutputName)
 			if (!isSelectedOutputStillAvailable) store.setMidiOutputName('')
 		}, 30000)
 	}, [])
 }
 
+async function loadInstrument(name: InstrumentName) {
+	return new Promise((resolve, reject) => {
+		Soundfont.instrument(new AudioContext(), name).then(resolve).catch(reject)
+	})
+}
+
+function useInstrumentLoader() {
+	const isOutputEnabled = store.useIsOutputEnabled()
+	const areInstrumentsLoaded = store.useAreInstrumentsLoaded()
+
+	React.useEffect(() => {
+		if (areInstrumentsLoaded) return
+		if (!isOutputEnabled) return
+
+		const loader0 = loadInstrument('acoustic_grand_piano')
+		const loader1 = loadInstrument('acoustic_guitar_nylon')
+		const loader2 = loadInstrument('electric_guitar_clean')
+		const loader3 = loadInstrument('xylophone')
+		const loader4 = loadInstrument('marimba')
+
+		const whenAllAreDone = Promise.all([loader0, loader1, loader2, loader3, loader4])
+		whenAllAreDone.then((instruments) => {
+			store.set('instruments')({
+				acoustic_grand_piano: instruments[0],
+				acoustic_guitar_nylon: instruments[1],
+				electric_guitar_clean: instruments[2],
+				xylophone: instruments[3],
+				marimba: instruments[4]
+			})
+
+			store.setAreInstrumentsLoaded(true)
+		})
+	}, [isOutputEnabled])
+}
+
 export function useStoreSync() {
 	console.log('useStoreSync')
+	useInstrumentLoader()
 	useScaleNameSync()
 	useScaleNotesSync()
 	usePlayingNotesSync()
-	useScaleChordNamesSync()
 	useKeyMapSync()
 	useMidiSync()
 	useMidiOutputsSync()

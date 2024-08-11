@@ -1,8 +1,62 @@
 import * as Tonal from 'tonal'
 import { isSubsetOf } from 'is-subset-of'
-import { CONSTS } from '../../consts'
+import { CONSTS } from '../consts'
 import mems from 'mems'
 import range from 'array-range'
+
+import chordTypes from '../consts/chords/chordTypes.json'
+import getPossibilities from 'just-permutations'
+import getDeviation from 'just-standard-deviation'
+import getSkewness from 'just-skewness'
+import getVariance from 'just-variance'
+import groupBy from 'just-group-by'
+import sortBy from 'just-sort-by'
+
+globalThis.CONSTS = CONSTS
+
+const getFirstTwo = (target: string) => target.slice(0, 2)
+const checkSharpOrFlat = (target: string) => getFirstTwo(target).match(/[#b]/)
+const getRootNote = (target: string) => (checkSharpOrFlat(target) ? getFirstTwo(target) : target[0])
+
+const SHARP_KEYS = ['C#', 'Db', 'D#', 'Eb', 'F#', 'Gb', 'G#', 'Ab', 'A#', 'Bb']
+
+export const checkIsBlackKey = (note: string) => {
+	return SHARP_KEYS.includes(Tonal.Note.get(note).pc)
+}
+
+export const groupChordNamesByRootNote = (notes: string[]) => {
+	return groupBy(notes, getRootNote)
+}
+
+globalThis.groupChordNamesByRootNote = groupChordNamesByRootNote
+
+const getChordSkewNess = (chordName: string) => {
+	const chordNotes = Tonal.Chord.notes(chordName)
+	const midiNotes = chordNotes.map((note) => Tonal.Note.midi(note + 2))
+	return getSkewness(midiNotes)
+}
+
+globalThis.getChordSkewNess = getChordSkewNess
+
+const getScale = (scaleName: string) => Tonal.Scale.get(scaleName)
+
+globalThis.getScale = getScale
+
+export const getAllChordsInScale = mems((scaleName: string) => {
+	const allChordNames = CONSTS.MUSIC.CHORD_NAMES
+	const scale = getScale(scaleName)
+	const inScaleChordNames = []
+
+	for (const chordName of allChordNames) {
+		const chord = Tonal.Chord.get(chordName)
+		const isSubset = isSubsetOf(chord.notes, scale.notes)
+		if (isSubset) inScaleChordNames.push(chordName)
+	}
+
+	return inScaleChordNames
+})
+
+globalThis.getAllChordsInScale = getAllChordsInScale
 
 const scalesMap = CONSTS.MUSIC.SCALES.reduce((final, scale) => {
 	final.set(scale.name, scale)
@@ -20,17 +74,19 @@ function registerChord(chord: NewChordT) {
 }
 
 function prepareChords() {
-	CONSTS.MUSIC.CHORD_TYPES.forEach((chord) => {
+	chordTypes.forEach((chord) => {
 		registerChord(chord)
 	})
 }
 
 prepareChords()
 
+console.log(Tonal.Scale.get('D minor').notes)
+console.log(groupChordNamesByRootNote(getAllChordsInScale('D minor')))
+
 const getChordNamesFromScaleName = (scaleName: string) => scalesMap.get(scaleName).chords
-const getNoteRootNote = (note: string) => {
-	return note.replace(/\d/, '')
-}
+const getNoteRootNote = (note: string) => Tonal.Note.get(note).pc
+
 const getNotesRootNotes = (notes: string[]) => {
 	return notes.map(getNoteRootNote)
 }
@@ -95,9 +151,18 @@ const getChordSymbol = (chordName: string) => {
 	return chord.symbol
 }
 
+const mapChordNamesToSymbols = (chordNames: string[]) => {
+	const chords = chordNames.map(Tonal.Chord.get)
+	const symbols = chords.map((chord) => chord.symbol)
+	return symbols
+}
+
+console.log('mapChordNamesToSymbols', mapChordNamesToSymbols(['C# minor seventh']))
+
 export const toner = {
 	getChordNotes: Tonal.Chord.notes,
-	getScale: Tonal.Scale.get,
+	getScale,
+	checkIsBlackKey,
 	getChordTypes: Tonal.ChordType.names,
 	getChord: Tonal.Chord.get,
 	getChordSymbol,
@@ -108,17 +173,18 @@ export const toner = {
 	getNotesFromScaleName,
 	getChordNamesFromScaleName,
 	getManyOctavedNotes,
+	getAllChordsInScale,
 	rootNotes: CONSTS.MUSIC.ROOT_NOTES,
 	scaleTypes: CONSTS.MUSIC.SCALE_TYPES,
 	scaleNAmes: CONSTS.MUSIC.SCALE_NAMES,
 	chordNames: CONSTS.MUSIC.CHORD_NAMES,
-	chordTypes: CONSTS.MUSIC.CHORD_TYPES,
+	chordTypes: chordTypes,
 	scales: CONSTS.MUSIC.SCALES,
 	chords: CONSTS.MUSIC.CHORDS
 }
 
 // const generateTonerData = () => {
-// 	CONSTS.MUSIC.CHORD_TYPES.forEach((chord) => {
+// 	chordTypes.forEach((chord) => {
 // 		toner.registerChord(chord)
 // 	})
 // 	toner.allChordTypes = toner.getChordTypes()
@@ -169,3 +235,15 @@ export const toner = {
 // },
 
 // getChordRelations,
+
+// Tonal.Scale.scaleChords("B minor").map((symbol) => {
+//   const scaleNotes = Tonal.Scale.get("B minor").notes
+
+//   for (const scaleNote of scaleNotes) {
+//     const chordName = scaleNote + symbol
+//     const chordNotes = Tonal.Chord.get(scaleName)
+//     const isInScale =
+//     console.log(chordName, chordNotes)
+//   }
+
+// })

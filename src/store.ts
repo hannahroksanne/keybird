@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import appConfig from './app.config.json'
 
-
 type MainStateT = {
 	logs: LogConfigT[]
 	isLogsOverlayOpen: boolean
@@ -27,6 +26,11 @@ type MainStateT = {
 	playingChordNames: string[]
 	maxChordComplexity: number
 	chordTypeFilter: string
+  isLocalSoundSelected: boolean
+  loadedInstruments: AnyObjectT
+  selectedInstrumentName: string
+  isOutputEnabled: boolean
+  areInstrumentsLoaded: boolean
 }
 
 const MAIN_INITIAL_STATE = {
@@ -51,7 +55,11 @@ const MAIN_INITIAL_STATE = {
 	midiOutputName: '',
 	midiConnectionError: null,
   midiOutputNames: [],
-	
+  isLocalSoundSelected: false,
+  selectedInstrumentName: '',
+  loadedInstruments: {},
+	isOutputEnabled: false,
+
   pressedKeyCodes: [],
 	playingNotes: [],
 	playingRootNotes: [],
@@ -59,7 +67,7 @@ const MAIN_INITIAL_STATE = {
 	
   maxChordComplexity: 5,
 	chordTypeFilter: 'all',
-
+  areInstrumentsLoaded: false,
 }
 
 const useMainStore = create<MainStateT>(() => MAIN_INITIAL_STATE)
@@ -83,6 +91,7 @@ const without = (target) => (item) => {
   return x
 }
 
+
 const asArray = (value) => Array.isArray(value) ? value : [value]
 const unique = (target: any[]) => (item: any) => Array.from(new Set([...target, ...asArray(item)]))
 const withOne = (target: any[]) => (item: any) => target.includes(item) ? target : [...target, item]
@@ -90,9 +99,13 @@ const useIncludes = (stateKey: string) => (item: any) => $main.use(state => stat
 const getIncludes = (stateKey: string) => (item: any) => $main.state[stateKey].includes(item)
 const use = (stateKey: string, mod: any = noop) => () => $main.use((state) => mod(state[stateKey]))
 const get = (stateKey: string, mod: any = noop) => () => mod($main.state[stateKey])
-const set = (stateKey: string, mod: any = noop) => (value: any) => $main.set({ [stateKey]: mod(value) })
+const set = (stateKey: string, mod: any = noop) => (value: any) => $main.set((state) => ({ [stateKey]: mod(value ?? state[stateKey]) }))
+const setFromState = (key: string, mod: any = noop) => () => $main.set((state) => ({ [key]: mod(state[key], state) }))
 const setWithout = (key: string) => (item: any) => $main.set(state => ({ [key]: without(state[key])(item) }))
 const addUnique = (key: string) => (item: any) => $main.set(state => ({ [key]: unique(state[key])(item) }))
+const toggle = (key: string) => setFromState(key, (value: boolean) => !value) 
+  
+  // set(key, (value: boolean) => !value)
 
 // logs
 const useLogs = use('logs')
@@ -158,6 +171,7 @@ const setIsMidiConnected = set('isMidiConnected')
 const useIsMidiEnabled = use('isMidiEnabled')
 const getIsMidiEnabled = get('isMidiEnabled')
 const setIsMidiEnabled = set('isMidiEnabled')
+const toggleIsMidiEnabled = toggle('isMidiEnabled')
 
 // midiOutputName
 const useMidiOutputName = use('midiOutputName')
@@ -221,6 +235,32 @@ const useMidiOutputNames = use('midiOutputNames')
 const getMidiOutputNames = get('midiOutputNames')
 const setMidiOutputNames = set('midiOutputNames')
 
+const useIsLocalSoundSelected = use('isLocalSoundSelected')
+const getIsLocalSoundSelected = get('isLocalSoundSelected')
+const setIsLocalSoundSelected = set('isLocalSoundSelected')
+
+const useLoadedInstruments = use('loadedInstruments')
+const getLoadedInstruments = get('loadedInstruments')
+const setLoadedInstruments = set('loadedInstruments')
+
+const addLoadedInstrument = (name: string, instrument: any) => {
+  $main.set({ loadedInstruments: { ...$main.state.loadedInstruments, [name]: instrument } })
+}
+
+const useSelectedInstrumentName = use('selectedInstrumentName')
+const getSelectedInstrumentName = get('selectedInstrumentName')
+const setSelectedInstrumentName = set('selectedInstrumentName')
+
+const useIsOutputEnabled = use('isOutputEnabled')
+const getIsOutputEnabled = get('isOutputEnabled')
+const setIsOutputEnabled = set('isOutputEnabled')
+const toggleIsOutputEnabled = toggle('isOutputEnabled')
+
+const useAreInstrumentsLoaded = use('areInstrumentsLoaded')
+const getAreInstrumentsLoaded = get('areInstrumentsLoaded')
+const setAreInstrumentsLoaded = set('areInstrumentsLoaded')
+const toggleAreInstrumentsLoaded = toggle('areInstrumentsLoaded')
+
 type StoreT = {
 	reset: () => void
   setState: (state: any) => void
@@ -282,7 +322,30 @@ type StoreT = {
   addPlayingChordName: (chordName: string) => void
   useMidiOutputNames: () => string[]
   setMidiOutputNames: (midiOutputNames: string[]) => void
+  useIsLocalSoundSelected: () => boolean
+  getIsLocalSoundSelected: () => boolean
+  setIsLocalSoundSelected: (isLocalSoundSelected: boolean) => void
+  useLoadedInstruments: () => AnyObjectT
+  getLoadedInstruments: () => AnyObjectT
+  setLoadedInstruments: (loadedInstruments: AnyObjectT) => void
+  addLoadedInstrument: (name: string, instrument: any) => void
+  useSelectedInstrumentName: () => string
+  getSelectedInstrumentName: () => string
+  setSelectedInstrumentName: (selectedInstrumentName: string) => void
+  useIsOutputEnabled: () => boolean
+  getIsOutputEnabled: () => boolean
+  setIsOutputEnabled: (isOutputEnabled: boolean) => void
+  toggleIsOutputEnabled: () => void
+  useAreInstrumentsLoaded: () => boolean
+  getAreInstrumentsLoaded: () => boolean
+  setAreInstrumentsLoaded: (areInstrumentsLoaded: boolean) => void
+  toggleAreInstrumentsLoaded: () => void
+  toggleIsMidiEnabled: () => void
   
+  areInstrumentsLoaded: boolean
+  loadedInstruments: AnyObjectT
+  selectedInstrumentName: string
+  isLocalSoundSelected: boolean
   midiOutputNames: string[]
   midiConnectionError: any
 	logs: LogConfigT[]
@@ -306,9 +369,11 @@ type StoreT = {
 	playingChordNames: string[]
 	maxChordComplexity: number
 	chordTypeFilter: string
+  isOutputEnabled: boolean
 }
 
 export const store: StoreT = {
+  setState: (state) => $main.set(state),
 	reset,
   set,
 	useLogs,
@@ -368,8 +433,46 @@ export const store: StoreT = {
   addPlayingChordName,
   useMidiOutputNames,
   setMidiOutputNames,
+  useIsLocalSoundSelected,
+  getIsLocalSoundSelected,
+  setIsLocalSoundSelected,
+  useLoadedInstruments,
+  getLoadedInstruments,
+  setLoadedInstruments,
+  addLoadedInstrument,
+  useSelectedInstrumentName,
+  getSelectedInstrumentName,
+  setSelectedInstrumentName,
+  useIsOutputEnabled,
+  getIsOutputEnabled,
+  setIsOutputEnabled,
+  toggleIsOutputEnabled,
+  useAreInstrumentsLoaded,
+  getAreInstrumentsLoaded,
+  setAreInstrumentsLoaded,
+  toggleAreInstrumentsLoaded,
+  toggleIsMidiEnabled,
+  
+  get areInstrumentsLoaded() {
+    return getAreInstrumentsLoaded()
+  },
 
-  setState: (state) => $main.set(state),
+  get isOutputEnabled() {
+    return getIsOutputEnabled()
+  },
+
+  get loadedInstruments() {
+    return getLoadedInstruments()
+  },
+
+  get selectedInstrumentName() {
+    return getSelectedInstrumentName()
+  },
+
+  get isLocalSoundSelected() {
+    return getIsLocalSoundSelected()
+  },
+
 
   get midiOutputNames() {
       return getMidiOutputNames()

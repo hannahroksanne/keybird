@@ -1,5 +1,5 @@
 import { Flex as RadixFlex, FlexProps } from '@radix-ui/themes'
-import { useTestId } from '../utilities/component.utilities'
+import { useTestId } from '../utilities/props'
 import React from 'react'
 
 type PropsT = FlexProps & {

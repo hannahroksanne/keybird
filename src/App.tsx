@@ -11,7 +11,6 @@ import { Route, Switch, useLocation } from 'wouter'
 import { Chords } from './views/Chords'
 import { Settings } from './views/Settings'
 import { Main } from './views/Main'
-import { useCoreStoreMonitor } from './views/setup'
 import { MainMenuBar } from './components/MainMenuBar/MainMenuBar'
 import { Flex } from './components/Flex'
 import { useStoreSync } from './store.sync'
@@ -43,7 +42,6 @@ export const App = () => {
 // This is to ensure that these hooks
 // do not cause the entire app to re-render.
 const HookBranch = () => {
-	useCoreStoreMonitor()
 	useStoreSync()
 	return null
 }

@@ -1,26 +1,6 @@
 import { Spinner, Select } from '@radix-ui/themes'
-import { $midi, $core } from '../../stores'
-import { MidiOutputSelector } from './MidiOutputSelector'
-import { MidiToggleSwitch } from './MidiToggleSwitch'
-import { MidiWarningMessage } from '../MidiWarningMessage'
 import { Flex } from '../Flex'
 import { store } from '../../store'
-
-export const MidiControls = () => {
-	const isMidiReady = store.useIsMidiConnected()
-
-	if (!isMidiReady) {
-		return <Spinner title="Preparing midi." />
-	}
-
-	return (
-		<Flex.Row gap="4" align="center">
-			<MidiWarningMessage />
-			<MidiOutputSelector />
-			<MidiToggleSwitch />
-		</Flex.Row>
-	)
-}
 
 export const KeyNameSelect = () => {
 	const rootNote = store.useScaleRootNote()
@@ -50,7 +30,7 @@ export const KeyNameSelect = () => {
 	)
 }
 
-export const ScaleNameSelect = () => {
+export const ScaleTypeSelect = () => {
 	const scaleType = store.useScaleType()
 
 	const changeScaleType = (newScaleType: string) => {

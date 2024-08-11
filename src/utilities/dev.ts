@@ -1,10 +1,6 @@
 import * as Tonal from 'tonal'
 import { WebMidi } from 'webmidi'
-
-import { $midi } from '../stores/midi/$midi'
-import { $core } from '../stores/core/$core'
-import { toner } from './toner/toner'
-import { $chords } from '../stores/chords'
+import { toner } from './toner'
 import { store } from '../store'
 
 const globalThat = globalThis as AnyObjectT
@@ -16,8 +12,5 @@ export const setupForDevelopment = () => {
 	globalThat.store = store
 	globalThat.WebMidi = WebMidi
 	globalThat.Tonal = Tonal
-	globalThat.$midi = $midi
-	globalThat.$core = $core
 	globalThat.toner = toner
-	globalThat.$chords = $chords
 }

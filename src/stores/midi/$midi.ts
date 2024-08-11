@@ -2,7 +2,7 @@ import { Note, WebMidi } from 'webmidi'
 import { create } from 'zustand'
 import range from 'array-range'
 import uniqueRandomArray from 'unique-random-array'
-import { toner } from '../../utilities/toner/toner'
+import { toner } from '../../utilities/toner'
 import { $core } from '../core'
 
 type StoreT = {

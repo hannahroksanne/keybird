@@ -5,7 +5,6 @@ import { CheckIcon, ChevronRightIcon, DotFilledIcon } from '@radix-ui/react-icon
 import { Flex } from '../Flex'
 import { Button, Text, TextField } from '@radix-ui/themes'
 import { SceneRouteController } from '../Controls/SceneRouteController'
-import { KeyboardTopControls } from '../Controls/KeyboardTopControls'
 
 const RADIO_ITEMS = ['Andy', 'Benoît', 'Luis']
 const CHECK_ITEMS = ['Always Show Bookmarks Bar', 'Always Show Full URLs']
@@ -19,7 +18,6 @@ export const MainMenuBar = () => {
 					<SceneRouteController />
 				</Flex.Row>
 			</Flex.Row>
-			<KeyboardTopControls />
 		</Flex.Column>
 	)
 }

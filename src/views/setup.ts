@@ -3,7 +3,7 @@ import { CONSTS } from '../consts'
 import { $core } from '../stores/core/$core'
 import * as Tonal from 'tonal'
 import cloneDeep from 'clone-deep'
-import { toner } from '../utilities/toner/toner'
+import { toner } from '../utilities/toner'
 import { $chords } from '../stores/chords'
 import mems from 'mems'
 
@@ -74,7 +74,6 @@ const useRelatedKeysHandler = () => {
 			return { ...key, isRelated }
 		})
 
-		// console.log('done checking related keys', qwertyKeys)
 		$core.setState({ qwertyKeys })
 	}, [pressedKeys.length])
 }
@@ -198,12 +197,10 @@ const useKeyMapper = () => {
 	// Whenever the scaleNotes changes, update the
 	// mapping of the qwertyKeys.
 	React.useEffect(() => {
-		console.log('remapping qwertyKeys')
 		const pastResult = pastResults.get(scaleNotesString + layoutName)
 
 		if (pastResult) {
 			const qwertyKeys = cloneDeep(pastResult)
-			console.log(scaleNotesString, ' has been mapped before.', qwertyKeys)
 			$core.setState({ qwertyKeys })
 			return
 		}
@@ -219,8 +216,6 @@ const useKeyMapper = () => {
 			const qwertyKey = playableQwertyKeys.find((key) => key.keyCode === keyCode)
 			layoutSortedQwertyKeys[index] = qwertyKey
 		})
-
-		console.log({ playableQwertyKeys, functionalQwertyKeys, layoutSortedQwertyKeys })
 
 		const { qwertyKeys } = layoutSortedQwertyKeys.reduce((final, qwertyKey) => {
 			const key = { ...qwertyKey }
@@ -264,7 +259,6 @@ const useChordsWatcher = () => {
 			return toner.chords.find((chord) => chord.name === chordName)
 		})
 
-		console.log({ scale, scaleName, chordNames, scales: toner.scales, chords: toner.chords, inScaleChords })
 		$chords.setState({ inScaleChords })
 	}, [scaleRootNote, scaleType])
 }

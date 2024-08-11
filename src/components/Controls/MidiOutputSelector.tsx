@@ -1,21 +1,23 @@
-import { Select } from '@radix-ui/themes'
-import { $midi } from '../../stores/midi/$midi'
+import { Text, Button, Select } from '@radix-ui/themes'
+import { store } from '../../store'
 
 export const MidiOutputSelector = () => {
-	const midiOutputs = $midi.use((state) => state.midiOutputs)
-	const selectedMidiOutputName = $midi.use((state) => state.selectedMidiOutputName)
-	const isMidiEnabled = $midi.use((state) => state.isMidiEnabled)
-	const value = isMidiEnabled ? selectedMidiOutputName : 'Disabled'
-
-	if (!isMidiEnabled) return null
+	const midiOutputNames = store.useMidiOutputNames()
+	const selectedMidiOutputName = store.useMidiOutputName()
+	const isMidiEnabled = store.useIsMidiEnabled()
+	const isMidiConnected = store.useIsMidiConnected()
+	const isGoodToGo = isMidiEnabled && isMidiConnected
+	const value = isGoodToGo ? selectedMidiOutputName : 'Disabled'
 
 	return (
 		<Select.Root value={value}>
-			<Select.Trigger />
+			<Select.Trigger>
+				<Text className="normalFont">MIDI Output: {value}</Text>
+			</Select.Trigger>
 			<Select.Content position="popper">
-				{midiOutputs.map((output) => (
-					<Select.Item key={output.name} value={output.name}>
-						{output.name}
+				{midiOutputNames.map((name) => (
+					<Select.Item key={name} value={name}>
+						{name}
 					</Select.Item>
 				))}
 			</Select.Content>

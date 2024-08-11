@@ -1,0 +1,10 @@
+.ChordBoard .BigChordCard {
+	padding: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.BigChordCardChordName {
+	letter-spacing: 0.5px;
+}

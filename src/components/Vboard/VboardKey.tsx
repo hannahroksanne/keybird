@@ -33,7 +33,8 @@ export const VboardKey = (props: VboardKeyPropsT) => {
 		...key,
 		reportOpenMenu,
 		buttonRef,
-		className
+		className,
+		label
 	}
 
 	const Component = isPlayable ? VboardPlayableKey : VboardFunctionalKey
@@ -69,9 +70,6 @@ export const VboardPlayableKey = React.memo((props: PlayableKeyPropsT) => {
 })
 
 export const VboardFunctionalKey = React.memo((props: FunctionalKeyPropsT) => {
-	// TODO: Make functional keys clickable.
-	const handleClick = (event: MouseEvent) => {}
-
 	return (
 		<VboardKeyButton {...props}>
 			<VboardKeyMenu reportOpenMenu={props.reportOpenMenu}>

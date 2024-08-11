@@ -1,10 +1,8 @@
 import './LogList.css'
-import * as React from 'react'
 import { Link as WouterLink } from 'wouter'
 import * as Dialog from '@radix-ui/react-dialog'
 
 import { Button, Heading, Link, Text } from '@radix-ui/themes'
-import { $logs } from '../../stores'
 import { Flex } from '../Flex'
 import { store } from '../../store'
 

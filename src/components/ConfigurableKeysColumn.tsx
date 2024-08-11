@@ -3,30 +3,11 @@ import React from 'react'
 import classcat from 'classcat'
 import defaultKeysConfig from '../defaultKeys.config.json'
 import keyboardLayoutsConfig from '../keyboardLayouts.config.json'
-import { Button, Text, ContextMenu } from '@radix-ui/themes'
+import { Button, Text, ContextMenu, ScrollArea } from '@radix-ui/themes'
 import { Flex } from './Flex'
 import { store } from '../store'
 import isEmpty from 'is-empty'
-
 import appConfig from '../app.config.json'
-
-const useConfigurableKeysState = () => {
-	const layoutName = store.useKeyboardLayoutName()
-	const layout = keyboardLayoutsConfig[layoutName]
-
-	const playableRows = React.useMemo(() => {
-		const allKeyCodes = layout.rows.flat()
-
-		return allKeyCodes.reduce((final, keyCode) => {
-			const keyConfig = defaultKeysConfig[keyCode]
-			const isPlayable = keyConfig.isPlayable
-			if (isPlayable) final.push(keyConfig)
-			return final
-		}, [])
-	}, [])
-
-	return playableRows
-}
 
 const usePlayableKeyCodes = () => {
 	const layoutName = store.useKeyboardLayoutName()
@@ -44,26 +25,27 @@ const usePlayableKeyCodes = () => {
 	}, [])
 }
 
-export const ConfigurableKeys = () => {
+export const ConfigurableKeysColumn = () => {
 	const playableKeyCodes = usePlayableKeyCodes()
 	const keyMap = store.useKeyMap()
 	if (isEmpty(keyMap)) return null
 
 	return (
-		<Flex.Row gap="4" wrap="wrap" px="4">
-			{playableKeyCodes.map((keyCode) => {
-				return <ConfigurableKey key={keyCode} keyCode={keyCode} />
-			})}
-		</Flex.Row>
+		<ScrollArea type="always" scrollbars="vertical" style={{ minWidth: 200, width: 200, height: 600 }}>
+			<Flex.Column gap="3" pr="5" pb="2" style={{ width: 200, minWidth: 200 }}>
+				{playableKeyCodes.map((keyCode) => {
+					return <ConfigurableKey key={keyCode} keyCode={keyCode} />
+				})}
+			</Flex.Column>
+		</ScrollArea>
 	)
 }
 
 const ConfigurableKey = React.memo((props: AnyObjectT) => {
 	const key = store.useKeyMapping(props.keyCode) as PlayableKeyMappingT
-	const maxWidth = key.chordName.length * 7 + 48
 
 	return (
-		<BaseKey {...props} {...key} maxWidth={maxWidth}>
+		<BaseKey {...props} {...key}>
 			<BaseKeyMenu reportOpenMenu={props.reportOpenMenu}>
 				<Text>{key.chordName}</Text>
 			</BaseKeyMenu>
@@ -77,20 +59,20 @@ const BaseKey = (props) => {
 
 	return (
 		<Button
-			size="1"
+			size="2"
 			variant={props.variant}
 			color={color}
 			className={className}
-			style={{ gap: 0, flex: 1, maxWidth: props.maxWidth, position: 'relative', paddingRight: 5 }}
+			style={{ gap: 0, flex: 1, position: 'relative', paddingRight: 5 }}
 		>
 			<Flex.Row
 				align="center"
 				justify="center"
 				style={{
 					color: 'white',
-					minWidth: 24,
-					height: 24,
-					background: '#2e3435',
+					minWidth: 36,
+					height: 36,
+					background: `var(--${color}-a3)`,
 					boxShadow: 'inset 0 0 0 1px var(--accent-a8)'
 				}}
 			>
