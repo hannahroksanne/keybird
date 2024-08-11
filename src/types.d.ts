@@ -178,30 +178,6 @@ type QwertyKeyT = {
 	rootNote: string
 }
 
-const foo: QuertyKeyT = {
-	row: 1,
-	keyCode: 'KeyA',
-	label: 'A',
-	width: 1,
-	altLabel: 'Q',
-	isPressed: false,
-	isRelated: false,
-	isPlayable: false,
-	isFunctional: false,
-	isDisabled: false,
-	isConfigurable: false,
-	function: 'play',
-	variant: 'outline',
-	color: 'gray',
-	midi: 0,
-	velocity: 0.5,
-	pattern: '1',
-	rhythm: '1',
-	inversion: 0,
-	voicing: 'triad',
-	humanize: 0
-}
-
 type KeyCodeAndRowT = {
 	keyCode: string
 	row: number

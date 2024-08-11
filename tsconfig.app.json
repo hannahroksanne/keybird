@@ -6,7 +6,6 @@
 		"useDefineForClassFields": true,
 		"lib": ["ES2020", "DOM", "DOM.Iterable"],
 		"module": "ESNext",
-		"skipLibCheck": true,
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
@@ -29,7 +28,8 @@
 		"noImplicitUseStrict": false,
 		"noPropertyAccessFromIndexSignature": false,
 		"noUncheckedIndexedAccess": false,
-		"noEmitOnError": false
+		"noEmitOnError": false,
+		"skipLibCheck": true // Add this line
 	},
 	"include": ["src"]
 }

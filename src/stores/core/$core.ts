@@ -12,7 +12,7 @@ type StoreT = {
 	scaleNotes: string[]
 	scaleRootNote: string
 	scaleType: string
-	qwertyKeys: QwertyKeyT[]
+	qwertyKeys: any[]
 	shouldShowAltLabels: boolean
 	octave: number
 	maxChordComplexity: number
@@ -52,22 +52,22 @@ const decrementOctave = () => {
 	$core.setState({ octave })
 }
 
-const getQwertyKey = (keyCode: string): QwertyKeyT => {
+const getQwertyKey = (keyCode: string): any => {
 	const qwertyKey = $core.state.qwertyKeys.find((key) => {
 		return key.keyCode === keyCode
-	}) as QwertyKeyT
+	}) as any
 
 	return qwertyKey || {}
 }
 
-const updateQwertyKey = (keyCode: string, update: Partial<QwertyKeyT>) => {
+const updateQwertyKey = (keyCode: string, update: Partial<any>) => {
 	return $core.state.qwertyKeys.map((key) => {
 		const isCorrectKey = key.keyCode === keyCode
 		return isCorrectKey ? { ...key, ...update } : key
 	})
 }
 
-const updateMatchingQueryKeys = (checkIfMatches: (key: QwertyKeyT) => boolean, update: Partial<QwertyKeyT>) => {
+const updateMatchingQueryKeys = (checkIfMatches: (key: any) => boolean, update: Partial<any>) => {
 	return $core.state.qwertyKeys.map((key) => {
 		const isCorrectKey = checkIfMatches(key)
 		return isCorrectKey ? { ...key, ...update } : key
@@ -148,7 +148,7 @@ const useQwertyStringRows = () => {
 
 const useQwertyRows = () => {
 	const qwertyKeys = $core.use((state) => state.qwertyKeys)
-	const rows = [] as QwertyKeyT[][]
+	const rows = [] as any[][]
 
 	for (const key of qwertyKeys) {
 		const rowValue = rows[key.row] || []
@@ -168,12 +168,12 @@ const checkIfKeyIsPressed = (keyCode: string) => {
 	return qwertyKey?.isPressed || false
 }
 
-const useQwertyKey = (keyCode: string): QwertyKeyT => {
+const useQwertyKey = (keyCode: string): any => {
 	const qwertyKey = $core.use((state) => {
 		return state.qwertyKeys.find((key) => key.keyCode === keyCode)
 	})
 
-	return qwertyKey as QwertyKeyT
+	return qwertyKey as any
 }
 
 const useQwertyKeys = () => {

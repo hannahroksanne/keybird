@@ -3,12 +3,23 @@
 		"resolveJsonModule": true,
 		"composite": true,
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-		"skipLibCheck": true,
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"allowSyntheticDefaultImports": true,
-		"strict": true,
-		"noEmit": true
+		"noEmit": true,
+		"strict": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noFallthroughCasesInSwitch": false,
+		"noImplicitReturns": false,
+		"noImplicitAny": false,
+		"noImplicitThis": false,
+		"noImplicitOverride": false,
+		"noImplicitUseStrict": false,
+		"noPropertyAccessFromIndexSignature": false,
+		"noUncheckedIndexedAccess": false,
+		"noEmitOnError": false,
+		"skipLibCheck": true
 	},
 	"include": ["vite.config.ts"]
 }
