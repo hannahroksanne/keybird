@@ -13,6 +13,8 @@ type PlayableKeyMappingT = KeyConfigT & {
 	note: string
 	rootNote: string
 	alternateLabel: string
+	chordName: string
+	chordRootNote: string
 }
 
 type FunctionalKeyMappingT = KeyConfigT & {
@@ -38,29 +40,6 @@ type LogConfigT = {
 
 type LogsConfigT = {
 	[key: string]: LogConfigT
-}
-
-type MainStateT = {
-	logs: LogConfigT[]
-	isLogsOverlayOpen: boolean
-	octave: number
-	scaleName: string
-	scaleRootNote: string
-	scaleType: string
-	scaleNotes: string[]
-	scaleChordNames: string[]
-	keyMapLayoutName: string
-	keyboardLayoutName: string
-	shouldShowAltLabels: boolean
-	isMidiConnected: boolean
-	isMidiEnabled: boolean
-	midiOutputName: string
-	midiConnectionError: any
-	pressedKeyCodes: string[]
-	playingNotes: string[]
-	playingRootNotes: string[]
-	keyMap: KeyMapT
-	playingChordNames: string[]
 }
 
 // ####################### old below

@@ -16,14 +16,14 @@ const OctaveController = () => {
 		<Flex.Row gap="2" align="center">
 			<TextField.Root
 				className="OctaveController"
-				placeholder="Base Octave"
+				placeholder="Octave"
 				type="number"
 				min="0"
 				max="8"
 				value={octave}
 				onChange={setOctave}
 			>
-				<TextField.Slot>Base Octave</TextField.Slot>
+				<TextField.Slot>Octave</TextField.Slot>
 			</TextField.Root>
 		</Flex.Row>
 	)

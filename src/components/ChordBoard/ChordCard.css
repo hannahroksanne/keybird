@@ -1,6 +1,4 @@
 .ChordBoard .ChordCard {
-	width: 220px;
-	height: 60px;
 	padding: 12px;
 	display: flex;
 	justify-content: center;

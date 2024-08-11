@@ -37,7 +37,7 @@ export const VboardKeyButton = (props: PropsT) => {
 			style={{ gap: 0, flexGrow: props.width, position: 'relative' }}
 		>
 			<>
-				<div className="pressedPixel" />
+				{/* <div className="pressedPixel" /> */}
 				{props.children}
 			</>
 		</Button>

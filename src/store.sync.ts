@@ -28,13 +28,8 @@ function useScaleNameSync() {
 		ref0.current = scaleRootNote
 		ref1.current = scaleType
 
-		console.group('useScaleNameSync effect')
-		console.log('scaleRootNote', scaleRootNote)
-		console.log('scaleType', scaleType)
 		const scaleName = `${scaleRootNote} ${scaleType}`
 		store.setScaleName(scaleName)
-		console.log('set scaleName', scaleName)
-		console.groupEnd()
 	}, [scaleRootNote, scaleType])
 }
 
@@ -46,12 +41,8 @@ function useScaleNotesSync() {
 		if (ref.current === scaleName) return
 		ref.current = scaleName
 
-		console.group('useScaleNotesSync effect')
-		console.log('scaleName', scaleName)
 		const scale = toner.getScale(scaleName)
 		store.setScaleNotes(scale.notes)
-		console.log('set scaleNotes', scale.notes)
-		console.groupEnd()
 	}, [scaleName])
 }
 
@@ -63,12 +54,8 @@ function useScaleChordNamesSync() {
 		if (ref.current === scaleName) return
 		ref.current = scaleName
 
-		console.group('useScaleChordNamesSync effect')
-		console.log('scaleName', scaleName)
 		const chordNames = toner.getChordNamesFromScaleName(scaleName)
 		store.setScaleChordNames(chordNames)
-		console.log('set scaleChordNames', chordNames)
-		console.groupEnd()
 	}, [scaleName])
 }
 
@@ -76,40 +63,16 @@ function usePlayingNotesSync() {
 	const pressedKeyCodes = store.usePressedKeyCodes()
 	const playablePressedkeyCodes = pressedKeyCodes.filter((code) => playableKeyCodes.includes(code))
 	const joinedPressedKeyCodes = playablePressedkeyCodes.join(' ')
-	const ref = React.useRef('')
 
 	React.useEffect(() => {
-		if (ref.current === joinedPressedKeyCodes) return
-		ref.current = joinedPressedKeyCodes
-
-		console.group('usePlayingNotesSync effect')
-		console.log('pressedKeyCodes', joinedPressedKeyCodes)
 		const keyMap = store.keyMap
 		const keys = pressedKeyCodes.map((keyCode) => keyMap[keyCode])
 		const playableKeys = keys.filter((key) => key.isPlayable) as PlayableKeyMappingT[]
-		const notes = playableKeys.map((key) => key.note)
-		store.setPlayingNotes(notes)
-		console.log('set playingNotes', notes)
-		console.groupEnd()
+		const playingNotes = playableKeys.map((key) => key.note)
+		const playingRootNotes = toner.getNotesRootNotes(playingNotes)
+		store.setPlayingNotes(playingNotes)
+		store.setPlayingRootNotes(playingRootNotes)
 	}, [joinedPressedKeyCodes])
-}
-
-function usePlayingRootNotesSync() {
-	const playingNotes = store.usePlayingNotes()
-	const joinedPlayingNotes = playingNotes.join(' ')
-	const ref = React.useRef('')
-
-	React.useEffect(() => {
-		if (ref.current === joinedPlayingNotes) return
-		ref.current = joinedPlayingNotes
-
-		console.group('usePlayingRootNotesSync effect')
-		console.log('playingNotes', playingNotes)
-		const rootNotes = toner.getNotesRootNotes(playingNotes)
-		store.setPlayingRootNotes(rootNotes)
-		console.log('set playingRootNotes', rootNotes)
-		console.groupEnd()
-	}, [joinedPlayingNotes])
 }
 
 function useKeyMapSync() {
@@ -122,6 +85,7 @@ function useKeyMapSync() {
 	const ref2 = React.useRef('')
 
 	React.useEffect(() => {
+		console.log('useKeyMapSync----')
 		if (!scaleNotes.length) return
 		const isOctaveSame = ref0.current === octave
 		const isNotesSame = ref1.current === joinedScaleNotes
@@ -131,13 +95,9 @@ function useKeyMapSync() {
 		ref1.current = joinedScaleNotes
 		ref2.current = keyMapLayoutName
 
-		console.group('useKeyMapSync effect')
-		console.log('octave', octave)
-		console.log('scaleNotes', joinedScaleNotes)
+		console.log('useKeyMapSync')
 		const keyMap = generateKeyMap()
 		store.setKeyMap(keyMap)
-		console.log('set keyMap', keyMap)
-		console.groupEnd()
 	}, [octave, joinedScaleNotes, keyMapLayoutName])
 }
 
@@ -159,13 +119,29 @@ function useMidiSync() {
 	}, [isMidiConnected])
 }
 
+function useMidiOutputsSync() {
+	const ref = React.useRef([])
+
+	React.useEffect(() => {
+		setInterval(() => {
+			const midiOutputName = store.midiOutputName
+			const outputs = WebMidi.outputs
+			const outputNames = outputs.map((output) => output.name)
+			const isSame = ref.current.join('') === outputNames.join('')
+			if (isSame) store.setMidiOutputNames(outputNames)
+			const isSelectedOutputStillAvailable = outputNames.includes(midiOutputName)
+			if (!isSelectedOutputStillAvailable) store.setMidiOutputName('')
+		}, 30000)
+	}, [])
+}
+
 export function useStoreSync() {
 	console.log('useStoreSync')
 	useScaleNameSync()
 	useScaleNotesSync()
 	usePlayingNotesSync()
-	usePlayingRootNotesSync()
 	useScaleChordNamesSync()
 	useKeyMapSync()
 	useMidiSync()
+	useMidiOutputsSync()
 }

@@ -2,16 +2,6 @@
 	max-width: 100px;
 }
 
-@media screen and (max-width: 1000px) {
-	.MainMenuBar .MainMenuBarRow {
-		justify-content: center;
-	}
-
-	.MainMenuBar {
-		justify-content: center;
-	}
-}
-
 .MainMenuBar {
 	justify-content: center;
 }

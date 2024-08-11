@@ -15,6 +15,9 @@ import { useCoreStoreMonitor } from './views/setup'
 import { MainMenuBar } from './components/MainMenuBar/MainMenuBar'
 import { Flex } from './components/Flex'
 import { useStoreSync } from './store.sync'
+import { store } from './store'
+
+globalThis.store = store
 
 export const App = () => {
 	const [location] = useLocation()
@@ -22,12 +25,7 @@ export const App = () => {
 	return (
 		<GrayTheme>
 			<main data-testid="App">
-				<Flex.Column
-					data-testid="Router"
-					data-location={location.substring(1)}
-					justify="between"
-					style={{ height: '100%' }}
-				>
+				<Flex.Column data-testid="Router" data-location={location.substring(1)} justify="between" style={{ height: '100%' }}>
 					<HookBranch />
 					<MainMenuBar />
 					<Switch>

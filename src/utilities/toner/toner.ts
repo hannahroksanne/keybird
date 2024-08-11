@@ -27,12 +27,13 @@ function prepareChords() {
 
 prepareChords()
 
-console.log({ scalesMap })
-
 const getChordNamesFromScaleName = (scaleName: string) => scalesMap.get(scaleName).chords
-const getNoteRootNote = (note: string) => note.replace(/\d/, '')
-const getNotesRootNotes = (notes: string[]) => notes.map(getNoteRootNote)
-
+const getNoteRootNote = (note: string) => {
+	return note.replace(/\d/, '')
+}
+const getNotesRootNotes = (notes: string[]) => {
+	return notes.map(getNoteRootNote)
+}
 const getOctavedNotes = (notes, octave) => {
 	const rootNotes = CONSTS.MUSIC.ROOT_NOTES
 	let currentOctave = octave
@@ -89,11 +90,17 @@ function getManyOctavedNotes(options: GetManyOctavedNotesOptionsT) {
 	})
 }
 
+const getChordSymbol = (chordName: string) => {
+	const chord = Tonal.Chord.get(chordName)
+	return chord.symbol
+}
+
 export const toner = {
 	getChordNotes: Tonal.Chord.notes,
 	getScale: Tonal.Scale.get,
 	getChordTypes: Tonal.ChordType.names,
 	getChord: Tonal.Chord.get,
+	getChordSymbol,
 	getOctavedNotes,
 	getNoteRootNote,
 	getNotesRootNotes,

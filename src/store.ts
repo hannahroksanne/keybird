@@ -1,27 +1,65 @@
 import { create } from 'zustand'
 import appConfig from './app.config.json'
 
+
+type MainStateT = {
+	logs: LogConfigT[]
+	isLogsOverlayOpen: boolean
+	octave: number
+	scaleName: string
+	scaleRootNote: string
+	scaleType: string
+	scaleNotes: string[]
+	scaleChordNames: string[]
+	keyMapLayoutName: string
+	keyboardLayoutName: string
+	shouldShowAltLabels: boolean
+	isMidiConnected: boolean
+	isMidiEnabled: boolean
+	midiOutputName: string
+	midiConnectionError: any
+  builtInInstrumentNames: string[]
+  midiOutputNames: string[]
+	pressedKeyCodes: string[]
+	playingNotes: string[]
+	playingRootNotes: string[]
+	keyMap: KeyMapT
+	playingChordNames: string[]
+	maxChordComplexity: number
+	chordTypeFilter: string
+}
+
 const MAIN_INITIAL_STATE = {
 	isLogsOverlayOpen: false,
 	logs: [],
-	octave: 2,
+	
+  octave: 2,
 	scaleName: `${appConfig.defaultScaleRootNote} ${appConfig.defaultScaleType}`,
 	scaleRootNote: appConfig.defaultScaleRootNote,
 	scaleType: appConfig.defaultScaleType,
 	scaleNotes: [],
 	scaleChordNames: [],
+
 	keyMapLayoutName: appConfig.defaultKeyMapLayoutName,
 	keyboardLayoutName: appConfig.defaultKeyboardLayoutName,
 	shouldShowAltLabels: false,
-	isMidiConnected: false,
+	keyMap: {},
+	
+  builtInInstrumentNames: appConfig.builtInInstrumentNames,
+  isMidiConnected: false,
 	isMidiEnabled: false,
 	midiOutputName: '',
 	midiConnectionError: null,
-	pressedKeyCodes: [],
+  midiOutputNames: [],
+	
+  pressedKeyCodes: [],
 	playingNotes: [],
 	playingRootNotes: [],
-	keyMap: {},
-	playingChordNames: []
+	playingChordNames: [],
+	
+  maxChordComplexity: 5,
+	chordTypeFilter: 'all',
+
 }
 
 const useMainStore = create<MainStateT>(() => MAIN_INITIAL_STATE)
@@ -35,100 +73,158 @@ const $main = {
 }
 
 const reset = () => $main.set(MAIN_INITIAL_STATE)
-const without = (target, item) => target.filter((_item) => _item !== item)
 
-const useLogs = () => $main.use((state) => state.logs)
-const getLogs = () => $main.state.logs
-const setLogs = (logs) => $main.set({ logs })
+const noop = (value: any) => value
 
-const useOctave = () => $main.use((state) => state.octave)
-const getOctave = () => $main.state.octave
-const setOctave = (octave) => $main.set({ octave })
+const without = (target) => (item) => {
+  console.log('wihout', { target, item })
+  const x = target.filter((_item) => _item !== item)
+  console.log({ x })
+  return x
+}
 
-const useScaleName = () => $main.use((state) => state.scaleName)
-const getScaleName = () => $main.state.scaleName
-const setScaleName = (scaleName) => $main.set({ scaleName })
+const asArray = (value) => Array.isArray(value) ? value : [value]
+const unique = (target: any[]) => (item: any) => Array.from(new Set([...target, ...asArray(item)]))
+const withOne = (target: any[]) => (item: any) => target.includes(item) ? target : [...target, item]
+const useIncludes = (stateKey: string) => (item: any) => $main.use(state => state[stateKey].includes(item))
+const getIncludes = (stateKey: string) => (item: any) => $main.state[stateKey].includes(item)
+const use = (stateKey: string, mod: any = noop) => () => $main.use((state) => mod(state[stateKey]))
+const get = (stateKey: string, mod: any = noop) => () => mod($main.state[stateKey])
+const set = (stateKey: string, mod: any = noop) => (value: any) => $main.set({ [stateKey]: mod(value) })
+const setWithout = (key: string) => (item: any) => $main.set(state => ({ [key]: without(state[key])(item) }))
+const addUnique = (key: string) => (item: any) => $main.set(state => ({ [key]: unique(state[key])(item) }))
 
-const useScaleRootNote = () => $main.use((state) => state.scaleRootNote)
-const getScaleRootNote = () => $main.state.scaleRootNote
-const setScaleRootNote = (scaleRootNote) => $main.set({ scaleRootNote })
+// logs
+const useLogs = use('logs')
+const getLogs = get('logs')
+const setLogs = set('logs')
 
-const useScaleType = () => $main.use((state) => state.scaleType)
-const getScaleType = () => $main.state.scaleType
-const setScaleType = (scaleType) => $main.set({ scaleType })
+// octave
+const useOctave = use('octave')
+const getOctave = get('octave')
+const setOctave = set('octave')
 
-const useShouldShowAltLabels = () => $main.use((state) => state.shouldShowAltLabels)
-const getShouldShowAltLabels = () => $main.state.shouldShowAltLabels
-const setShouldShowAltLabels = (shouldShowAltLabels) => $main.set({ shouldShowAltLabels })
+// scaleName
+const useScaleName = use('scaleName')
+const getScaleName = get('scaleName')
+const setScaleName = set('scaleName')
 
-const useIsLogsOverlayOpen = () => $main.use((state) => state.isLogsOverlayOpen)
-const getIsLogsOverlayOpen = () => $main.state.isLogsOverlayOpen
-const setIsLogsOverlayOpen = (isLogsOverlayOpen) => $main.set({ isLogsOverlayOpen })
+// scaleRootNote
+const useScaleRootNote = use('scaleRootNote')
+const getScaleRootNote = get('scaleRootNote')
+const setScaleRootNote = set('scaleRootNote')
 
-const useScaleNotes = () => $main.use((state) => state.scaleNotes)
-const getScaleNotes = () => $main.state.scaleNotes
-const setScaleNotes = (scaleNotes) => $main.set({ scaleNotes })
+// scaleType
+const useScaleType = use('scaleType')
+const getScaleType = get('scaleType')
+const setScaleType = set('scaleType')
 
-const useScaleChordNames = () => $main.use((state) => state.scaleChordNames)
-const getScaleChordNames = () => $main.state.scaleChordNames
-const setScaleChordNames = (scaleChordNames) => $main.set({ scaleChordNames })
+// shouldShowAltLabels
+const useShouldShowAltLabels = use('shouldShowAltLabels')
+const getShouldShowAltLabels = get('shouldShowAltLabels')
+const setShouldShowAltLabels = set('shouldShowAltLabels')
 
-const useKeyboardLayoutName = () => $main.use((state) => state.keyboardLayoutName)
-const getKeyboardLayoutName = () => $main.state.keyboardLayoutName
-const setKeyboardLayoutName = (keyboardLayoutName) => $main.set({ keyboardLayoutName })
+// isLogsOverlayOpen
+const useIsLogsOverlayOpen = use('isLogsOverlayOpen')
+const getIsLogsOverlayOpen = get('isLogsOverlayOpen')
+const setIsLogsOverlayOpen = set('isLogsOverlayOpen')
 
-const useKeyMapLayoutName = () => $main.use((state) => state.keyMapLayoutName)
-const getKeyMapLayoutName = () => $main.state.keyMapLayoutName
-const setKeyMapLayoutName = (keyMapLayoutName) => $main.set({ keyMapLayoutName })
+// scaleNotes
+const useScaleNotes = use('scaleNotes')
+const getScaleNotes = get('scaleNotes')
+const setScaleNotes = set('scaleNotes')
 
-const useIsMidiConnected = () => $main.use((state) => state.isMidiConnected)
-const getIsMidiConnected = () => $main.state.isMidiConnected
-const setIsMidiConnected = (isMidiConnected) => $main.set({ isMidiConnected })
+// scaleChordNames
+const useScaleChordNames = use('scaleChordNames')
+const getScaleChordNames = get('scaleChordNames')
+const setScaleChordNames = set('scaleChordNames')
 
-const useIsMidiEnabled = () => $main.use((state) => state.isMidiEnabled)
-const getIsMidiEnabled = () => $main.state.isMidiEnabled
-const setIsMidiEnabled = (isMidiEnabled) => $main.set({ isMidiEnabled })
+// keyboardLayoutName
+const useKeyboardLayoutName = use('keyboardLayoutName')
+const getKeyboardLayoutName = get('keyboardLayoutName')
+const setKeyboardLayoutName = set('keyboardLayoutName')
 
-const useMidiOutputName = () => $main.use((state) => state.midiOutputName)
-const getMidiOutputName = () => $main.state.midiOutputName
-const setMidiOutputName = (midiOutputName) => $main.set({ midiOutputName })
+// keyMapLayoutName
+const useKeyMapLayoutName = use('keyMapLayoutName')
+const getKeyMapLayoutName = get('keyMapLayoutName')
+const setKeyMapLayoutName = set('keyMapLayoutName')
 
-const usePressedKeyCodes = () => $main.use((state) => state.pressedKeyCodes)
-const getPressedKeyCodes = () => $main.state.pressedKeyCodes
-const setPressedKeyCodes = (pressedKeyCodes) => $main.set({ pressedKeyCodes: Array.from(new Set(pressedKeyCodes)) })
-const useIsKeyCodePressed = (keyCode: string) => $main.use((state) => state.pressedKeyCodes.includes(keyCode))
-const getIsKeyCodePressed = (keyCode: string) => $main.state.pressedKeyCodes.includes(keyCode)
-const addPressedKeyCode = (keyCode: string) => setPressedKeyCodes([...getPressedKeyCodes(), keyCode])
-const removePressedKeyCode = (keyCode: string) => setPressedKeyCodes(without($main.state.pressedKeyCodes, keyCode))
+// isMidiConnected
+const useIsMidiConnected = use('isMidiConnected')
+const getIsMidiConnected = get('isMidiConnected')
+const setIsMidiConnected = set('isMidiConnected')
 
-const usePlayingNotes = () => $main.use((state) => state.playingNotes)
-const getPlayingNotes = () => $main.state.playingNotes
-const setPlayingNotes = (playingNotes) => $main.set({ playingNotes })
+// isMidiEnabled
+const useIsMidiEnabled = use('isMidiEnabled')
+const getIsMidiEnabled = get('isMidiEnabled')
+const setIsMidiEnabled = set('isMidiEnabled')
 
-const usePlayingRootNotes = () => $main.use((state) => state.playingRootNotes)
-const getPlayingRootNotes = () => $main.state.playingRootNotes
-const setPlayingRootNotes = (playingRootNotes) => $main.set({ playingRootNotes })
+// midiOutputName
+const useMidiOutputName = use('midiOutputName')
+const getMidiOutputName = get('midiOutputName')
+const setMidiOutputName = set('midiOutputName')
 
-const useKeyMap = () => $main.use((state) => state.keyMap)
-const getKeyMap = () => $main.state.keyMap
-const setKeyMap = (keyMap) => $main.set({ keyMap })
+// pressedKeyCodes
+const usePressedKeyCodes = use('pressedKeyCodes')
+const getPressedKeyCodes = get('pressedKeyCodes')
+const setPressedKeyCodes = set('pressedKeyCodes')
 
+// playingNotes
+const usePlayingNotes = use('playingNotes')
+const getPlayingNotes = get('playingNotes')
+const setPlayingNotes = set('playingNotes')
+const useIsNotePlaying = useIncludes('playingNotes')
+const getIsNotePlaying = getIncludes('playingNotes')
+
+// playingRootNotes
+const usePlayingRootNotes = use('playingRootNotes')
+const getPlayingRootNotes = get('playingRootNotes')
+const setPlayingRootNotes = set('playingRootNotes')
+const useIsRootNotePlaying = useIncludes('playingRootNotes')
+
+// keyMap
+const useKeyMap = use('keyMap')
+const getKeyMap = get('keyMap')
+const setKeyMap = set('keyMap')
 const getKeyMapping = (keyCode: string) => $main.state.keyMap[keyCode]
 const useKeyMapping = (keyCode: string) => $main.use((state) => state.keyMap[keyCode])
 
-const usePlayingChordNames = () => $main.use((state) => state.playingChordNames)
-const getPlayingChordNames = () => $main.state.playingChordNames
-const setPlayingChordNames = (playingChordNames) => $main.set({ playingChordNames })
+// pressedKeyCodes
+const useIsKeyCodePressed = useIncludes('pressedKeyCodes')
+const getIsKeyCodePressed = getIncludes('pressedKeyCodes')
+const addPressedKeyCode = addUnique('pressedKeyCodes')
+const removePressedKeyCode = setWithout('pressedKeyCodes')
 
-const useIsRootNotePlaying = (rootNote: string) => $main.use((state) => state.playingRootNotes.includes(rootNote))
-const useIsNotePlaying = (note: string) => $main.use((state) => state.playingNotes.includes(note))
+// playingChordNames
+const usePlayingChordNames = use('playingChordNames')
+const getPlayingChordNames = get('playingChordNames')
+const setPlayingChordNames = set('playingChordNames')
+const useIsChordPlaying = useIncludes('playingChordNames')
+const addPlayingChordName = addUnique('playingChordNames')
 
-const useMidiConnectionError = () => $main.use((state) => state.midiConnectionError)
-const getMidiConnectionError = () => $main.state.midiConnectionError
-const setMidiConnectionError = (midiConnectionError) => $main.set({ midiConnectionError })
+// midiConnectionError
+const useMidiConnectionError = use('midiConnectionError')
+const getMidiConnectionError = get('midiConnectionError')
+const setMidiConnectionError = set('midiConnectionError')
+
+// maxChordComplexity
+const useMaxChordComplexity = use('maxChordComplexity')
+const getMaxChordComplexity = get('maxChordComplexity')
+const setMaxChordComplexity = set('maxChordComplexity')
+
+// chordTypeFilter
+const useChordTypeFilter = use('chordTypeFilter')
+const getChordTypeFilter = get('chordTypeFilter')
+const setChordTypeFilter = set('chordTypeFilter')
+
+const useMidiOutputNames = use('midiOutputNames')
+const getMidiOutputNames = get('midiOutputNames')
+const setMidiOutputNames = set('midiOutputNames')
 
 type StoreT = {
 	reset: () => void
+  setState: (state: any) => void
+  set: (state: any) => (value: any) => void
 	useLogs: () => LogConfigT[]
 	setLogs: (logs: LogConfigT[]) => void
 	useOctave: () => number
@@ -177,8 +273,18 @@ type StoreT = {
 	getIsKeyCodePressed: (keyCode: string) => boolean
 	useMidiConnectionError: () => any
 	setMidiConnectionError: (midiConnectionError: any) => void
-
-	midiConnectionError: any
+	useMaxChordComplexity: () => number
+	setMaxChordComplexity: (maxChordComplexity: number) => void
+	useChordTypeFilter: () => string
+	setChordTypeFilter: (chordTypeFilter: string) => void
+  getIsNotePlaying: (note: string) => boolean
+  useIsChordPlaying: (chordName: string) => boolean
+  addPlayingChordName: (chordName: string) => void
+  useMidiOutputNames: () => string[]
+  setMidiOutputNames: (midiOutputNames: string[]) => void
+  
+  midiOutputNames: string[]
+  midiConnectionError: any
 	logs: LogConfigT[]
 	octave: number
 	scaleName: string
@@ -198,10 +304,13 @@ type StoreT = {
 	playingRootNotes: string[]
 	keyMap: KeyMapT
 	playingChordNames: string[]
+	maxChordComplexity: number
+	chordTypeFilter: string
 }
 
 export const store: StoreT = {
 	reset,
+  set,
 	useLogs,
 	setLogs,
 	useOctave,
@@ -240,16 +349,39 @@ export const store: StoreT = {
 	setKeyMap,
 	getKeyMapping,
 	useKeyMapping,
+	addPressedKeyCode,
+	removePressedKeyCode,
 	usePlayingChordNames,
 	setPlayingChordNames,
 	useIsKeyCodePressed,
-	addPressedKeyCode,
-	removePressedKeyCode,
 	useIsRootNotePlaying,
 	useIsNotePlaying,
 	getIsKeyCodePressed,
 	useMidiConnectionError,
 	setMidiConnectionError,
+	useMaxChordComplexity,
+	setMaxChordComplexity,
+	useChordTypeFilter,
+	setChordTypeFilter,
+  getIsNotePlaying,
+  useIsChordPlaying,
+  addPlayingChordName,
+  useMidiOutputNames,
+  setMidiOutputNames,
+
+  setState: (state) => $main.set(state),
+
+  get midiOutputNames() {
+      return getMidiOutputNames()
+  },
+
+	get maxChordComplexity() {
+		return getMaxChordComplexity()
+	},
+
+	get chordTypeFilter() {
+		return getChordTypeFilter()
+	},
 
 	get midiConnectionError() {
 		return getMidiConnectionError()

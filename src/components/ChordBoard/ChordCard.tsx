@@ -3,9 +3,11 @@ import './ChordCard.css'
 
 import * as React from 'react'
 import { Flex } from '../Flex'
-import { Text, Card, Heading } from '@radix-ui/themes'
+import { Text, Card, Heading, Button } from '@radix-ui/themes'
 import { toner } from '../../utilities/toner/toner'
-import { $core, $midi } from '../../stores'
+import { store } from '../../store'
+import appConfig from '../../app.config.json'
+import classcat from 'classcat'
 
 type PropsT = {
 	chordName: string
@@ -18,57 +20,24 @@ const useChord = (chordName: string) => {
 }
 
 export const ChordCard = React.memo((props: PropsT) => {
-	const maxComplexity = $core.use((state) => state.maxChordComplexity)
+	const maxComplexity = store.useMaxChordComplexity()
+	const isPlaying = store.useIsChordPlaying(props.chordName)
+	const isPlayingClassName = isPlaying && 'ChordCardPlaying'
+	const className = classcat(['ChordCard', isPlayingClassName])
 
 	const chord = useChord(props.chordName)
-	const color = tonicColors[chord.tonic]
-
-	const onMouseDown = () => {
-		$midi.playChord(chord.notes)
-	}
-
+	const color = appConfig.tonicColors[chord.tonic]
 	if (chord.notes.length > maxComplexity) return null
 
+	const onMouseDown = () => {
+		store.addPlayingChordName(props.chordName)
+	}
+
 	return (
-		<Card className="ChordCard" style={{ background: `var(--${color}-a6)` }} onMouseDown={onMouseDown}>
+		<Button className={className} color={color} variant="ghost" onMouseDown={onMouseDown}>
 			<Flex.Row gap="3" align="center">
 				<Text className="ChordCardChordName">{chord.symbol}</Text>
 			</Flex.Row>
-		</Card>
+		</Button>
 	)
 })
-
-const tonicColors = {
-	C: 'mint',
-	'C#': 'sky',
-	Db: 'violet',
-	D: 'plum',
-	'D#': 'crimson',
-	Eb: 'tomato',
-	E: 'orange',
-	F: 'lime',
-	'F#': 'grass',
-	Gb: 'teal',
-	G: 'cyan',
-	'G#': 'indigo',
-	Ab: 'pink',
-	A: 'ruby',
-	'A#': 'amber',
-	Bb: 'bronze',
-	B: 'jade'
-}
-
-const playChord = (chordName: string) => {
-	// get octave from $core
-	const octave = $core.state.octave
-}
-
-// handleChord({
-//   chordName: 'C minor',
-//   octave: 3,
-
-// })
-
-// const handleChord = (options) => {
-
-// }

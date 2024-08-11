@@ -30,7 +30,7 @@ const VboardRow = React.memo((props: VboardRowPropsT) => {
 })
 
 export const Vboard = React.memo(() => {
-	const rows = keyboardLayoutsConfig.default.rows
+	const rows = keyboardLayoutsConfig.standard.rows
 
 	useKeyboardEvents({
 		onKeyDown: handleEngageButton,
@@ -53,6 +53,7 @@ export const Vboard = React.memo(() => {
 
 const DataRow = () => {
 	const playingNotes = store.usePlayingNotes()
+	console.log('playingNotes', playingNotes)
 
 	return (
 		<Flex.Row gap="3" p="2" className="VboardDataRow">
@@ -81,16 +82,18 @@ const handleFunctionalKey = (key) => {
 
 const handleEngageButton = (event: KeyboardEvent) => {
 	event.preventDefault()
-	const key = store.getKeyMapping(event.code)
-	const isKeyAlreadyPressed = store.getIsKeyCodePressed(key.keyCode)
+	const key = store.keyMap[event.code]
+	const isKeyAlreadyPressed = store.pressedKeyCodes.includes(key.keyCode)
 	if (isKeyAlreadyPressed) return
+	console.log('ADDING KEY', key.keyCode)
 	if (key.isFunctional) return handleFunctionalKey(key)
 	if (key.isPlayable) return store.addPressedKeyCode(key.keyCode)
 }
 
 const handleDisengageButton = (event: KeyboardEvent) => {
 	event.preventDefault()
-	const key = store.getKeyMapping(event.code)
+	const key = store.keyMap[event.code]
+	console.log('REMOVING KEY', key.keyCode)
 	if (key.isFunctional) store.removePressedKeyCode(key.keyCode)
 	if (key.isPlayable) store.removePressedKeyCode(key.keyCode)
 }
