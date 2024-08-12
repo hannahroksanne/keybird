@@ -7,6 +7,7 @@ import { toner } from '../../utilities/toner'
 import { store } from '../../store'
 import appConfig from '../../consts/app.config.json'
 import classcat from 'classcat'
+import * as Tonal from 'tonal'
 
 type PropsT = {
 	chordName: string
@@ -14,7 +15,7 @@ type PropsT = {
 
 const useChord = (chordName: string) => {
 	return React.useMemo(() => {
-		return toner.getChord(chordName)
+		return Tonal.Chord.get(chordName)
 	}, [chordName])
 }
 

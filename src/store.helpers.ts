@@ -44,18 +44,6 @@ export function generateKeyMap(options: GenerateKeyMapOptionsT): KeyMapT {
 		const note = notes[remapIndex] || originalNote
 		const rootNote = remapIndex ? toner.getNoteRootNote(note) : originalRootNote
 
-		console.log({
-			scaleChords,
-			originalNote,
-			originalRootNote,
-			note,
-			rootNote,
-			remapIndex,
-			keyCode,
-			keyConfig,
-			scaleNotes: options.scaleNotes
-		})
-
 		const chordName = getRandom(scaleChords[originalRootNote])
 
 		keyMap[keyCode] = {

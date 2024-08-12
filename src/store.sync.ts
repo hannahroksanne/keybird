@@ -7,6 +7,9 @@ import { WebMidi } from 'webmidi'
 import Soundfont, { InstrumentName } from 'soundfont-player'
 import keyMapLayoutsConfig from './consts/keyMapLayouts.config.json'
 import { chords } from './consts/chords'
+import { usePrevious } from '@uidotdev/usehooks'
+import { midi } from './midi.helper'
+import getDiff from 'array-differ'
 
 const playableKeyCodes = Object.values(defaultKeysConfig).reduce((final, key) => {
 	if (key.isPlayable) final.push(key.keyCode)
@@ -56,7 +59,7 @@ function usePlayingNotesSync() {
 	const playablePressedkeyCodes = pressedKeyCodes.filter((code) => playableKeyCodes.includes(code))
 	const joinedPressedKeyCodes = playablePressedkeyCodes.join(' ')
 
-	React.useEffect(() => {
+	const doIt = async () => {
 		const keyMap = store.keyMap
 		const keys = pressedKeyCodes.map((keyCode) => keyMap[keyCode])
 		const playableKeys = keys.filter((key) => key.isPlayable) as PlayableKeyMappingT[]
@@ -64,7 +67,44 @@ function usePlayingNotesSync() {
 		const playingRootNotes = toner.getNotesRootNotes(playingNotes)
 		store.setPlayingNotes(playingNotes)
 		store.setPlayingRootNotes(playingRootNotes)
+	}
+
+	React.useEffect(() => {
+		doIt()
 	}, [joinedPressedKeyCodes])
+}
+
+const getDifference = (outdated: string[], updated: string[]) => {
+	const stoppedNotes = getDiff(outdated, updated)
+	const startedNotes = getDiff(updated, outdated)
+	return [startedNotes, stoppedNotes]
+}
+
+function useMidiOutput() {
+	const playingNotes = store.usePlayingNotes()
+	const previouslyPlayingNotes = usePrevious(playingNotes) || []
+	const joinedPlayingNotes = playingNotes.join(' ')
+
+	const doIt = async () => {
+		console.log('playingNotes', playingNotes)
+		console.log('previouslyPlayingNotes', previouslyPlayingNotes)
+
+		const [startedNotes, stoppedNotes] = getDifference(previouslyPlayingNotes, playingNotes)
+		console.log('startedNotes', startedNotes)
+		console.log('stoppedNotes', stoppedNotes)
+
+		startedNotes.forEach((note) => {
+			midi.playNote(note)
+		})
+
+		stoppedNotes.forEach((note) => {
+			midi.stopNote(note)
+		})
+	}
+
+	React.useEffect(() => {
+		doIt()
+	}, [joinedPlayingNotes])
 }
 
 function useKeyMapSync() {
@@ -172,7 +212,6 @@ function useInstrumentLoader() {
 }
 
 export function useStoreSync() {
-	console.log('useStoreSync')
 	useInstrumentLoader()
 	useScaleNameSync()
 	useScaleNotesSync()
@@ -180,4 +219,5 @@ export function useStoreSync() {
 	useKeyMapSync()
 	useMidiSync()
 	useMidiOutputsSync()
+	useMidiOutput()
 }

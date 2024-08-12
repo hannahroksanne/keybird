@@ -1,10 +1,10 @@
-import { Theme } from '@radix-ui/themes'
+import { Theme as RadixTheme } from '@radix-ui/themes'
 
 export const GrayTheme = (props) => {
 	const { children, ...otherProps } = props
 
 	return (
-		<Theme
+		<RadixTheme
 			className="gray"
 			appearance="dark"
 			accentColor="gray"
@@ -15,13 +15,13 @@ export const GrayTheme = (props) => {
 			{...otherProps}
 		>
 			{props.children}
-		</Theme>
+		</RadixTheme>
 	)
 }
 
 export const PurpleTheme = (props) => {
 	return (
-		<Theme
+		<RadixTheme
 			className="purple"
 			appearance="dark"
 			accentColor="purple"
@@ -31,6 +31,22 @@ export const PurpleTheme = (props) => {
 			radius="medium"
 		>
 			{props.children}
-		</Theme>
+		</RadixTheme>
+	)
+}
+
+export const DarkYellowTheme = (props) => {
+	return (
+		<RadixTheme
+			className="dark yellow"
+			appearance="dark"
+			accentColor="yellow"
+			grayColor="gray"
+			panelBackground="solid"
+			scaling="100%"
+			radius="medium"
+		>
+			{props.children}
+		</RadixTheme>
 	)
 }

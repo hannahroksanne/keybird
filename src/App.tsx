@@ -15,17 +15,23 @@ import { MainMenuBar } from './components/MainMenuBar/MainMenuBar'
 import { Flex } from './components/Flex'
 import { useStoreSync } from './store.sync'
 import { store } from './store'
+import React from 'react'
 
 globalThis.store = store
 
 export const App = () => {
 	const [location] = useLocation()
+	const [shouldLoad, setShouldLoad] = React.useState(false)
+
+	React.useEffect(() => {
+		setTimeout(() => setShouldLoad(true), 1500)
+	}, [])
 
 	return (
 		<GrayTheme>
 			<main data-testid="App">
-				<Flex.Column data-testid="Router" data-location={location.substring(1)} justify="between" style={{ height: '100%' }}>
-					<HookBranch />
+				<Flex.Column data-testid="Router" data-location={location.substring(1)} style={{ height: '100%' }}>
+					{shouldLoad && <HookBranch />}
 					<MainMenuBar />
 					<Switch>
 						<Route path="/" component={Main} />

@@ -10,7 +10,7 @@ type MainStateT = {
 	scaleRootNote: string
 	scaleType: string
 	scaleNotes: string[]
-	scaleChordNames: string[]
+	scaleChordNames: ScaleChordsT
 	keyMapLayoutName: string
 	keyboardLayoutName: string
 	shouldShowAltLabels: boolean
@@ -45,7 +45,7 @@ const MAIN_INITIAL_STATE = {
 	scaleRootNote: appConfig.defaultScaleRootNote,
 	scaleType: appConfig.defaultScaleType,
 	scaleNotes: [],
-	scaleChordNames: [],
+	scaleChordNames: {},
 
 	keyMapLayoutName: appConfig.defaultKeyMapLayoutName,
 	keyboardLayoutName: appConfig.defaultKeyboardLayoutName,
@@ -391,9 +391,14 @@ type StoreT = {
 	maxChordComplexity: number
 	chordTypeFilter: string
   isOutputEnabled: boolean
+
+  useChordsWithRootNote: (rootNote: string) => string[]
 }
 
+const useChordsWithRootNote = (rootNote: string) => $main.use((state) => state.scaleChordNames[rootNote])
+
 export const store: StoreT = {
+  useChordsWithRootNote,
   setState: (state) => $main.set(state),
 	reset,
   set,

@@ -1,3 +1,7 @@
+type ScaleChordsT = {
+	[key: string]: string[]
+}
+
 type KeyConfigT = {
 	keyCode: string
 	color: string
