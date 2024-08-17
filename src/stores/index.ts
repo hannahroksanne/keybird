@@ -1,10 +1,10 @@
-import { createHooks } from '../utilities/createHooks'
-import { logsValues } from './logs.store'
-import { outputValues } from './output.values'
+// import { createHooks } from '../utilities/createHooks'
+// import { logsValues } from './logs.store'
+// import { outputValues } from './output.values'
 
-type BaseT = typeof logsValues & typeof outputValues
+// type BaseT = typeof logsValues & typeof outputValues
 
-export const use = createHooks<BaseT>({
-	...logsValues,
-	...outputValues
-})
+// export const use = createHooks<BaseT>({
+// 	...logsValues,
+// 	...outputValues
+// })

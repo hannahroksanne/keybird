@@ -79,11 +79,13 @@ const createOutput = () => {
 
 export const playNote = (note, options = {}) => {
 	const output = createOutput()
+	// @ts-ignore
 	output.playNote(note, options)
 }
 
 export const stopNote = (note) => {
 	const output = createOutput()
+	// @ts-ignore
 	output.stopNote(note)
 }
 

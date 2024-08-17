@@ -11,12 +11,12 @@ const getFunctionalKeyConfigsMap = (configs: KeyConfigMapT) => {
 	return filterObject(configs, checkIsEntryFunctional)
 }
 
-type GenerateKeyMapOptionsT = {
-	scaleName: string
-	scaleNotes: string[]
-	keyMapLayout: AnyObjectT
-	octave: number
-}
+// type GenerateKeyMapOptionsT = {
+// 	scaleName: string
+// 	scaleNotes: string[]
+// 	keyMapLayout: AnyObjectT
+// 	octave: number
+// }
 
 export function generateKeyMap(): KeyMapT {
 	const scaleName = store.scaleName
