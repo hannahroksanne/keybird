@@ -1,6 +1,6 @@
 import { Label } from '@radix-ui/react-label'
 import { Select, Text, TextField } from '@radix-ui/themes'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 import { Flex } from '../Flex'
 
 export const OctaveController = () => {

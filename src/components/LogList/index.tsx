@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 import { Button, Heading, Link, Text } from '@radix-ui/themes'
 import { Flex } from '../Flex'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 
 export const LogList = () => {
 	const logs = store.useLogs()

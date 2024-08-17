@@ -1,80 +1,39 @@
 import { create } from 'zustand'
-import appConfig from './consts/app.config.json'
+import appConfig from '../consts/app.config.json'
 
-type MainStateT = {
-  audioContext: any
-	logs: LogConfigT[]
-	isLogsOverlayOpen: boolean
-	octave: number
-	scaleName: string
-	scaleRootNote: string
-	scaleType: string
-	scaleNotes: string[]
-	scaleChordNames: ScaleChordsT
-	keyMapLayoutName: string
-	keyboardLayoutName: string
-	shouldShowAltLabels: boolean
-	isMidiConnected: boolean
-	isMidiEnabled: boolean
-	midiOutputName: string
-	midiConnectionError: any
-  builtInInstrumentNames: string[]
-  midiOutputNames: string[]
-	pressedKeyCodes: string[]
-	playingNotes: string[]
-	playingRootNotes: string[]
-	keyMap: KeyMapT
-	playingChordNames: string[]
-	maxChordComplexity: number
-	chordTypeFilter: string
-  isLocalSoundSelected: boolean
-  loadedInstruments: AnyObjectT
-  selectedInstrumentName: string
-  isOutputEnabled: boolean
-  areInstrumentsLoaded: boolean
-  isBuiltInInstrumentSelected: boolean
+type ProgressionNoteT = {
+	name: string
+	startTicks: number
+	endTicks: number
+	velocity: number
+	// Derived properties.
+	rootNote?: string
+	duration?: number
+	octave?: number
+	ticks?: number
+	midi?: number
+	time?: number
 }
 
-const MAIN_INITIAL_STATE = {
-  audioContext: null,
-	isLogsOverlayOpen: false,
-	logs: [],
-	
-  octave: 2,
-	scaleName: `${appConfig.defaultScaleRootNote} ${appConfig.defaultScaleType}`,
-	scaleRootNote: appConfig.defaultScaleRootNote,
-	scaleType: appConfig.defaultScaleType,
-	scaleNotes: [],
-	scaleChordNames: {},
-
-	keyMapLayoutName: appConfig.defaultKeyMapLayoutName,
-	keyboardLayoutName: appConfig.defaultKeyboardLayoutName,
-	shouldShowAltLabels: false,
-	keyMap: {},
-	
-  builtInInstrumentNames: appConfig.builtInInstrumentNames,
-  isMidiConnected: false,
-	isMidiEnabled: false,
-	midiOutputName: '',
-	midiConnectionError: null,
-  midiOutputNames: [],
-  isLocalSoundSelected: false,
-  selectedInstrumentName: '',
-  loadedInstruments: {},
-	isOutputEnabled: false,
-
-  pressedKeyCodes: [],
-	playingNotes: [],
-	playingRootNotes: [],
-	playingChordNames: [],
-	
-  maxChordComplexity: 5,
-	chordTypeFilter: 'all',
-  areInstrumentsLoaded: false,
-  isBuiltInInstrumentSelected: false
+type ProgressionStateT = {
+	tempo: number
+	chordNames: string[]
+	notes: { [note: string]: ProgressionNoteT }
+	performanceName: string
+	performanceId: string
+	isPlaying: boolean
 }
 
-const useMainStore = create<MainStateT>(() => MAIN_INITIAL_STATE)
+const INITIAL_STATE = {
+	tempo: 100,
+	notes: {},
+	chordNames: [],
+	performanceName: '',
+	performanceId: '',
+	isPlaying: false
+}
+
+const useMainStore = create<ProgressionStateT>(() => INITIAL_STATE)
 
 const $main = {
 	use: useMainStore,
@@ -84,33 +43,37 @@ const $main = {
 	}
 }
 
-const reset = () => $main.set(MAIN_INITIAL_STATE)
-
+const reset = () => $main.set(INITIAL_STATE)
 const noop = (value: any) => value
 
-const without = (target) => (item) => {
-  console.log('wihout', { target, item })
-  const x = target.filter((_item) => _item !== item)
-  console.log({ x })
-  return x
-}
-
-
-const asArray = (value) => Array.isArray(value) ? value : [value]
+const asArray = (value) => (Array.isArray(value) ? value : [value])
 const unique = (target: any[]) => (item: any) => Array.from(new Set([...target, ...asArray(item)]))
-const withOne = (target: any[]) => (item: any) => target.includes(item) ? target : [...target, item]
-const useIncludes = (stateKey: string) => (item: any) => $main.use(state => state[stateKey].includes(item))
+const withOne = (target: any[]) => (item: any) => (target.includes(item) ? target : [...target, item])
+const useIncludes = (stateKey: string) => (item: any) => $main.use((state) => state[stateKey].includes(item))
 const getIncludes = (stateKey: string) => (item: any) => $main.state[stateKey].includes(item)
-const use = (stateKey: string, mod: any = noop) => () => $main.use((state) => mod(state[stateKey]))
-const get = (stateKey: string, mod: any = noop) => () => mod($main.state[stateKey])
-const set = (stateKey: string, mod: any = noop) => (value: any) => $main.set((state) => ({ [stateKey]: mod(value ?? state[stateKey]) }))
-const setFromState = (key: string, mod: any = noop) => () => $main.set((state) => ({ [key]: mod(state[key], state) }))
-const setWithout = (key: string) => (item: any) => $main.set(state => ({ [key]: without(state[key])(item) }))
-const addUnique = (key: string) => (item: any) => $main.set(state => ({ [key]: unique(state[key])(item) }))
-const toggle = (key: string) => setFromState(key, (value: boolean) => !value) 
-  
-  // set(key, (value: boolean) => !value)
+const use =
+	(stateKey: string, mod: any = noop) =>
+	() =>
+		$main.use((state) => mod(state[stateKey]))
+const get =
+	(stateKey: string, mod: any = noop) =>
+	() =>
+		mod($main.state[stateKey])
+const set =
+	(stateKey: string, mod: any = noop) =>
+	(value: any) =>
+		$main.set((state) => ({ [stateKey]: mod(value ?? state[stateKey]) }))
+const setFromState =
+	(key: string, mod: any = noop) =>
+	() =>
+		$main.set((state) => ({ [key]: mod(state[key], state) }))
+const setWithout = (key: string) => (item: any) => $main.set((state) => ({ [key]: without(state[key])(item) }))
+const addUnique = (key: string) => (item: any) => $main.set((state) => ({ [key]: unique(state[key])(item) }))
+const toggle = (key: string) => setFromState(key, (value: boolean) => !value)
 
+const useChordNames = use('chordNames')
+const getChordNames = get('chordNames')
+const setChordNames = set('chordNames')
 // logs
 const useLogs = use('logs')
 const getLogs = get('logs')
@@ -248,7 +211,7 @@ const getLoadedInstruments = get('loadedInstruments')
 const setLoadedInstruments = set('loadedInstruments')
 
 const addLoadedInstrument = (name: string, instrument: any) => {
-  $main.set({ loadedInstruments: { ...$main.state.loadedInstruments, [name]: instrument } })
+	$main.set({ loadedInstruments: { ...$main.state.loadedInstruments, [name]: instrument } })
 }
 
 const useSelectedInstrumentName = use('selectedInstrumentName')
@@ -274,10 +237,10 @@ const getIsBuiltInInstrumentSelected = get('isBuiltInInstrumentSelected')
 const setIsBuiltInInstrumentSelected = set('isBuiltInInstrumentSelected')
 
 type StoreT = {
-  audioContext: any,
+	audioContext: any
 	reset: () => void
-  setState: (state: any) => void
-  set: (state: any) => (value: any) => void
+	setState: (state: any) => void
+	set: (state: any) => (value: any) => void
 	useLogs: () => LogConfigT[]
 	setLogs: (logs: LogConfigT[]) => void
 	useOctave: () => number
@@ -330,45 +293,44 @@ type StoreT = {
 	setMaxChordComplexity: (maxChordComplexity: number) => void
 	useChordTypeFilter: () => string
 	setChordTypeFilter: (chordTypeFilter: string) => void
-  getIsNotePlaying: (note: string) => boolean
-  useIsChordPlaying: (chordName: string) => boolean
-  addPlayingChordName: (chordName: string) => void
-  useMidiOutputNames: () => string[]
-  setMidiOutputNames: (midiOutputNames: string[]) => void
-  useIsLocalSoundSelected: () => boolean
-  getIsLocalSoundSelected: () => boolean
-  setIsLocalSoundSelected: (isLocalSoundSelected: boolean) => void
-  useLoadedInstruments: () => AnyObjectT
-  getLoadedInstruments: () => AnyObjectT
-  setLoadedInstruments: (loadedInstruments: AnyObjectT) => void
-  addLoadedInstrument: (name: string, instrument: any) => void
-  useSelectedInstrumentName: () => string
-  getSelectedInstrumentName: () => string
-  setSelectedInstrumentName: (selectedInstrumentName: string) => void
-  useIsOutputEnabled: () => boolean
-  getIsOutputEnabled: () => boolean
-  setIsOutputEnabled: (isOutputEnabled: boolean) => void
-  toggleIsOutputEnabled: () => void
-  useAreInstrumentsLoaded: () => boolean
-  getAreInstrumentsLoaded: () => boolean
-  setAreInstrumentsLoaded: (areInstrumentsLoaded: boolean) => void
-  toggleAreInstrumentsLoaded: () => void
-  toggleIsMidiEnabled: () => void
-  useAudioContext: () => any
-  getAudioContext: () => any
-  setAudioContext: (audioContext: any) => void
-  useIsBuiltInInstrumentSelected: () => boolean
-  getIsBuiltInInstrumentSelected: () => boolean
-  setIsBuiltInInstrumentSelected: (isBuiltInInstrumentSelected: boolean) => void
-  
+	getIsNotePlaying: (note: string) => boolean
+	useIsChordPlaying: (chordName: string) => boolean
+	addPlayingChordName: (chordName: string) => void
+	useMidiOutputNames: () => string[]
+	setMidiOutputNames: (midiOutputNames: string[]) => void
+	useIsLocalSoundSelected: () => boolean
+	getIsLocalSoundSelected: () => boolean
+	setIsLocalSoundSelected: (isLocalSoundSelected: boolean) => void
+	useLoadedInstruments: () => AnyObjectT
+	getLoadedInstruments: () => AnyObjectT
+	setLoadedInstruments: (loadedInstruments: AnyObjectT) => void
+	addLoadedInstrument: (name: string, instrument: any) => void
+	useSelectedInstrumentName: () => string
+	getSelectedInstrumentName: () => string
+	setSelectedInstrumentName: (selectedInstrumentName: string) => void
+	useIsOutputEnabled: () => boolean
+	getIsOutputEnabled: () => boolean
+	setIsOutputEnabled: (isOutputEnabled: boolean) => void
+	toggleIsOutputEnabled: () => void
+	useAreInstrumentsLoaded: () => boolean
+	getAreInstrumentsLoaded: () => boolean
+	setAreInstrumentsLoaded: (areInstrumentsLoaded: boolean) => void
+	toggleAreInstrumentsLoaded: () => void
+	toggleIsMidiEnabled: () => void
+	useAudioContext: () => any
+	getAudioContext: () => any
+	setAudioContext: (audioContext: any) => void
+	useIsBuiltInInstrumentSelected: () => boolean
+	getIsBuiltInInstrumentSelected: () => boolean
+	setIsBuiltInInstrumentSelected: (isBuiltInInstrumentSelected: boolean) => void
 
-  isBuiltInInstrumentSelected: boolean
-  areInstrumentsLoaded: boolean
-  loadedInstruments: AnyObjectT
-  selectedInstrumentName: string
-  isLocalSoundSelected: boolean
-  midiOutputNames: string[]
-  midiConnectionError: any
+	isBuiltInInstrumentSelected: boolean
+	areInstrumentsLoaded: boolean
+	loadedInstruments: AnyObjectT
+	selectedInstrumentName: string
+	isLocalSoundSelected: boolean
+	midiOutputNames: string[]
+	midiConnectionError: any
 	logs: LogConfigT[]
 	octave: number
 	scaleName: string
@@ -390,18 +352,18 @@ type StoreT = {
 	playingChordNames: string[]
 	maxChordComplexity: number
 	chordTypeFilter: string
-  isOutputEnabled: boolean
+	isOutputEnabled: boolean
 
-  useChordsWithRootNote: (rootNote: string) => string[]
+	useChordsWithRootNote: (rootNote: string) => string[]
 }
 
 const useChordsWithRootNote = (rootNote: string) => $main.use((state) => state.scaleChordNames[rootNote])
 
 export const store: StoreT = {
-  useChordsWithRootNote,
-  setState: (state) => $main.set(state),
+	useChordsWithRootNote,
+	setState: (state) => $main.set(state),
 	reset,
-  set,
+	set,
 	useLogs,
 	setLogs,
 	useOctave,
@@ -454,69 +416,68 @@ export const store: StoreT = {
 	setMaxChordComplexity,
 	useChordTypeFilter,
 	setChordTypeFilter,
-  getIsNotePlaying,
-  useIsChordPlaying,
-  addPlayingChordName,
-  useMidiOutputNames,
-  setMidiOutputNames,
-  useIsLocalSoundSelected,
-  getIsLocalSoundSelected,
-  setIsLocalSoundSelected,
-  useLoadedInstruments,
-  getLoadedInstruments,
-  setLoadedInstruments,
-  addLoadedInstrument,
-  useSelectedInstrumentName,
-  getSelectedInstrumentName,
-  setSelectedInstrumentName,
-  useIsOutputEnabled,
-  getIsOutputEnabled,
-  setIsOutputEnabled,
-  toggleIsOutputEnabled,
-  useAreInstrumentsLoaded,
-  getAreInstrumentsLoaded,
-  setAreInstrumentsLoaded,
-  toggleAreInstrumentsLoaded,
-  toggleIsMidiEnabled,
-  useAudioContext,
-  getAudioContext,
-  setAudioContext,
-  useIsBuiltInInstrumentSelected,
-  getIsBuiltInInstrumentSelected,
-  setIsBuiltInInstrumentSelected,
+	getIsNotePlaying,
+	useIsChordPlaying,
+	addPlayingChordName,
+	useMidiOutputNames,
+	setMidiOutputNames,
+	useIsLocalSoundSelected,
+	getIsLocalSoundSelected,
+	setIsLocalSoundSelected,
+	useLoadedInstruments,
+	getLoadedInstruments,
+	setLoadedInstruments,
+	addLoadedInstrument,
+	useSelectedInstrumentName,
+	getSelectedInstrumentName,
+	setSelectedInstrumentName,
+	useIsOutputEnabled,
+	getIsOutputEnabled,
+	setIsOutputEnabled,
+	toggleIsOutputEnabled,
+	useAreInstrumentsLoaded,
+	getAreInstrumentsLoaded,
+	setAreInstrumentsLoaded,
+	toggleAreInstrumentsLoaded,
+	toggleIsMidiEnabled,
+	useAudioContext,
+	getAudioContext,
+	setAudioContext,
+	useIsBuiltInInstrumentSelected,
+	getIsBuiltInInstrumentSelected,
+	setIsBuiltInInstrumentSelected,
 
-  get isBuiltInInstrumentSelected() {
-    return getIsBuiltInInstrumentSelected()
-  },
+	get isBuiltInInstrumentSelected() {
+		return getIsBuiltInInstrumentSelected()
+	},
 
-  get audioContext() {
-    return getAudioContext()
-  },
-  
-  get areInstrumentsLoaded() {
-    return getAreInstrumentsLoaded()
-  },
+	get audioContext() {
+		return getAudioContext()
+	},
 
-  get isOutputEnabled() {
-    return getIsOutputEnabled()
-  },
+	get areInstrumentsLoaded() {
+		return getAreInstrumentsLoaded()
+	},
 
-  get loadedInstruments() {
-    return getLoadedInstruments()
-  },
+	get isOutputEnabled() {
+		return getIsOutputEnabled()
+	},
 
-  get selectedInstrumentName() {
-    return getSelectedInstrumentName()
-  },
+	get loadedInstruments() {
+		return getLoadedInstruments()
+	},
 
-  get isLocalSoundSelected() {
-    return getIsLocalSoundSelected()
-  },
+	get selectedInstrumentName() {
+		return getSelectedInstrumentName()
+	},
 
+	get isLocalSoundSelected() {
+		return getIsLocalSoundSelected()
+	},
 
-  get midiOutputNames() {
-      return getMidiOutputNames()
-  },
+	get midiOutputNames() {
+		return getMidiOutputNames()
+	},
 
 	get maxChordComplexity() {
 		return getMaxChordComplexity()

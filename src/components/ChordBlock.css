@@ -108,3 +108,22 @@
 	justify-content: space-evenly;
 	height: 89px;
 }
+
+.ChordBlockFrame.ChordKeyBindBlock {
+	height: 120px;
+	min-width: 140px;
+	max-width: 140px;
+	width: 140px;
+}
+
+.ChordBlockFrame.ChordKeyBindBlock .ChordBlockContent {
+	padding-right: inherit;
+	max-height: 78px;
+	align-items: center;
+	justify-content: center;
+	padding-top: 16px;
+}
+
+.ChordBlockFrame.ChordKeyBindBlock .ChordBlockSymbol {
+	font-size: 36px;
+}

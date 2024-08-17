@@ -9,22 +9,20 @@ import './styles/fonts.css'
 import { GrayTheme } from './components/Themes'
 import { Route, Switch, useLocation } from 'wouter'
 import { Chords } from './views/Chords'
-import { Settings } from './views/Settings'
 import { Main } from './views/Main'
 import { MainMenuBar } from './components/MainMenuBar/MainMenuBar'
 import { Flex } from './components/Flex'
-import { useStoreSync } from './store.sync'
-import { store } from './store'
+import { useStoreSync } from './stores/store.sync'
 import React from 'react'
 
-globalThis.store = store
+const areWeInProduction = !import.meta.env.DEV // trust it
 
 export const App = () => {
 	const [location] = useLocation()
 	const [shouldLoad, setShouldLoad] = React.useState(false)
 
 	React.useEffect(() => {
-		setTimeout(() => setShouldLoad(true), 1500)
+		setTimeout(() => setShouldLoad(true), 500)
 	}, [])
 
 	return (
@@ -36,7 +34,6 @@ export const App = () => {
 					<Switch>
 						<Route path="/" component={Main} />
 						<Route path="/chords" component={Chords} />
-						<Route path="/settings" component={Settings} />
 					</Switch>
 					<GlowPixels />
 				</Flex.Column>

@@ -3,8 +3,7 @@ import './BigChordCard.css'
 import * as React from 'react'
 import { Flex } from '../Flex'
 import { Text, Button } from '@radix-ui/themes'
-import { toner } from '../../utilities/toner'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 import appConfig from '../../consts/app.config.json'
 import classcat from 'classcat'
 import * as Tonal from 'tonal'
@@ -22,7 +21,7 @@ const useChord = (chordName: string) => {
 export const BigChordCard = React.memo((props: PropsT) => {
 	const isPlaying = store.useIsChordPlaying(props.chordName)
 	const isPlayingClassName = isPlaying && 'ChordCardPlaying'
-	const className = classcat(['ChordCard', isPlayingClassName])
+	const className = classcat(['BigChordCard', isPlayingClassName])
 	const chord = useChord(props.chordName)
 	const color = appConfig.tonicColors[chord.tonic]
 

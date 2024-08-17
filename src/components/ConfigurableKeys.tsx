@@ -1,51 +1,35 @@
 import './ConfigurableKeys.css'
 import React from 'react'
 import classcat from 'classcat'
-import defaultKeysConfig from '../consts/defaultKeys.config.json'
-import keyboardLayoutsConfig from '../consts/keyboardLayouts.config.json'
+import defaultKeysConfig from '../consts/default.keys.json'
+import keyboardLayoutsConfig from '../consts/default.layouts.json'
 import { Button, Text, ContextMenu } from '@radix-ui/themes'
 import { Flex } from './Flex'
-import { store } from '../store'
+import { store } from '../stores/store'
 import isEmpty from 'is-empty'
 
 import appConfig from '../consts/app.config.json'
+import { playableKeyCodes } from '../consts'
 
-const useConfigurableKeysState = () => {
-	const layoutName = store.useKeyboardLayoutName()
-	const layout = keyboardLayoutsConfig[layoutName]
+// const useConfigurableKeysState = () => {
+// 	const layoutName = store.useKeyboardLayoutName()
+// 	const layout = keyboardLayoutsConfig[layoutName]
 
-	const playableRows = React.useMemo(() => {
-		const allKeyCodes = layout.rows.flat()
+// 	const playableRows = React.useMemo(() => {
+// 		const allKeyCodes = layout.rows.flat()
 
-		return allKeyCodes.reduce((final, keyCode) => {
-			const keyConfig = defaultKeysConfig[keyCode]
-			const isPlayable = keyConfig.isPlayable
-			if (isPlayable) final.push(keyConfig)
-			return final
-		}, [])
-	}, [])
+// 		return allKeyCodes.reduce((final, keyCode) => {
+// 			const keyConfig = defaultKeysConfig[keyCode]
+// 			const isPlayable = keyConfig.isPlayable
+// 			if (isPlayable) final.push(keyConfig)
+// 			return final
+// 		}, [])
+// 	}, [])
 
-	return playableRows
-}
-
-const usePlayableKeyCodes = () => {
-	const layoutName = store.useKeyboardLayoutName()
-	const layout = keyboardLayoutsConfig[layoutName]
-
-	return React.useMemo(() => {
-		const allKeyCodes = layout.rows.flat()
-
-		return allKeyCodes.reduce((final, keyCode) => {
-			const keyConfig = defaultKeysConfig[keyCode]
-			const isPlayable = keyConfig.isPlayable
-			if (isPlayable) final.push(keyCode)
-			return final
-		}, [])
-	}, [])
-}
+// 	return playableRows
+// }
 
 export const ConfigurableKeys = () => {
-	const playableKeyCodes = usePlayableKeyCodes()
 	const keyMap = store.useKeyMap()
 	if (isEmpty(keyMap)) return null
 

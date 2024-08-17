@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Flex } from '../Flex'
 import { Text, Button } from '@radix-ui/themes'
 import { toner } from '../../utilities/toner'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 import appConfig from '../../consts/app.config.json'
 import classcat from 'classcat'
 

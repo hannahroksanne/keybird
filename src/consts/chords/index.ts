@@ -55,3 +55,7 @@ export const chords = {
 	'G# minor': GSharpMinorChords,
 	'A# minor': ASharpMinorChords
 }
+
+console.log({
+	chords
+})

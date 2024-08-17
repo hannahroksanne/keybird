@@ -1,0 +1,23 @@
+.ChordKeybindOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 1000;
+}
+
+.ChordKeybindOverlay .inputKeyDisplay {
+	width: 120px;
+	height: 120px;
+	border: 2px solid var(--gray-5);
+	border-radius: 6px;
+}
+
+.ChordKeybindOverlay .instructionsBox {
+}
+.ChordKeybindOverlay .instructions {
+}
+.ChordKeybindOverlay .actions {
+}

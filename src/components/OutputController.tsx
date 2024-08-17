@@ -1,6 +1,6 @@
 import { CheckCircledIcon, CheckIcon, SpeakerLoudIcon, SpeakerOffIcon } from '@radix-ui/react-icons'
-import { Button, Spinner } from '@radix-ui/themes'
-import { store } from '../store'
+import { Button, Spinner, Select, Text } from '@radix-ui/themes'
+import { store } from '../stores/store'
 import React from 'react'
 
 const TEXT_OVERRIDES = ['Output Disabled', 'Loading Instruments', 'Loaded Instruments', 'Output Enabled']
@@ -48,5 +48,26 @@ export const OutputController = () => {
 		<Button variant={variant} color={color} size="2" onClick={toggleOutputEnabled} style={{ background, color: textColor }}>
 			<Icon style={{ color: iconColor, fill: iconColor }} /> {text}
 		</Button>
+	)
+}
+
+export const InstrumentSelector = () => {
+	const loadedInstruments = store.useLoadedInstruments()
+	const selectedInstrumentName = store.useSelectedInstrumentName()
+	const instrumentNames = Object.keys(loadedInstruments)
+
+	return (
+		<Select.Root value={selectedInstrumentName} onValueChange={store.setSelectedInstrumentName}>
+			<Select.Trigger>
+				<Text className="normalFont">Instrument: {selectedInstrumentName}</Text>
+			</Select.Trigger>
+			<Select.Content>
+				{instrumentNames.map((name) => (
+					<Select.Item key={name} value={name}>
+						{name}
+					</Select.Item>
+				))}
+			</Select.Content>
+		</Select.Root>
 	)
 }

@@ -1,5 +1,6 @@
 {
-	"push": {
+	"isomorphic": {
+		"description": "z-c, a-d, q-e, 1-3, then c is the note that would follow 3. m follows 6. etc. ",
 		"remaps": {
 			"KeyZ": 0,
 			"KeyX": 1,
@@ -100,6 +101,7 @@
 	},
 
 	"rightUpTrios": {
+		"description": "Like an isomorphic layout but without the repeated notes/octaves.",
 		"remaps": {},
 
 		"keyMapOrder": [

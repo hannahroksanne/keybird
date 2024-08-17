@@ -1,6 +1,6 @@
 import { InfoCircledIcon, KeyboardIcon, SpeakerLoudIcon, SpeakerOffIcon } from '@radix-ui/react-icons'
 import { Button, Spinner } from '@radix-ui/themes'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 import React from 'react'
 
 const COLOR_OVERRIDES = ['gray', 'gray', 'jade', 'red']

@@ -1,3 +1,16 @@
+type PlaybackNoteT = {
+	name: string
+	startTicks: number
+	endTicks: number
+	velocity: number
+	rootNote?: string
+	duration?: number
+	octave?: number
+	ticks?: number
+	midi?: number
+	time?: number
+}
+
 type ScaleChordsT = {
 	[key: string]: string[]
 }
@@ -44,6 +57,53 @@ type LogConfigT = {
 
 type LogsConfigT = {
 	[key: string]: LogConfigT
+}
+
+type MidiTempoT = {
+	bpm: number
+	time: number
+}
+
+type MidiTimeSignatureT = {
+	timeSignature: number
+	ticks: number
+	measures: number
+}
+
+type MidiHeaderT = {
+	PPQ: number
+	tempos: MidiTempoT[]
+	timeSignatures: MidiTimeSignatureT[]
+}
+
+type JsonMidiT = {
+	header: MidiHeaderT
+	tracks: MidiTrackT[]
+}
+
+type MidiTrackT = {
+	id: number
+	channel: number
+	instrument: Instrument
+	name: string
+	notes: MidiNoteT[]
+	endOfTrackTicks: number
+}
+
+type MidiInstrumentT = {
+	family: string
+	number: number
+	name: string
+}
+
+type MidiNoteT = {
+	duration: number
+	durationTicks: number
+	midi: number
+	name: string
+	ticks: number
+	time: number
+	velocity: number
 }
 
 // ####################### old below

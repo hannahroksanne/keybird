@@ -1,20 +1,14 @@
 import React from 'react'
 import { store } from './store'
-import { toner } from './utilities/toner'
+import { toner } from '../utilities/toner'
 import { generateKeyMap } from './store.helpers'
-import defaultKeysConfig from './consts/defaultKeys.config.json'
 import { WebMidi } from 'webmidi'
 import Soundfont, { InstrumentName } from 'soundfont-player'
-import keyMapLayoutsConfig from './consts/keyMapLayouts.config.json'
-import { chords } from './consts/chords'
+import { chords } from '../consts/chords'
 import { usePrevious } from '@uidotdev/usehooks'
 import { midi } from './midi.helper'
 import getDiff from 'array-differ'
-
-const playableKeyCodes = Object.values(defaultKeysConfig).reduce((final, key) => {
-	if (key.isPlayable) final.push(key.keyCode)
-	return final
-}, [])
+import { playableKeyCodes } from '../consts'
 
 // Syncs scaleName when scaleRootNote or scaleType changes.
 // Syncs scaleNotes when scaleName changes.
@@ -24,34 +18,24 @@ const playableKeyCodes = Object.values(defaultKeysConfig).reduce((final, key) =>
 function useScaleNameSync() {
 	const scaleRootNote = store.useScaleRootNote()
 	const scaleType = store.useScaleType()
-	const ref0 = React.useRef('')
-	const ref1 = React.useRef('')
+	const ref0 = usePrevious(scaleRootNote) || ''
+	const ref1 = usePrevious(scaleType) || ''
 
 	React.useEffect(() => {
-		const isRootNoteSame = ref0.current === scaleRootNote
-		const isScaleTypeSame = ref1.current === scaleType
+		const isRootNoteSame = ref0 === scaleRootNote
+		const isScaleTypeSame = ref1 === scaleType
 		if (isRootNoteSame && isScaleTypeSame) return
-		ref0.current = scaleRootNote
-		ref1.current = scaleType
 
 		const scaleName = `${scaleRootNote} ${scaleType}`
-		store.setScaleName(scaleName)
-	}, [scaleRootNote, scaleType])
-}
-
-function useScaleNotesSync() {
-	const scaleName = store.useScaleName()
-	const ref = React.useRef('')
-
-	React.useEffect(() => {
-		if (ref.current === scaleName) return
-		ref.current = scaleName
-
 		const scale = toner.getScale(scaleName)
-		store.setScaleNotes(scale.notes)
 		const chordNames = chords[scaleName]
-		store.setScaleChordNames(chordNames)
-	}, [scaleName])
+
+		store.setState({
+			scaleName,
+			scaleNotes: scale.notes,
+			scaleChordNames: chordNames
+		})
+	}, [scaleRootNote, scaleType])
 }
 
 function usePlayingNotesSync() {
@@ -59,18 +43,21 @@ function usePlayingNotesSync() {
 	const playablePressedkeyCodes = pressedKeyCodes.filter((code) => playableKeyCodes.includes(code))
 	const joinedPressedKeyCodes = playablePressedkeyCodes.join(' ')
 
-	const doIt = async () => {
+	const handlePlayingNotesAsync = async () => {
 		const keyMap = store.keyMap
 		const keys = pressedKeyCodes.map((keyCode) => keyMap[keyCode])
 		const playableKeys = keys.filter((key) => key.isPlayable) as PlayableKeyMappingT[]
 		const playingNotes = playableKeys.map((key) => key.note)
 		const playingRootNotes = toner.getNotesRootNotes(playingNotes)
-		store.setPlayingNotes(playingNotes)
-		store.setPlayingRootNotes(playingRootNotes)
+
+		store.setState({
+			playingNotes,
+			playingRootNotes
+		})
 	}
 
 	React.useEffect(() => {
-		doIt()
+		handlePlayingNotesAsync()
 	}, [joinedPressedKeyCodes])
 }
 
@@ -85,13 +72,8 @@ function useMidiOutput() {
 	const previouslyPlayingNotes = usePrevious(playingNotes) || []
 	const joinedPlayingNotes = playingNotes.join(' ')
 
-	const doIt = async () => {
-		console.log('playingNotes', playingNotes)
-		console.log('previouslyPlayingNotes', previouslyPlayingNotes)
-
+	const handleMidiOutputAsync = async () => {
 		const [startedNotes, stoppedNotes] = getDifference(previouslyPlayingNotes, playingNotes)
-		console.log('startedNotes', startedNotes)
-		console.log('stoppedNotes', stoppedNotes)
 
 		startedNotes.forEach((note) => {
 			midi.playNote(note)
@@ -103,7 +85,7 @@ function useMidiOutput() {
 	}
 
 	React.useEffect(() => {
-		doIt()
+		handleMidiOutputAsync()
 	}, [joinedPlayingNotes])
 }
 
@@ -112,27 +94,19 @@ function useKeyMapSync() {
 	const scaleNotes = store.useScaleNotes()
 	const joinedScaleNotes = scaleNotes.join(' ')
 	const keyMapLayoutName = store.useKeyMapLayoutName()
-	const ref0 = React.useRef(-1)
-	const ref1 = React.useRef('')
-	const ref2 = React.useRef('')
+	const ref0 = usePrevious(octave) || ''
+	const ref1 = React.useRef(joinedScaleNotes) || ''
+	const ref2 = React.useRef(keyMapLayoutName) || ''
 
 	React.useEffect(() => {
 		if (!scaleNotes.length) return
-		const isOctaveSame = ref0.current === octave
-		const isNotesSame = ref1.current === joinedScaleNotes
-		const isLayoutSame = ref2.current === keyMapLayoutName
+		const isOctaveSame = ref0 === octave
+		const isNotesSame = ref1 === joinedScaleNotes
+		const isLayoutSame = ref2 === keyMapLayoutName
 		if (isOctaveSame && isNotesSame && isLayoutSame) return
-		ref0.current = octave
-		ref1.current = joinedScaleNotes
-		ref2.current = keyMapLayoutName
 
-		const keyMap = generateKeyMap({
-			keyMapLayout: keyMapLayoutsConfig[store.keyMapLayoutName],
-			scaleName: store.scaleName,
-			scaleNotes,
-			octave
-		})
-
+		console.log('generating keymap', { octave, keyMapLayoutName, joinedScaleNotes })
+		const keyMap = generateKeyMap()
 		store.setKeyMap(keyMap)
 	}, [octave, joinedScaleNotes, keyMapLayoutName])
 }
@@ -152,9 +126,12 @@ function useMidiSync() {
 		const outputNames = outputs.map((output) => output.name)
 		const firstOutput = outputs[0] || ({} as any)
 		const midiOutputName = firstOutput.name || ''
-		store.setMidiOutputName(midiOutputName)
-		store.setMidiOutputNames(outputNames)
-		store.setIsMidiEnabled(true)
+
+		store.setState({
+			midiOutputName,
+			midiOutputNames: outputNames,
+			isMidiEnabled: true
+		})
 	}, [isMidiConnected])
 }
 
@@ -164,57 +141,62 @@ function useMidiOutputsSync() {
 		setInterval(() => {
 			const midiOutputName = store.midiOutputName
 			const outputNames = WebMidi.outputs.map((output) => output.name)
-			const mergedMidiOutputNames = [...outputNames, 'built-in instrument']
+			const mergedMidiOutputNames = [...outputNames, 'builtIn']
 			const isSelectedOutputStillAvailable = mergedMidiOutputNames.includes(midiOutputName)
 			if (!isSelectedOutputStillAvailable) store.setMidiOutputName('')
 		}, 30000)
 	}, [])
 }
 
-async function loadInstrument(context, name: InstrumentName) {
-	return new Promise((resolve, reject) => {
-		Soundfont.instrument(context, name).then(resolve).catch(reject)
-	})
-}
+// async function loadInstrument(context, name: InstrumentName) {
+// 	return new Promise((resolve, reject) => {
+// 		Soundfont.instrument(context, name).then(resolve).catch(reject)
+// 	})
+// }
 
-function useInstrumentLoader() {
-	const isOutputEnabled = store.useIsOutputEnabled()
-	const areInstrumentsLoaded = store.useAreInstrumentsLoaded()
+// function useInstrumentLoader() {
+// 	const isOutputEnabled = store.useIsOutputEnabled()
+// 	const areInstrumentsLoaded = store.useAreInstrumentsLoaded()
 
-	React.useEffect(() => {
-		if (areInstrumentsLoaded) return
-		if (!isOutputEnabled) return
+// 	React.useEffect(() => {
+// 		if (areInstrumentsLoaded) return
+// 		if (!isOutputEnabled) return
 
-		const context = new AudioContext()
-		store.setAudioContext(context)
-		const loader0 = loadInstrument(context, 'acoustic_grand_piano')
-		const loader1 = loadInstrument(context, 'acoustic_guitar_nylon')
-		const loader2 = loadInstrument(context, 'electric_guitar_clean')
-		const loader3 = loadInstrument(context, 'xylophone')
-		const loader4 = loadInstrument(context, 'marimba')
+// 		const context = new AudioContext()
+// 		store.setAudioContext(context)
 
-		const whenAllAreDone = Promise.all([loader0, loader1, loader2, loader3, loader4])
+// 		const loader0 = loadInstrument(context, 'acoustic_grand_piano')
+// 		const loader1 = loadInstrument(context, 'acoustic_guitar_nylon')
+// 		const loader2 = loadInstrument(context, 'electric_guitar_clean')
+// 		const loader3 = loadInstrument(context, 'xylophone')
+// 		const loader4 = loadInstrument(context, 'marimba')
 
-		whenAllAreDone.then((instruments) => {
-			store.set('instruments')({
-				acoustic_grand_piano: instruments[0],
-				acoustic_guitar_nylon: instruments[1],
-				electric_guitar_clean: instruments[2],
-				xylophone: instruments[3],
-				marimba: instruments[4]
-			})
+// 		const whenAllAreDone = Promise.all([loader0, loader1, loader2, loader3, loader4])
 
-			store.setAreInstrumentsLoaded(true)
-			const midiOutputNames = store.midiOutputNames
-			store.setMidiOutputNames([...midiOutputNames, 'built-in instrument'])
-		})
-	}, [isOutputEnabled])
-}
+// 		whenAllAreDone.then((instruments) => {
+// 			store.set('loadedInstruments')({
+// 				acoustic_grand_piano: instruments[0],
+// 				acoustic_guitar_nylon: instruments[1],
+// 				electric_guitar_clean: instruments[2],
+// 				xylophone: instruments[3],
+// 				marimba: instruments[4]
+// 			})
+
+// 			store.setAreInstrumentsLoaded(true)
+// 			const midiOutputNames = store.midiOutputNames
+// 			store.setMidiOutputNames([...midiOutputNames, 'builtIn'])
+
+// 			store.setState({
+// 				midiOutputName: 'builtIn',
+// 				isMidiEnabled: true
+// 			})
+// 		})
+// 	}, [isOutputEnabled])
+// }
 
 export function useStoreSync() {
-	useInstrumentLoader()
+	// useInstrumentLoader()
 	useScaleNameSync()
-	useScaleNotesSync()
 	usePlayingNotesSync()
 	useKeyMapSync()
 	useMidiSync()

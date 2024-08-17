@@ -3,14 +3,12 @@ import './ChordBoard.css'
 import * as React from 'react'
 import { Flex } from '../Flex'
 import { Badge, Heading, TextField } from '@radix-ui/themes'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 import { BigChordCard } from './BigChordCard'
 
 export const ChordBoard = (props: AnyObjectT) => {
 	const inScaleChordNames = store.useScaleChordNames()
 	const scaleChordsEntries = Object.entries(inScaleChordNames)
-
-	console.log({ scaleChordsEntries })
 
 	return (
 		<Flex.Column gap="3" p="4" pt="0" data-testid="ChordBoard" className="ChordBoard">

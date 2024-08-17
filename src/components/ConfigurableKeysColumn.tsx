@@ -1,32 +1,14 @@
 import './ConfigurableKeys.css'
 import React from 'react'
 import classcat from 'classcat'
-import defaultKeysConfig from '../consts/defaultKeys.config.json'
-import keyboardLayoutsConfig from '../consts/keyboardLayouts.config.json'
 import { Button, Text, ContextMenu, ScrollArea } from '@radix-ui/themes'
 import { Flex } from './Flex'
-import { store } from '../store'
+import { store } from '../stores/store'
 import isEmpty from 'is-empty'
 import appConfig from '../consts/app.config.json'
-
-const usePlayableKeyCodes = () => {
-	const layoutName = store.useKeyboardLayoutName()
-	const layout = keyboardLayoutsConfig[layoutName]
-
-	return React.useMemo(() => {
-		const allKeyCodes = layout.rows.flat()
-
-		return allKeyCodes.reduce((final, keyCode) => {
-			const keyConfig = defaultKeysConfig[keyCode]
-			const isPlayable = keyConfig.isPlayable
-			if (isPlayable) final.push(keyCode)
-			return final
-		}, [])
-	}, [])
-}
+import { playableKeyCodes } from '../consts'
 
 export const ConfigurableKeysColumn = () => {
-	const playableKeyCodes = usePlayableKeyCodes()
 	const keyMap = store.useKeyMap()
 	if (isEmpty(keyMap)) return null
 

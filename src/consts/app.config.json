@@ -2,12 +2,10 @@
 	"defaultScaleRootNote": "F#",
 	"defaultScaleType": "minor",
 	"defaultOctave": 2,
-	"defaultKeyMapLayoutName": "push",
+	"defaultKeyMapLayoutName": "isomorphic",
 	"defaultKeyboardLayoutName": "standard",
 
-	"keyMapLayoutNames": [
-		"push",
-
+	"disabledKeymapNames": [
 		"rightDown",
 		"rightDownQuads",
 		"rightDownTrios",
@@ -15,7 +13,6 @@
 
 		"rightUp",
 		"rightUpQuads",
-		"rightUpTrios",
 		"rightUpPairs",
 
 		"leftDown",
@@ -28,6 +25,8 @@
 		"leftUpTrios",
 		"leftUpPairs"
 	],
+
+	"keyMapLayoutNames": ["isomorphic", "rightUpTrios"],
 
 	"tonicColors": {
 		"C": "mint",
@@ -117,7 +116,6 @@
 		"gunshot",
 		"harpsichord",
 		"helicopter",
-
 		"muted_trumpet",
 		"lead_1_square",
 		"lead_2_sawtooth",

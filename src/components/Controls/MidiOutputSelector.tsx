@@ -1,5 +1,5 @@
 import { Text, Button, Select } from '@radix-ui/themes'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 
 export const MidiOutputSelector = () => {
 	const midiOutputNames = store.useMidiOutputNames()
@@ -8,6 +8,7 @@ export const MidiOutputSelector = () => {
 	const isMidiConnected = store.useIsMidiConnected()
 	const isGoodToGo = isMidiEnabled && isMidiConnected
 	const value = isGoodToGo ? selectedMidiOutputName : 'Disabled'
+	const isInstrument = selectedMidiOutputName === 'builtIn'
 
 	const setMidiOutputName = (newMidiOutputName: string) => {
 		store.setMidiOutputName(newMidiOutputName)
@@ -16,7 +17,7 @@ export const MidiOutputSelector = () => {
 	return (
 		<Select.Root value={value} onValueChange={setMidiOutputName}>
 			<Select.Trigger>
-				<Text className="normalFont">MIDI Output: {value}</Text>
+				<Text className="normalFont">Output: {value}</Text>
 			</Select.Trigger>
 			<Select.Content position="popper">
 				{midiOutputNames.map((name) => (

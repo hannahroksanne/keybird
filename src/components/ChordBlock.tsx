@@ -12,6 +12,7 @@ import appConfig from '../consts/app.config.json'
 import * as HoverCard from '@radix-ui/react-hover-card'
 import React from 'react'
 import * as Select from '@radix-ui/react-select'
+import { store } from '../stores/store'
 
 type PropsT = {
 	chordName: string
@@ -41,6 +42,12 @@ const ChordBlockFrame = (props) => {
 	const className = classcat(['ChordBlockFrame', props.className])
 	const cardClassName = classcat(['ChordBlockColoredBackdrop', `dark ${color}`, props.cardClassName])
 
+	const openKeybindOverlay = () => {
+		console.log('openKeybindOverlay')
+		store.toggleIsKeybindOverlayOpen()
+		store.setWhichChordIsBeingBound(props.symbol)
+	}
+
 	return (
 		<Flex.Row className={className} style={style} flexGrow="1">
 			<Card className={cardClassName}>
@@ -48,7 +55,7 @@ const ChordBlockFrame = (props) => {
 					<Text size="1" className="ChordBlockTitle">
 						{props.name}
 					</Text>
-					<KeyboardIcon style={{ width: 16 }} />
+					<KeyboardIcon data-foo="yolo" onClick={openKeybindOverlay} style={{ width: 16 }} />
 				</Flex.Row>
 				<Spacer size="3px" />
 				<GrayTheme asChild>
@@ -127,3 +134,10 @@ export const ProgressionChordBlock = React.memo((props: PropsT) => {
 		</ChordBlockFrame>
 	)
 })
+
+export const ChordKeyBindBlock = (props) => {
+	const chord = useChord(props.chordSymbol)
+	const lastLetter = props.keyCode.slice(-1)
+
+	return <ChordBlockFrame className="ChordKeyBindBlock" {...chord} name={props.chordSymbol} symbol={lastLetter} />
+}

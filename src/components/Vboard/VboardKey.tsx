@@ -3,7 +3,7 @@ import classcat from 'classcat'
 import { VboardKeyMenu } from './VboardKeyMenu'
 import { VboardKeyButton } from './VboardKeyButton'
 import React from 'react'
-import { store } from '../../store'
+import { store } from '../../stores/store'
 
 type VboardKeyPropsT = {
 	keyCode: string
