@@ -41,7 +41,18 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 main {
+}
+
+.Router {
+	height: 100%;
+}
+
+.App,
+.Router,
+main {
 	height: 100vh;
+	display: flex;
+	width: 100vw;
 }
 
 .normalFont {

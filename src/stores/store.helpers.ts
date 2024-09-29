@@ -1,10 +1,10 @@
 import { store } from './store'
 import { toner } from '../utilities/toner'
-import defaultKeysConfig from '../consts/default.keys.json'
+import defaultKeysConfig from '../configuration/default.keys.json'
 import getRandom from 'just-random'
 import filterObject from 'just-filter-object'
-import { chords } from '../consts/chords'
-import keyMapLayoutsConfig from '../consts/default.keymaps.json'
+import { chords } from '../configuration/theory'
+import keyMapLayoutsConfig from '../configuration/default.keymaps.json'
 
 const getFunctionalKeyConfigsMap = (configs: KeyConfigMapT) => {
 	const checkIsEntryFunctional = (_, config: KeyConfigT) => config.isFunctional

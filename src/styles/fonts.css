@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
 	font-family: 'Sometype Mono';
 	src: url('public/fonts/Sometype Mono-Regular.ttf') format('truetype');
 	font-weight: 400;
@@ -52,8 +52,19 @@
 	src: url('public/fonts/Sometype Mono-700italic.ttf') format('truetype');
 	font-weight: 700;
 	font-style: italic;
-}
+} */
 
 :root {
-	--fonts0: 'Sometype Mono', monospace;
+	/* --fonts0: 'Sometype Mono', monospace; */
+	--geistSans: 'Geist Sans', sans-serif;
+	--geistMono: 'Geist Mono', monospace;
+}
+
+.radix-themes {
+	--default-font-family: var(--geistMono);
+	--heading-font-family: var(--geistMono);
+	--code-font-family: var(--geistMono);
+	--strong-font-family: var(--geistMono);
+	--em-font-family: var(--geistMono);
+	--quote-font-family: var(--geistMono);
 }

@@ -29,7 +29,19 @@
 		"noPropertyAccessFromIndexSignature": false,
 		"noUncheckedIndexedAccess": false,
 		"noEmitOnError": false,
-		"skipLibCheck": true // Add this line
+		"skipLibCheck": true,
+
+		"baseUrl": ".",
+		"paths": {
+			"#/*": ["src/*"],
+			"#components/*": ["src/components/*"],
+			"#utilities/*": ["src/utilities/*"],
+			"#stores/*": ["src/stores/*"],
+			"#types/*": ["src/types/*"],
+			"#configuration/*": ["src/configuration/*"],
+			"#constants/*": ["src/constants/*"],
+			"#views/*": ["src/views/*"]
+		}
 	},
 	"include": ["src"]
 }

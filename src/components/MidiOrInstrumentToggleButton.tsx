@@ -1,8 +1,8 @@
 import { Button, Select, Text } from '@radix-ui/themes'
 import { Flex } from './Flex'
 import { store } from '../stores/store'
-import { MidiOutputSelector } from './Controls/MidiOutputSelector'
-import { MidiToggleButton } from './Controls/MidiToggleButton'
+import { MidiOutputSelector } from './controls/MidiOutputSelector'
+import { MidiToggleButton } from './controls/MidiToggleButton'
 import { InstrumentSelector, OutputController } from './OutputController'
 import React from 'react'
 

@@ -1,0 +1,13 @@
+{
+	"defaultScaleName": "D minor",
+	"defaultScaleRootNote": "D",
+	"defaultScaleType": "minor",
+	"defaultBaseOctave": 3,
+	"defaultKeyMapLayoutName": "isomorphic",
+	"defaultKeyboardLayoutName": "standard",
+	"defaultOutputType": "instrument",
+	"defaultInstrumentName": "acoustic_grand_piano",
+	"keyMapLayoutNames": ["isomorphic", "rightUp", "rightUpTrios", "rightDown", "downRight"],
+	"rootNotes": ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+	"scaleTypes": ["major", "minor"]
+}

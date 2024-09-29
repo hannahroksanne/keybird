@@ -1,0 +1,28 @@
+.ChordBrowser {
+	height: 450px;
+	overflow: auto;
+}
+
+.RootNoteSelect {
+	width: 100%;
+}
+
+.RootNoteSelectRoot {
+	width: 32px;
+	height: 32px;
+}
+
+.NoteChords {
+	flex-wrap: wrap;
+}
+
+.RootNoteToggleGroup {
+	display: flex;
+}
+
+.RootNoteItem {
+	width: 100px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+}

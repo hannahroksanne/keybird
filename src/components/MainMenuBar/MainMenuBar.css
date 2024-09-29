@@ -4,6 +4,11 @@
 
 .MainMenuBar {
 	justify-content: center;
+	width: 100vw;
+}
+
+.MainMenuBarLink {
+	cursor: pointer;
 }
 
 .MainMenuBar .MainMenuBarRow {
@@ -21,20 +26,19 @@
 
 .MenubarTrigger {
 	padding: 8px 16px;
-	/* outline: none; */
 	user-select: none;
-	/* font-weight: 500; */
-	/* line-height: 1; */
 	border-radius: 4px;
-	/* font-size: 13px; */
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	/* gap: 4px; */
 }
 
 .MenubarTrigger[data-highlighted],
 .MenubarTrigger[data-state='open'] {
+}
+
+:root {
+	--mainMenuBarShadow0: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
 }
 
 .MenubarContent,
@@ -43,9 +47,7 @@
 	background-color: black;
 	border-radius: 6px;
 	padding: 5px;
-	box-shadow:
-		0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-		0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+	box-shadow: var(--mainMenuBarShadow0);
 	animation-duration: 400ms;
 	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 	will-change: transform, opacity;

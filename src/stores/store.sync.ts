@@ -4,11 +4,11 @@ import { toner } from '../utilities/toner'
 import { generateKeyMap } from './store.helpers'
 import { WebMidi } from 'webmidi'
 import Soundfont, { InstrumentName } from 'soundfont-player'
-import { chords } from '../consts/chords'
+import { chords } from '../configuration/theory'
 import { usePrevious } from '@uidotdev/usehooks'
 import { midi } from './midi.helper'
 import getDiff from 'array-differ'
-import { playableKeyCodes } from '../consts'
+import { playableKeyCodes } from '../configuration'
 
 // Syncs scaleName when scaleRootNote or scaleType changes.
 // Syncs scaleNotes when scaleName changes.

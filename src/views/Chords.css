@@ -1,8 +1,0 @@
-.ProgressionsBar {
-	background: linear-gradient(135deg, #16181b, #131415ba);
-	box-shadow:
-		-1px 4px 26px 2px rgba(17, 24, 39, 0.633),
-		-10px 10px 30px -9px rgb(25 17 25 / 93%),
-		0px 4px 60px 8px rgb(18 16 18 / 27%),
-		20px 0px 130px 48px rgb(13 1 15 / 30%);
-}
