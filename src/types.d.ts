@@ -1,3 +1,12 @@
+type ChordProgressionItemT = {
+	id: string
+	chordName: string
+	octave: number
+	inversion: number
+	voicing: string
+	bassNote: string
+}
+
 type PlaybackNoteT = {
 	name: string
 	startTicks: number

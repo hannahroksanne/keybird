@@ -37,12 +37,16 @@ type MainStateT = {
 	isKeybindOverlayOpen: boolean
 	whichChordIsBeingBound: string
 	chordKeyBinds: AnyObjectT
+	chordProgression: ChordProgressionItemT[]
+	selectedProgressionIndex: number
 }
 
 const MAIN_INITIAL_STATE = {
 	chordKeyBinds: {},
 	whichChordIsBeingBound: '',
 	isKeybindOverlayOpen: false,
+	chordProgression: [],
+	selectedProgressionIndex: -1,
 	outputType: 'midi',
 
 	audioContext: null,
@@ -314,6 +318,58 @@ const useBuiltInInstrumentNames = use('builtInInstrumentNames')
 const getBuiltInInstrumentNames = get('builtInInstrumentNames')
 const setBuiltInInstrumentNames = set('builtInInstrumentNames')
 
+// chord progression
+const useChordProgression = use('chordProgression')
+const getChordProgression = get('chordProgression')
+const setChordProgression = set('chordProgression')
+
+const useSelectedProgressionIndex = use('selectedProgressionIndex')
+const getSelectedProgressionIndex = get('selectedProgressionIndex')
+const setSelectedProgressionIndex = set('selectedProgressionIndex')
+
+const addChordToProgression = (chordName: string) => {
+	const newChord: ChordProgressionItemT = {
+		id: Date.now().toString(),
+		chordName,
+		octave: 3,
+		inversion: 0,
+		voicing: 'root',
+		bassNote: ''
+	}
+	$main.set((state) => ({ 
+		chordProgression: [...state.chordProgression, newChord] 
+	}))
+}
+
+const removeChordFromProgression = (id: string) => {
+	$main.set((state) => ({
+		chordProgression: state.chordProgression.filter(chord => chord.id !== id),
+		selectedProgressionIndex: state.selectedProgressionIndex >= state.chordProgression.length - 1 
+			? -1 
+			: state.selectedProgressionIndex
+	}))
+}
+
+const updateChordInProgression = (id: string, updates: Partial<ChordProgressionItemT>) => {
+	$main.set((state) => ({
+		chordProgression: state.chordProgression.map(chord =>
+			chord.id === id ? { ...chord, ...updates } : chord
+		)
+	}))
+}
+
+const moveChordInProgression = (fromIndex: number, toIndex: number) => {
+	$main.set((state) => {
+		const newProgression = [...state.chordProgression]
+		const [chord] = newProgression.splice(fromIndex, 1)
+		newProgression.splice(toIndex, 0, chord)
+		return {
+			chordProgression: newProgression,
+			selectedProgressionIndex: toIndex
+		}
+	})
+}
+
 type StoreT = MainStateT & {
 	useChordKeyBinds: () => AnyObjectT
 	getChordKeyBinds: () => AnyObjectT
@@ -418,6 +474,18 @@ type StoreT = MainStateT & {
 	getOutputType: () => string
 	setOutputType: (outputType: string) => void
 	useChordsWithRootNote: (rootNote: string) => string[]
+	
+	// chord progression
+	useChordProgression: () => ChordProgressionItemT[]
+	getChordProgression: () => ChordProgressionItemT[]
+	setChordProgression: (chordProgression: ChordProgressionItemT[]) => void
+	useSelectedProgressionIndex: () => number
+	getSelectedProgressionIndex: () => number
+	setSelectedProgressionIndex: (index: number) => void
+	addChordToProgression: (chordName: string) => void
+	removeChordFromProgression: (id: string) => void
+	updateChordInProgression: (id: string, updates: Partial<ChordProgressionItemT>) => void
+	moveChordInProgression: (fromIndex: number, toIndex: number) => void
 }
 
 const useChordsWithRootNote = (rootNote: string) => $main.use((state) => state.scaleChordNames[rootNote])
@@ -522,6 +590,18 @@ export const store: StoreT = {
 	useWhichChordIsBeingBound,
 	getWhichChordIsBeingBound,
 	setWhichChordIsBeingBound,
+
+	// chord progression methods
+	useChordProgression,
+	getChordProgression,
+	setChordProgression,
+	useSelectedProgressionIndex,
+	getSelectedProgressionIndex,
+	setSelectedProgressionIndex,
+	addChordToProgression,
+	removeChordFromProgression,
+	updateChordInProgression,
+	moveChordInProgression,
 
 	get builtInInstrumentNames() {
 		return getBuiltInInstrumentNames()
@@ -661,6 +741,14 @@ export const store: StoreT = {
 
 	get playingChordNames() {
 		return getPlayingChordNames()
+	},
+
+	get chordProgression() {
+		return getChordProgression()
+	},
+
+	get selectedProgressionIndex() {
+		return getSelectedProgressionIndex()
 	}
 }
 

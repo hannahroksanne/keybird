@@ -2,7 +2,7 @@ import './ChordBlock.css'
 
 import { Button, Card, Text } from '@radix-ui/themes'
 import { Flex } from './Flex'
-import { InfoCircledIcon, PlusIcon, QuestionMarkIcon, KeyboardIcon } from '@radix-ui/react-icons'
+import { InfoCircledIcon, PlusIcon, QuestionMarkIcon, KeyboardIcon, Pencil1Icon, TrashIcon } from '@radix-ui/react-icons'
 import { useChord } from '../hooks/useChord'
 import { DarkYellowTheme, GrayTheme } from './Themes'
 import { Spacer } from './Spacer'
@@ -21,10 +21,14 @@ type PropsT = {
 export const ChordBlock = React.memo((props: PropsT) => {
 	const chord = useChord(props.chordName)
 
+	const handleAddToProgression = () => {
+		store.addChordToProgression(props.chordName)
+	}
+
 	const actionIcons = (
 		<>
 			<ActionIcon icon={InfoCircledIcon} />
-			<ActionIcon icon={PlusIcon} />
+			<ActionIcon icon={PlusIcon} onClick={handleAddToProgression} />
 			<ActionIcon icon={QuestionMarkIcon} />
 		</>
 	)
@@ -38,7 +42,8 @@ export const ChordBlock = React.memo((props: PropsT) => {
 
 const ChordBlockFrame = (props) => {
 	const color = appConfig.tonicColors[props.tonic]
-	const style = { '--backdropColor': `var(--${color}-9)` } as React.CSSProperties
+	const defaultStyle = { '--backdropColor': `var(--${color}-9)` } as React.CSSProperties
+	const style = { ...defaultStyle, ...props.style }
 	const className = classcat(['ChordBlockFrame', props.className])
 	const cardClassName = classcat(['ChordBlockColoredBackdrop', `dark ${color}`, props.cardClassName])
 
@@ -108,7 +113,7 @@ const Note = (props) => {
 
 const ActionIcon = (props) => {
 	return (
-		<Flex.Row className="ActionIcon">
+		<Flex.Row className="ActionIcon" onClick={props.onClick} style={{ cursor: props.onClick ? 'pointer' : 'default' }}>
 			<props.icon className="ActionIconIcon" />
 		</Flex.Row>
 	)
@@ -141,3 +146,39 @@ export const ChordKeyBindBlock = (props) => {
 
 	return <ChordBlockFrame className="ChordKeyBindBlock" {...chord} name={props.chordSymbol} symbol={lastLetter} />
 }
+
+export const ProgressionChordItem = React.memo((props: { 
+	chordItem: ChordProgressionItemT
+	index: number
+	isSelected: boolean
+	onSelect: () => void
+	onEdit: () => void
+	onRemove: () => void
+}) => {
+	const chord = useChord(props.chordItem.chordName)
+	const color = appConfig.tonicColors[chord.tonic]
+	const className = classcat(['ProgressionChordItem', props.isSelected && 'ProgressionChordItemSelected'])
+	const style = props.isSelected ? { '--backdropColor': `var(--${color}-9)`, boxShadow: `0 0 8px var(--${color}-6)` } as React.CSSProperties : {}
+
+	const actionIcons = (
+		<>
+			<ActionIcon icon={Pencil1Icon} onClick={props.onEdit} />
+			<ActionIcon icon={TrashIcon} onClick={props.onRemove} />
+		</>
+	)
+
+	return (
+		<div onClick={props.onSelect}>
+			<ChordBlockFrame 
+				className={className} 
+				style={style}
+				{...chord} 
+				actionIcons={actionIcons}
+			>
+				<Text size="1" style={{ opacity: 0.7 }}>
+					Oct: {props.chordItem.octave} | Inv: {props.chordItem.inversion}
+				</Text>
+			</ChordBlockFrame>
+		</div>
+	)
+})

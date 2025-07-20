@@ -3,10 +3,11 @@ import './Chords.css'
 import { Button, Heading, Select, Text } from '@radix-ui/themes'
 import { Flex } from '../components/Flex'
 import { Spacer } from '../components/Spacer'
-import { ChordBlock, ChordKeyBindBlock } from '../components/ChordBlock'
+import { ChordBlock, ChordKeyBindBlock, ProgressionChordItem } from '../components/ChordBlock'
 import { store } from '../stores/store'
 import React from 'react'
 import { ChordKeybindOverlay } from '../components/ChordKeyBindOverlay'
+import { ChordEditDialog } from '../components/ChordEditDialog'
 
 export const Chords = () => {
 	const scaleNotes = store.useScaleNotes()
@@ -73,30 +74,91 @@ const SortSelect = React.memo((props: SortSelectPropsT) => {
 })
 
 const ProgressionsBar = () => {
-	const chordKeyBinds = store.useChordKeyBinds()
-	const chordKeyBindsEntries = Object.entries(chordKeyBinds)
+	const chordProgression = store.useChordProgression()
+	const selectedIndex = store.useSelectedProgressionIndex()
+	const [editingChord, setEditingChord] = React.useState<ChordProgressionItemT | null>(null)
+	const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false)
+
+	const handleSelectChord = (index: number) => {
+		store.setSelectedProgressionIndex(selectedIndex === index ? -1 : index)
+	}
+
+	const handleEditChord = (chordItem: ChordProgressionItemT) => {
+		setEditingChord(chordItem)
+		setIsEditDialogOpen(true)
+	}
+
+	const handleRemoveChord = (id: string) => {
+		store.removeChordFromProgression(id)
+	}
+
+	const handleSaveChordEdits = (updates: Partial<ChordProgressionItemT>) => {
+		if (editingChord) {
+			store.updateChordInProgression(editingChord.id, updates)
+		}
+	}
+
+	const handleCloseEditDialog = () => {
+		setIsEditDialogOpen(false)
+		setEditingChord(null)
+	}
+
+	// Handle keyboard navigation
+	React.useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (selectedIndex === -1) return
+			
+			if (e.key === 'ArrowLeft' && selectedIndex > 0) {
+				e.preventDefault()
+				store.moveChordInProgression(selectedIndex, selectedIndex - 1)
+			} else if (e.key === 'ArrowRight' && selectedIndex < chordProgression.length - 1) {
+				e.preventDefault()
+				store.moveChordInProgression(selectedIndex, selectedIndex + 1)
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+		return () => document.removeEventListener('keydown', handleKeyDown)
+	}, [selectedIndex, chordProgression.length])
 
 	return (
-		<Flex.Column
-			className="ProgressionsBar"
-			justify="end"
-			style={{
-				position: 'fixed',
-				bottom: 0,
-				left: 0,
-				right: 0,
-				padding: '8px 16px',
-				height: 160,
-				width: '100vw',
-				overflowX: 'scroll'
-			}}
-		>
-			<Flex.Row className="ChordsList" gap="4" mr="6" pr="6">
-				{chordKeyBindsEntries.map(([keyCode, chordSymbol]) => (
-					<ChordKeyBindBlock keyCode={keyCode} chordSymbol={chordSymbol} />
-				))}
-				<Spacer size="24px" />
-			</Flex.Row>
-		</Flex.Column>
+		<>
+			<Flex.Column
+				className="ProgressionsBar"
+				justify="end"
+				style={{
+					position: 'fixed',
+					bottom: 0,
+					left: 0,
+					right: 0,
+					padding: '8px 16px',
+					height: 160,
+					width: '100vw',
+					overflowX: 'scroll'
+				}}
+			>
+				<Flex.Row className="ChordsList" gap="4" mr="6" pr="6">
+					{chordProgression.map((chordItem, index) => (
+						<ProgressionChordItem
+							key={chordItem.id}
+							chordItem={chordItem}
+							index={index}
+							isSelected={selectedIndex === index}
+							onSelect={() => handleSelectChord(index)}
+							onEdit={() => handleEditChord(chordItem)}
+							onRemove={() => handleRemoveChord(chordItem.id)}
+						/>
+					))}
+					<Spacer size="24px" />
+				</Flex.Row>
+			</Flex.Column>
+
+			<ChordEditDialog
+				chordItem={editingChord}
+				isOpen={isEditDialogOpen}
+				onClose={handleCloseEditDialog}
+				onSave={handleSaveChordEdits}
+			/>
+		</>
 	)
 }
