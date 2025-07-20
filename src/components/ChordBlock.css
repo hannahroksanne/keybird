@@ -127,3 +127,30 @@
 .ChordBlockFrame.ChordKeyBindBlock .ChordBlockSymbol {
 	font-size: 36px;
 }
+
+.ProgressionChordItem {
+	min-width: 180px;
+	max-width: 180px;
+	width: 180px;
+	height: 120px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.ProgressionChordItem:hover {
+	transform: translateY(-2px);
+}
+
+.ProgressionChordItemSelected {
+	transform: translateY(-4px);
+	transition: all 0.3s ease;
+}
+
+.ProgressionChordItem .ChordBlockContent {
+	height: 80px;
+	padding: 12px;
+}
+
+.ProgressionChordItem .ChordBlockActionIcons {
+	height: 80px;
+}
