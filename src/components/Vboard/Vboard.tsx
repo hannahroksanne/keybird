@@ -53,7 +53,7 @@ export const Vboard = React.memo(() => {
 					))}
 				</Flex.Column>
 			</GrayTheme>
-			{/* <OutputOptionsRow /> */}
+			<OutputOptionsRow />
 			<OptionsRow />
 		</Flex.Column>
 	)

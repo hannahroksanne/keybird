@@ -16,7 +16,7 @@ export const MidiOrInstrumentToggleButton = () => {
 				<Text className="normalFont">Output Type: {text}</Text>
 			</Select.Trigger>
 			<Select.Content>
-				<Select.Item value="MIDI">MIDI Port</Select.Item>
+				<Select.Item value="midi">MIDI Port</Select.Item>
 				<Select.Item value="builtIn">Built-In Instrument</Select.Item>
 			</Select.Content>
 		</Select.Root>
@@ -33,7 +33,7 @@ export const OutputOptionsRow = () => {
 
 	return (
 		<Flex.Row gap="3" mb="0" className="VboardDataRow" justify="between" align="center" style={{ width: '100%' }}>
-			{/* <MidiOrInstrumentToggleButton /> */}
+			<MidiOrInstrumentToggleButton />
 
 			<Flex.Row gap="3">
 				{outputType === 'midi' && (

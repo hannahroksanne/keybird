@@ -25,6 +25,10 @@ export const VboardKeyButton = (props: PropsT) => {
 		dispatchKeyEvent('keyup')
 	}
 
+	const handleMouseLeave = () => {
+		dispatchKeyEvent('keyup')
+	}
+
 	return (
 		<Button
 			ref={props.buttonRef}
@@ -32,6 +36,7 @@ export const VboardKeyButton = (props: PropsT) => {
 			color={color}
 			onMouseDown={handleKeyDown}
 			onMouseUp={handleKeyUp}
+			onMouseLeave={handleMouseLeave}
 			disabled={props.isDisabled}
 			className={props.className}
 			style={{ gap: 0, flexGrow: props.width, position: 'relative' }}

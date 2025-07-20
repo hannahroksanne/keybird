@@ -3,7 +3,7 @@ import './Chords.css'
 import { Button, Heading, Select, Text } from '@radix-ui/themes'
 import { Flex } from '../components/Flex'
 import { Spacer } from '../components/Spacer'
-import { ChordBlock, ChordKeyBindBlock } from '../components/ChordBlock'
+import { ChordBlock, ChordKeyBindBlock, ProgressionChordItem } from '../components/ChordBlock'
 import { store } from '../stores/store'
 import React from 'react'
 import { ChordKeybindOverlay } from '../components/ChordKeyBindOverlay'
@@ -73,8 +73,39 @@ const SortSelect = React.memo((props: SortSelectPropsT) => {
 })
 
 const ProgressionsBar = () => {
-	const chordKeyBinds = store.useChordKeyBinds()
-	const chordKeyBindsEntries = Object.entries(chordKeyBinds)
+	const chordProgression = store.useChordProgression()
+	const selectedIndex = store.useSelectedProgressionIndex()
+
+	const handleSelectChord = (index: number) => {
+		store.setSelectedProgressionIndex(selectedIndex === index ? -1 : index)
+	}
+
+	const handleEditChord = (chordItem: ChordProgressionItemT) => {
+		// TODO: Open edit dialog
+		console.log('Edit chord:', chordItem)
+	}
+
+	const handleRemoveChord = (id: string) => {
+		store.removeChordFromProgression(id)
+	}
+
+	// Handle keyboard navigation
+	React.useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (selectedIndex === -1) return
+			
+			if (e.key === 'ArrowLeft' && selectedIndex > 0) {
+				e.preventDefault()
+				store.moveChordInProgression(selectedIndex, selectedIndex - 1)
+			} else if (e.key === 'ArrowRight' && selectedIndex < chordProgression.length - 1) {
+				e.preventDefault()
+				store.moveChordInProgression(selectedIndex, selectedIndex + 1)
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+		return () => document.removeEventListener('keydown', handleKeyDown)
+	}, [selectedIndex, chordProgression.length])
 
 	return (
 		<Flex.Column
@@ -92,8 +123,16 @@ const ProgressionsBar = () => {
 			}}
 		>
 			<Flex.Row className="ChordsList" gap="4" mr="6" pr="6">
-				{chordKeyBindsEntries.map(([keyCode, chordSymbol]) => (
-					<ChordKeyBindBlock keyCode={keyCode} chordSymbol={chordSymbol} />
+				{chordProgression.map((chordItem, index) => (
+					<ProgressionChordItem
+						key={chordItem.id}
+						chordItem={chordItem}
+						index={index}
+						isSelected={selectedIndex === index}
+						onSelect={() => handleSelectChord(index)}
+						onEdit={() => handleEditChord(chordItem)}
+						onRemove={() => handleRemoveChord(chordItem.id)}
+					/>
 				))}
 				<Spacer size="24px" />
 			</Flex.Row>
